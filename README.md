@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+TKM College of Engineering MUN 2025 Website
+This is the official website for the TKM College of Engineering's Model United Nations (MUN) conference for 2025. The central theme for this year's event is the International Cricket Council (ICC).
 
-## Getting Started
+The website is designed with a modern, minimalist, and professional aesthetic, inspired by the clean, animation-rich design of commure.com. It is a fully responsive single-page application.
 
-First, run the development server:
+Tech Stack
+This project is built with a modern web development stack:
 
-```bash
+Framework: Next.js (v15+)
+
+Library: React
+
+Styling: Tailwind CSS (v4)
+
+Animations: Framer Motion
+
+Background Effects: React TS-Particles
+
+Icons: Lucide React
+
+Getting Started
+To run the project locally, follow these steps:
+
+Clone the repository:
+
+git clone <your-repository-url>
+
+Navigate into the project directory:
+
+cd MUN-Website
+
+Install dependencies:
+
+npm install
+
+Run the development server:
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Project Structure
+The project follows the standard Next.js app directory structure:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+src/app/page.js: The main entry point for the homepage, which assembles all the sections.
 
-## Learn More
+src/app/layout.js: The root layout for the entire application. It sets up the global font and the fluid background animation.
 
-To learn more about Next.js, take a look at the following resources:
+src/app/globals.css: Contains the Tailwind CSS directives and the custom theme configuration (colors, fonts).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+src/components/: Contains all the reusable React components used to build the page (e.g., Navbar.jsx, HeroSection.jsx, CommitteesSection.jsx).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Key Features
+Fluid Particle Animation: A subtle, animated background that provides a dynamic and high-end feel.
 
-## Deploy on Vercel
+Scroll-Triggered Animations: Content sections gracefully fade or slide into view as the user scrolls, powered by Framer Motion.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Responsive Design: The layout is fully responsive and optimized for a seamless experience on all devices, from mobile phones to desktops.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Custom Theming: Utilizes a custom color palette defined in globals.css to maintain a consistent and professional brand identit
