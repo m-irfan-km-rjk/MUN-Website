@@ -1,39 +1,44 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Globe, Shield, Users, Landmark, Newspaper } from 'lucide-react';
+// All icons are now replaced with custom logos
 import Image from 'next/image';
 
 const committees = [
   {
-    icon: <Globe size={28} />,
+    icon: null,
+    name: "UNGA",
+    fullName: "United Nations General Assembly",
+    logoUrl: "/UNGA.png" 
+  },
+  {
+    icon: null, 
     name: "UNHRC",
     fullName: "United Nations Human Rights Council",
-    imageUrl: "https://placehold.co/600x800/145374/E8E8E8.png?text=UNHRC"
+    logoUrl: "/UNHRC.png" 
   },
   {
-    icon: <Shield size={28} />,
+    icon: null,
     name: "UNSC",
     fullName: "United Nations Security Council",
-    imageUrl: "https://placehold.co/600x800/145374/E8E8E8.png?text=UNSC"
+    logoUrl: "/UNSC.png",
+    customScale: "scale-150" 
   },
   {
-    icon: <Landmark size={28} />,
-    name: "ECOSOC",
-    fullName: "United Nations Economic and Social Council",
-    imageUrl: "https://placehold.co/600x800/145374/E8E8E8.png?text=ECOSOC"
-  },
-  {
-    icon: <Users size={28} />,
-    name: "AKPM",
-    fullName: "All Kerala Political Meet",
-    imageUrl: "https://placehold.co/600x800/145374/E8E8E8.png?text=AKPM"
-  },
-  {
-    icon: <Newspaper size={28} />,
+    icon: null,
     name: "IP",
     fullName: "International Press",
-    imageUrl: "https://placehold.co/600x800/145374/E8E8E8.png?text=IP"
+    logoUrl: "/IP.png",
+  },
+  {
+    // UPDATED: Set icon to null
+    icon: null,
+    name: "ICC",
+    fullName: "International Cricket Council",
+    // UPDATED: Added the logo URL
+    logoUrl: "/ICC.png",
+    // ADDED: Custom scale to match the others
+    customScale: "scale-150"
   },
 ];
 
@@ -45,11 +50,9 @@ const cardVariants = {
 const CommitteesSection = () => {
   return (
     <section id="committees" className="py-24 sm:py-32 bg-background relative overflow-hidden">
-      {/* Spotlight effect */}
       <div className="absolute inset-0 top-[-10rem] flex items-center justify-center">
         <div className="w-[80rem] h-[30rem] bg-mid-blue/10 blur-[10rem] rounded-full" />
       </div>
-
       <div className="container mx-auto px-6 text-center relative z-10">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -81,21 +84,28 @@ const CommitteesSection = () => {
             <motion.div
               key={committee.name}
               variants={cardVariants}
-              className="relative h-96 w-full rounded-lg overflow-hidden group transition-all duration-300 hover:scale-105"
+              // ADDED: Framer Motion hover animation
+              whileHover={{ y: -8 }}
+              transition={{ type: "spring", stiffness: 300 }}
+              // ADDED: cursor-pointer to show it's interactive
+              className="relative h-80 w-full rounded-lg overflow-hidden group p-6 flex flex-col justify-end text-left bg-dark-blue/20 border border-mid-blue/30 hover:border-mid-blue hover:bg-dark-blue/40 cursor-pointer"
             >
-              <Image
-                src={committee.imageUrl}
-                alt={committee.fullName}
-                layout="fill"
-                objectFit="cover"
-                className="transition-transform duration-300 group-hover:scale-110"
-              />
-              {/* Gradient Overlay for text readability */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
-
-              {/* Content */}
-              <div className="absolute inset-0 p-6 flex flex-col justify-end text-left">
-                <div className="text-accent mb-3">{committee.icon}</div>
+              {/* Conditionally render the watermark logo if it exists */}
+              {committee.logoUrl && (
+                <Image
+                  src={committee.logoUrl}
+                  alt={`${committee.name} logo`}
+                  layout="fill"
+                  objectFit="contain"
+                  // Using a scale transform for specific logos, and default padding for others
+                  className={`absolute inset-0 w-full h-full opacity-25 p-8 pb-20 ${committee.customScale || ''}`}
+                />
+              )}
+              <div className="relative z-10">
+                {/* Conditionally render the small icon if it exists */}
+                {committee.icon && (
+                  <div className="text-accent mb-3">{committee.icon}</div>
+                )}
                 <h3 className="text-xl font-bold text-text-primary">{committee.name}</h3>
                 <p className="text-text-primary/80 text-sm">{committee.fullName}</p>
               </div>

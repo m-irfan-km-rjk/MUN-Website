@@ -3,21 +3,21 @@
 @theme {
   --font-sans: var(--font-poppins);
 
-  /* Color palette */
+  /* Original color palette */
   --color-light-gray: #E8E8E8;
   --color-mid-blue: #5588A3;
   --color-dark-blue: #145374;
   --color-deep-navy: #00334E;
 
-  /* Renaming old colors for clarity */
+  /* Color aliases */
   --color-background: var(--color-deep-navy);
   --color-text-primary: var(--color-light-gray);
   --color-accent: var(--color-mid-blue);
 }
 
-/* Updated body with gradient */
 body {
   @apply bg-background text-text-primary font-sans antialiased;
-  /* This creates the spotlight effect */
+  /* Spotlight effect */
   background-image: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(120, 119, 198, 0.3), transparent);
 }
+
