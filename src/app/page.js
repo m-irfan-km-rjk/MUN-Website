@@ -3,6 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import CommitteesSection from "@/components/CommitteesSection";
 import TeamSection from "@/components/TeamSection";
+import ContactSection from "@/components/ContactSection"; // Make sure this line exists
 
 export default function Home() {
   return (
@@ -12,7 +13,7 @@ export default function Home() {
       <AboutSection />
       <CommitteesSection />
       <TeamSection />
-      {/* We can add the Pricing and Contact sections next */}
+      <ContactSection /> {/* And make sure this line exists */}
     </main>
   );
 }
