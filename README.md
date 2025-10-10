@@ -1,60 +1,65 @@
-TKM College of Engineering MUN 2025 Website
-This is the official website for the TKM College of Engineering's Model United Nations (MUN) conference for 2025. The central theme for this year's event is the International Cricket Council (ICC).
+TKM MUN 2025 - Official Website
+This is the official website for the TKM College of Engineering Model United Nations (MUN) conference, scheduled for December 5th-7th, 2025. The central theme of this year's conference is the International Cricket Council (ICC).
 
-The website is designed with a modern, minimalist, and professional aesthetic, inspired by the clean, animation-rich design of commure.com. It is a fully responsive single-page application.
+The website is designed as a modern, single-page application with a professional and minimalist aesthetic, inspired by the design language of commure.com. It features fluid animations and a content-rich interface to provide all necessary information for prospective delegates.
 
 Tech Stack
 This project is built with a modern web development stack:
 
-Framework: Next.js (v15+)
+Framework: Next.js (App Router)
 
-Library: React
+Styling: Tailwind CSS v4
 
-Styling: Tailwind CSS (v4)
+Animations:
 
-Animations: Framer Motion
+Framer Motion for component and layout animations.
 
-Background Effects: React TS-Particles
+React-Tsparticles for the subtle, fluid background effect.
 
 Icons: Lucide React
 
+Deployment: Vercel (recommended)
+
+Features
+Dynamic Particle Background: A subtle, animated background that provides a premium feel.
+
+Responsive Design: Fully responsive layout for optimal viewing on desktop, tablet, and mobile devices.
+
+Smooth Animations: Scroll-triggered and hover animations to enhance user experience.
+
+Component-Based Architecture: Built with reusable React components for maintainability.
+
+Implemented Sections:
+Hero Section: Impactful introduction to the event theme.
+
+About Section: Detailed information about the conference, including a "Conference Highlights" card.
+
+Committees Section: A grid displaying the five official committees, each with a custom logo.
+
+Secretariat Section: Introduction to the organizing team members.
+
+Get in Touch / Footer: A comprehensive contact section with contact details, social links, event information, and an interactive embedded Google Map.
+
 Getting Started
-To run the project locally, follow these steps:
+To run this project locally, follow these steps:
 
-Clone the repository:
+Prerequisites
+Make sure you have Node.js (version 18.18.0 or later) installed on your machine.
 
-git clone <your-repository-url>
+Installation
+Clone the repository to your local machine:
+
+git clone [https://github.com/your-username/mun-website.git](https://github.com/your-username/mun-website.git)
 
 Navigate into the project directory:
 
-cd MUN-Website
+cd mun-website
 
-Install dependencies:
+Install the necessary dependencies:
 
 npm install
 
-Run the development server:
+Running the Development Server
+Once the installation is complete, you can start the development server:
 
 npm run dev
-
-Open http://localhost:3000 with your browser to see the result.
-
-Project Structure
-The project follows the standard Next.js app directory structure:
-
-src/app/page.js: The main entry point for the homepage, which assembles all the sections.
-
-src/app/layout.js: The root layout for the entire application. It sets up the global font and the fluid background animation.
-
-src/app/globals.css: Contains the Tailwind CSS directives and the custom theme configuration (colors, fonts).
-
-src/components/: Contains all the reusable React components used to build the page (e.g., Navbar.jsx, HeroSection.jsx, CommitteesSection.jsx).
-
-Key Features
-Fluid Particle Animation: A subtle, animated background that provides a dynamic and high-end feel.
-
-Scroll-Triggered Animations: Content sections gracefully fade or slide into view as the user scrolls, powered by Framer Motion.
-
-Responsive Design: The layout is fully responsive and optimized for a seamless experience on all devices, from mobile phones to desktops.
-
-Custom Theming: Utilizes a custom color palette defined in globals.css to maintain a consistent and professional brand identit
