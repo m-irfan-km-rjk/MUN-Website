@@ -25,36 +25,66 @@ export default function MFooter() {
           transition: { duration: 0.6, ease: "easeOut" },
         },
       }}
-      className="bg-gray-900 text-gray-300 py-10 mt-24 w-full"
+      className="bg-[#00233E] text-[#E8E8E8] py-10 w-full border-t border-[#145374]"
     >
-      <div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-8 text-center sm:text-left">
+      <div className="w-full max-w-6xl mx-auto px-8 flex flex-col sm:flex-row justify-between items-center sm:items-start gap-8 text-center sm:text-left">
         {/* Logo / Title */}
-        <div>
-          <h2 className="text-xl font-semibold text-white mb-2">
+        <div className="flex-1">
+          <h2 className="text-2xl font-semibold text-white mb-3">
             Model United Nations
           </h2>
-          <p className="text-sm text-gray-400">
+          <p className="text-sm text-[#E8E8E8]/80 leading-relaxed max-w-sm mx-auto sm:mx-0">
             Inspiring leadership, diplomacy, and global collaboration.
           </p>
         </div>
 
         {/* Links */}
-        <div className="flex gap-6 text-sm">
-          <a href="#" className="hover:text-white transition">About</a>
-          <a href="#" className="hover:text-white transition">Committees</a>
-          <a href="#" className="hover:text-white transition">Contact</a>
+        <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-4 sm:gap-8 text-base font-medium">
+          <a
+            href="#"
+            className="hover:text-[#5588A3] transition-colors duration-200"
+          >
+            About
+          </a>
+          <a
+            href="#"
+            className="hover:text-[#5588A3] transition-colors duration-200"
+          >
+            Committees
+          </a>
+          <a
+            href="#"
+            className="hover:text-[#5588A3] transition-colors duration-200"
+          >
+            Contact
+          </a>
         </div>
 
         {/* Social Icons */}
-        <div className="flex gap-5 text-lg">
-          <a href="#" className="hover:text-white transition"><i className="fab fa-facebook-f"></i></a>
-          <a href="#" className="hover:text-white transition"><i className="fab fa-instagram"></i></a>
-          <a href="#" className="hover:text-white transition"><i className="fab fa-linkedin-in"></i></a>
+        <div className="flex justify-center sm:justify-end gap-6 text-xl">
+          <a
+            href="#"
+            className="hover:text-[#5588A3] transition-colors duration-200"
+          >
+            <i className="fab fa-facebook-f"></i>
+          </a>
+          <a
+            href="#"
+            className="hover:text-[#5588A3] transition-colors duration-200"
+          >
+            <i className="fab fa-instagram"></i>
+          </a>
+          <a
+            href="#"
+            className="hover:text-[#5588A3] transition-colors duration-200"
+          >
+            <i className="fab fa-linkedin-in"></i>
+          </a>
         </div>
       </div>
 
       {/* Divider & Copyright */}
-      <div className="border-t border-gray-700 mt-8 pt-4 text-center text-sm text-gray-500">
+      <div className="border-t border-[#145374] mt-10 pt-5 text-center text-sm text-[#E8E8E8]/70">
         © {new Date().getFullYear()} Model United Nations. All rights reserved.
       </div>
     </motion.footer>
