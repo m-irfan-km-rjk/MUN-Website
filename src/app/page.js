@@ -5,7 +5,7 @@ import CommitteesSection from "@/components/CommitteesSection";
 import TeamSection from "@/components/TeamSection";
 import ContactSection from "@/components/ContactSection"; // Make sure this line exists
 import MFooter from "@/components/MFooter";
-
+import OldPhotoGallery from "@/components/OldPhotoGallery";
 export default function Home() {
   return (
     <main>
@@ -15,6 +15,7 @@ export default function Home() {
       <CommitteesSection />
       <TeamSection />
       <MFooter />
+      <OldPhotoGallery/>
     </main>
   );
 }
