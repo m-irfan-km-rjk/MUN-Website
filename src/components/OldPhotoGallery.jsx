@@ -68,7 +68,7 @@ export default function OldPhotoGallery() {
             <div className="relative max-w-3xl w-full p-4">
               <button
                 onClick={() => setSelected(null)}
-                className="absolute top-2 right-4 text-white text-2xl font-bold"
+                className="absolute top-2 right-4 text-white text-2xl font-bold z-10 bg-black/40 w-[30px] hover:bg-black/70 transition"
               >
                 ✕
               </button>
@@ -77,7 +77,7 @@ export default function OldPhotoGallery() {
                 alt="Selected event"
                 width={1000}
                 height={700}
-                className="object-cover w-full h-48 rounded-lg shadow-md group-hover:opacity-90 transition brightness-100"
+                className="object-cover w-full h-[400px] rounded-lg shadow-md group-hover:opacity-90 transition brightness-100"
               />
             </div>
           </div>

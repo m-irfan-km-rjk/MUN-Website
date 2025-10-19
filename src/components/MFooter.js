@@ -13,21 +13,24 @@ export default function MFooter() {
   }, [controls, inView]);
 
   return (
-    <motion.footer
+    <footer
       ref={ref}
-      initial="hidden"
-      animate={controls}
-      variants={{
-        hidden: { opacity: 0, y: 50 },
-        visible: {
-          opacity: 1,
-          y: 0,
-          transition: { duration: 0.6, ease: "easeOut" },
-        },
-      }}
       className="bg-[#00233E] text-[#E8E8E8] py-10 w-full border-t border-[#145374]"
     >
-      <div className="w-full max-w-6xl mx-auto px-8 flex flex-col sm:flex-row justify-between items-center sm:items-start gap-8 text-center sm:text-left">
+      {/* Animated Content Only */}
+      <motion.div
+        initial="hidden"
+        animate={controls}
+        variants={{
+          hidden: { opacity: 0, y: 50 },
+          visible: {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.6, ease: "easeOut" },
+          },
+        }}
+        className="w-full max-w-6xl mx-auto px-8 flex flex-col sm:flex-row justify-between items-center sm:items-start gap-8 text-center sm:text-left"
+      >
         {/* Logo / Title */}
         <div className="flex-1">
           <h2 className="text-2xl font-semibold text-white mb-3">
@@ -81,12 +84,12 @@ export default function MFooter() {
             <i className="fab fa-linkedin-in"></i>
           </a>
         </div>
-      </div>
+      </motion.div>
 
       {/* Divider & Copyright */}
       <div className="border-t border-[#145374] mt-10 pt-5 text-center text-sm text-[#E8E8E8]/70">
         © {new Date().getFullYear()} Model United Nations. All rights reserved.
       </div>
-    </motion.footer>
+    </footer>
   );
 }

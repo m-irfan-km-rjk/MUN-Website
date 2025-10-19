@@ -14,8 +14,8 @@ export default function Home() {
       <AboutSection />
       <CommitteesSection />
       <TeamSection />
-      <MFooter />
       <OldPhotoGallery/>
+      <MFooter />
     </main>
   );
 }
