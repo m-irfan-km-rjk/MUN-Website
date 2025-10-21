@@ -3,9 +3,10 @@ import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import CommitteesSection from "@/components/CommitteesSection";
 import TeamSection from "@/components/TeamSection";
-import ContactSection from "@/components/ContactSection"; // Make sure this line exists
+import ContactSection from "@/components/ContactSection";
 import MFooter from "@/components/MFooter";
 import OldPhotoGallery from "@/components/OldPhotoGallery";
+
 export default function Home() {
   return (
     <main>
@@ -14,9 +15,9 @@ export default function Home() {
       <AboutSection />
       <CommitteesSection />
       <TeamSection />
-      <OldPhotoGallery/>
+      <OldPhotoGallery />
+      <ContactSection />
       <MFooter />
     </main>
   );
 }
-
