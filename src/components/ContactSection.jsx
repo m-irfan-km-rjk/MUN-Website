@@ -93,7 +93,7 @@ const ContactSection = () => {
 
         {/* Simple Footer */}
         <footer className="text-center text-text-primary/60 mt-24 border-t border-mid-blue/20 pt-8">
-          <p>&copy; {new Date().getFullYear()} TKM MUN Society. All Rights Reserved.</p>
+          <p>© {new Date().getFullYear()} TKM MUN Society. All Rights Reserved.</p>
         </footer>
       </div>
     </section>
@@ -101,4 +101,3 @@ const ContactSection = () => {
 };
 
 export default ContactSection;
-

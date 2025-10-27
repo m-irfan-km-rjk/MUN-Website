@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -17,34 +18,41 @@ const Navbar = () => {
         {/* Logo */}
         <Link
           href="/"
-          className="text-xl font-bold text-text-primary px-6 py-5 border-x border-mid-blue/20"
+          className="flex items-center px-6 py-2 border-x border-mid-blue/20"
         >
-          TKM MUN
+          <Image
+            src="/header1.png"
+            alt="TKM MUN Logo"
+            width={170}
+            height={40}
+            priority
+            className="object-contain"
+          />
         </Link>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center h-full">
           <Link
             href="#about"
-            className="text-light-gray/80 hover:text-white transition-colors duration-300 uppercase text-xs tracking-widest font-semibold px-8 py-6 border-r border-mid-blue/20"
+            className="text-light-gray/80 hover:text-white transition-colors duration-300 uppercase text-xs tracking-widest font-semibold px-8 py-4 border-r border-mid-blue/20"
           >
             About
           </Link>
           <Link
             href="#committees"
-            className="text-light-gray/80 hover:text-white transition-colors duration-300 uppercase text-xs tracking-widest font-semibold px-8 py-6 border-r border-mid-blue/20"
+            className="text-light-gray/80 hover:text-white transition-colors duration-300 uppercase text-xs tracking-widest font-semibold px-8 py-4 border-r border-mid-blue/20"
           >
             Committees
           </Link>
           <Link
             href="#team"
-            className="text-light-gray/80 hover:text-white transition-colors duration-300 uppercase text-xs tracking-widest font-semibold px-8 py-6 border-r border-mid-blue/20"
+            className="text-light-gray/80 hover:text-white transition-colors duration-300 uppercase text-xs tracking-widest font-semibold px-8 py-4 border-r border-mid-blue/20"
           >
             Secretariat
           </Link>
           <Link
             href="#contact"
-            className="text-light-gray/80 hover:text-white transition-colors duration-300 uppercase text-xs tracking-widest font-semibold px-8 py-6 border-r border-mid-blue/20"
+            className="text-light-gray/80 hover:text-white transition-colors duration-300 uppercase text-xs tracking-widest font-semibold px-8 py-4 border-r border-mid-blue/20"
           >
             Contact
           </Link>
