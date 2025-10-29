@@ -5,7 +5,7 @@ import { Mail, Phone, Instagram } from 'lucide-react';
 
 const ContactSection = () => {
   return (
-    <section id="contact" className="py-24 sm:py-32 bg-background border-t border-mid-blue/20">
+    <section id="contact" className="py-24 sm:py-32 border-t border-mid-blue/20">
       <div className="container mx-auto px-6">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -18,7 +18,7 @@ const ContactSection = () => {
         </motion.h2>
 
         {/* Reverted to the more aesthetic two-card layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 bg-background">
           {/* Left Card: Contact & Socials */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -90,11 +90,6 @@ const ContactSection = () => {
             </div>
           </motion.div>
         </div>
-
-        {/* Simple Footer */}
-        <footer className="text-center text-text-primary/60 mt-24 border-t border-mid-blue/20 pt-8">
-          <p>© {new Date().getFullYear()} TKM MUN Society. All Rights Reserved.</p>
-        </footer>
       </div>
     </section>
   );

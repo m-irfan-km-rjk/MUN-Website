@@ -4,9 +4,10 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 const teamMembers = [
-  { name: "Adithya V", position: "Secretary General", imageUrl: "https://placehold.co/400x400/00334E/E8E8E8.png?text=AV" },
-  { name: "Meenakshi S", position: "Director General", imageUrl: "https://placehold.co/400x400/00334E/E8E8E8.png?text=MS" },
-  { name: "Rohan Mathew", position: "USG Finance", imageUrl: "https://placehold.co/400x400/00334E/E8E8E8.png?text=RM" },
+  { name: "Arundhathy San", position: "Secretary General", imageUrl: "https://placehold.co/400x400/00334E/E8E8E8.png?text=AS" },
+  { name: "Heloise Jose", position: "Deputy Secretary General", imageUrl: "https://placehold.co/400x400/00334E/E8E8E8.png?text=HJ" },
+  { name: "Sreyas Warrier", position: "Director General", imageUrl: "https://placehold.co/400x400/00334E/E8E8E8.png?text=SW" },
+  { name: "Fathima Thaha", position: "Chief Advisor", imageUrl: "https://placehold.co/400x400/00334E/E8E8E8.png?text=FT" }
 ];
 
 const TeamSection = () => {
@@ -16,7 +17,7 @@ const TeamSection = () => {
         <h2 className="text-3xl sm:text-4xl font-medium text-text-primary mb-16">
           The Secretariat
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           {teamMembers.map((member, index) => (
             <motion.div
               key={index}

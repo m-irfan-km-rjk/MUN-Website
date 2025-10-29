@@ -180,7 +180,7 @@ const CommitteesSection = () => {
         >
           Engage in dynamic debate across a diverse range of domestic and international councils.
         </motion.p>
-        
+
         <div className="relative mx-auto max-w-6xl">
           <motion.div
             initial="hidden"
@@ -195,11 +195,10 @@ const CommitteesSection = () => {
                 variants={cardVariants}
                 whileHover={isTouchDevice ? undefined : { y: -8 }}
                 transition={{ type: "spring", stiffness: 300 }}
-                className={`group relative flex w-full flex-col justify-end overflow-hidden rounded-3xl border border-mid-blue/20 bg-dark-blue/30 p-6 text-left shadow-[0_18px_45px_-20px_rgba(44,106,185,0.55)] transition-all duration-300 ease-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-mid-blue hover:border-mid-blue/60 hover:bg-dark-blue/50 hover:shadow-[0_25px_60px_-25px_rgba(44,106,185,0.65)] ${
-                  isTouchDevice
-                    ? "min-h-[15rem]"
-                    : "h-80 hover:-translate-y-3"
-                }`}
+                className={`group relative flex w-full flex-col justify-end overflow-hidden rounded-3xl border border-mid-blue/20 bg-dark-blue/30 p-6 text-left shadow-[0_18px_45px_-20px_rgba(44,106,185,0.55)] transition-all duration-300 ease-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-mid-blue hover:border-mid-blue/60 hover:bg-dark-blue/50 hover:shadow-[0_25px_60px_-25px_rgba(44,106,185,0.65)] ${isTouchDevice
+                  ? "min-h-[15rem]"
+                  : "h-80 hover:-translate-y-3"
+                  }`}
                 role="button"
                 tabIndex={0}
                 onMouseEnter={() => !isTouchDevice && setHoveredCommittee(committee)}
@@ -269,8 +268,10 @@ const CommitteesSection = () => {
                       />
                     </div>
                   )}
-                  <div className="max-w-2xl space-y-4">
-                    <p className="text-xs uppercase tracking-[0.35em] text-mid-blue/60">Committee Spotlight</p>
+                  <div className="relative max-w-2xl space-y-4">
+                    <p className="text-xs uppercase tracking-[0.35em] text-mid-blue/60">
+                      Committee Spotlight
+                    </p>
                     <div className="space-y-1">
                       <h3 className="text-3xl font-semibold">{delayedCommittee.name}</h3>
                       <p className="text-base text-text-primary/60">{delayedCommittee.fullName}</p>
@@ -278,7 +279,22 @@ const CommitteesSection = () => {
                     <p className="text-base leading-relaxed text-text-primary/80">
                       {delayedCommittee.description}
                     </p>
+
+                    {/* Blinking text at bottom center */}
+
                   </div>
+                  <style jsx>{`
+                    @keyframes blink {
+                      0%, 100% { opacity: 1; }
+                      50% { opacity: 0; }
+                    }
+                    .animate-blink {
+                      animation: blink 2s infinite;
+                    }
+                  `}</style>
+                  <p className="hidden md:block     absolute bottom-0 left-1/2 -translate-x-1/2 text-sm text-white animate-blink">
+                    ← Move your mouse left or right →
+                  </p>
                 </div>
               </motion.div>
             )}
