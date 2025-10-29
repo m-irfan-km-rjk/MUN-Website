@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "framer-motion": "^12.23.22",
     "lucide-react": "^0.544.0",
     "mongoose": "^8.19.2",

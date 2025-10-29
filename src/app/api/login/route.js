@@ -1,12 +1,17 @@
+import { connectDB } from "@/lib/mongodb";
+import User from "@/models/User"; // define this model
+
 export async function POST(req) {
-  const { username, password } = await req.json();
+  try {
+    await connectDB();
+    const { username, password } = await req.json();
 
-  const admins = {
-    "admin1": "password123",
-    "superuser": "securePass!"
-  };
+    const admin = await User.findOne({ username });
 
-  if (admins[username] && admins[username] === password) {
+    if (!admin || admin.password !== password) {
+      return new Response(JSON.stringify({ success: false, message: "Invalid credentials" }), { status: 401 });
+    }
+
     const headers = new Headers();
     headers.append(
       "Set-Cookie",
@@ -14,7 +19,9 @@ export async function POST(req) {
     );
 
     return new Response(JSON.stringify({ success: true }), { status: 200, headers });
-  } else {
-    return new Response(JSON.stringify({ success: false }), { status: 401 });
+
+  } catch (error) {
+    console.error("Login error:", error);
+    return new Response(JSON.stringify({ success: false, message: "Server error" }), { status: 500 });
   }
 }

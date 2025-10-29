@@ -1,34 +1,48 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
 
 export default function GeneralPage() {
-  const [newsList, setNewsList] = useState([
-    { id: 1, title: "New AI Course", content: "We’ve added a new AI course!" },
-    { id: 2, title: "Hackathon Alert", content: "Join the biggest hackathon this December!" },
-  ]);
+  const [newsList, setNewsList] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [editNews, setEditNews] = useState(null);
   const [titleValue, setTitleValue] = useState("");
   const [contentValue, setContentValue] = useState("");
 
+  // 🟢 Fetch News on Mount
+  useEffect(() => {
+    fetchNews();
+  }, []);
+
+  const fetchNews = async () => {
+    const res = await fetch("/api/dashboard/news");
+    const data = await res.json();
+    setNewsList(data);
+  };
+
   // 🟢 Add or Update News
-  const handleSave = () => {
+  const handleSave = async () => {
     if (!titleValue.trim() || !contentValue.trim()) return;
+
     if (editNews) {
-      setNewsList(newsList.map(n =>
-        n.id === editNews.id ? { ...n, title: titleValue, content: contentValue } : n
-      ));
+      await fetch("/api/dashboard/news", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: editNews._id, title: titleValue, content: contentValue }),
+      });
     } else {
-      setNewsList([
-        ...newsList,
-        { id: Date.now(), title: titleValue, content: contentValue },
-      ]);
+      await fetch("/api/dashboard/news", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title: titleValue, content: contentValue }),
+      });
     }
+
     setTitleValue("");
     setContentValue("");
     setEditNews(null);
     setShowModal(false);
+    fetchNews();
   };
 
   // 🟡 Edit News
@@ -40,13 +54,17 @@ export default function GeneralPage() {
   };
 
   // 🔴 Delete News
-  const handleDelete = (id) => {
-    setNewsList(newsList.filter((n) => n.id !== id));
+  const handleDelete = async (id) => {
+    await fetch("/api/dashboard/news", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id }),
+    });
+    fetchNews();
   };
 
   return (
     <div className="flex flex-col w-full h-full p-6 text-text-primary">
-      {/* Distinct Section for News */}
       <div className="bg-gray-900/50 border border-gray-800 rounded-xl shadow-sm p-6">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-semibold text-white">News Management</h2>
@@ -70,7 +88,7 @@ export default function GeneralPage() {
           ) : (
             newsList.map((news) => (
               <div
-                key={news.id}
+                key={news._id}
                 className="flex justify-between items-start bg-gray-800/80 rounded-lg px-4 py-3 text-sm text-white"
               >
                 <div className="flex-1">
@@ -78,16 +96,10 @@ export default function GeneralPage() {
                   <p className="text-gray-300 text-sm">{news.content}</p>
                 </div>
                 <div className="flex gap-3 ml-4">
-                  <button
-                    onClick={() => handleEdit(news)}
-                    className="hover:text-yellow-400 transition"
-                  >
+                  <button onClick={() => handleEdit(news)} className="hover:text-yellow-400 transition">
                     <FaEdit />
                   </button>
-                  <button
-                    onClick={() => handleDelete(news.id)}
-                    className="hover:text-red-500 transition"
-                  >
+                  <button onClick={() => handleDelete(news._id)} className="hover:text-red-500 transition">
                     <FaTrash />
                   </button>
                 </div>

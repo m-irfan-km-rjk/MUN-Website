@@ -1,3 +1,5 @@
+"use client";
+
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
@@ -8,13 +10,21 @@ import MFooter from "@/components/MFooter";
 import OldPhotoGallery from "@/components/OldPhotoGallery";
 import NewsFeed from "@/components/NewsFeed";
 import NewsSlider from "@/components/NewsFeed";
+import { useState, useEffect } from "react";
 
 export default function Home() {
 
-  const newsList = [
-    { id: 1, title: "New AI Course", content: "We’ve added a new AI course!" },
-    { id: 2, title: "Hackathon Alert", content: "Join the biggest hackathon this December!" },
-  ];
+  const [newsList,setNewsList] = useState([]);
+
+  const fetchData = async () => {
+    const req = await fetch("/api/dashboard/news");
+    const data = await req.json();
+    setNewsList(data);
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <main>
