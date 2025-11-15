@@ -24,6 +24,14 @@ const HeroSection = () => {
           >
             Where Global Strategy Meets Sportsmanship.
           </motion.p>
+          <motion.button
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.5 }} className="mt-8 px-6 py-3 cursor-pointer bg-black text-white font-semibold rounded hover:bg-gray-700 transition-colors duration-300"
+            onClick={() => window.location.href = 'https://forms.gle/yFk2MuzPctFHQC5g9'}
+          >
+            Register Now
+          </motion.button>
         </div>
       </div>
     </section>

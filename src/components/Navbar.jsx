@@ -33,6 +33,12 @@ const Navbar = () => {
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center h-full">
           <Link
+            href="https://forms.gle/yFk2MuzPctFHQC5g9"
+            className="text-light-gray/80 hover:text-white transition-colors duration-300 uppercase text-xs tracking-widest font-semibold px-8 py-4 border-r border-mid-blue/20"
+          >
+            Register
+          </Link>
+          <Link
             href="#about"
             className="text-light-gray/80 hover:text-white transition-colors duration-300 uppercase text-xs tracking-widest font-semibold px-8 py-4 border-r border-mid-blue/20"
           >
