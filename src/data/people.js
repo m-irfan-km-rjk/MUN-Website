@@ -1,20 +1,21 @@
 const people_pics = {
-    "arundathy": "/people/Secretary General/Arundhathy San_.jpg",
-    "heloise": "/people/Deputy Secretary General- Heloise Jose.jpg",
-    "sreyas": "/people/Director General - Sreyas S Warrier.jpg",
-    "fathima": "/people/Chief advisor_.jpg",
+  "arundathy": "/people/Secretary General/Arundhathy San_.jpg",
+  "heloise": "/people/Deputy Secretary General- Heloise Jose.jpg",
+  "sreyas": "/people/Director General - Sreyas S Warrier.jpg",
+  "ashika": "/people/Chief advisor_.jpg",
 };
 
 const mainMembers = [
   { name: "Arundhathy San", position: "Secretary General", imageUrl: people_pics.arundathy },
   { name: "Heloise Jose", position: "Deputy Secretary General", imageUrl: people_pics.heloise },
-  { name: "Sreyas Warrier", position: "Director General", imageUrl: people_pics.sreyas },
-  { name: "Fathima Thaha", position: "Chief Advisor", imageUrl: people_pics.fathima },
+  { name: "Ashika", position: "Director General", imageUrl: people_pics.ashika },
+  { name: "Sreyas Warrier", position: "Chief Advisor", imageUrl: people_pics.sreyas },
 ];
 
 const otherMembers = {
   accomodation: {
     "aswanth_k": "/people/Accomodation/ASWANTH K .jpg",
+    "saniya_s_kumar": "/people/Accomodation/Saniya S Kumar.jpg",
   },
 
   delegate_affairs: {
@@ -22,8 +23,12 @@ const otherMembers = {
     "jai": "/people/Delegate affairs/Jai.jpg",
   },
 
+  cultural_affairs: {
+    "ghazali": "/people/Cultural Affairs/Ghazali .jpg",
+  },
+
   design: {
-    "abhijith_vs": "/people/Design/Abhijith vs.jpg",
+    "abhijith_v_s": "/people/Design/Abhijith vs.jpg",
   },
 
   documentation: {
@@ -64,13 +69,21 @@ const otherMembers = {
     "amritha_lekhmi_v": "/people/PUBLICITY/Amritha Lekshmi V.jpg",
   },
 
+  sponsorship: {
+    "ankhur_s": "/people/Sponsorship/Ankhur.jpg"
+  },
+
   technical: {
     "vrindha_vinod": "/people/Technical/Vrindha Vinod - Technical head.jpg",
   },
 
+  transportation: {
+    "nasif_nasar": "/people/Transportation/Nasif Nasar.jpg",
+  },
+
   volunteering: {
     "joana_johnson": "/people/Volunteering/JOANA JOHNSON/IMG_20251020_182823.jpg",
-    "img_20240815": "/people/Volunteering/IMG_20240815_141509.jpg",
+    "nandu_mohan": "/people/Volunteering/Nandu Mohan.jpg",
     "sanjith_santhosh": "/people/Volunteering/Sanjith Santhosh_.jpg",
     "vandana_m": "/people/Volunteering/Vandana M.jpg",
   }

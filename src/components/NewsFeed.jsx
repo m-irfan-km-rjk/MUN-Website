@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { FaChevronLeft, FaChevronRight, FaBell } from "react-icons/fa";
 
 export default function NewsSlider({ newsList = [] }) {
   const [index, setIndex] = useState(0);
@@ -14,13 +14,7 @@ export default function NewsSlider({ newsList = [] }) {
     return () => clearInterval(timer);
   }, [newsList.length]);
 
-  if (newsList.length === 0) {
-    return (
-      <div className="p-6 bg-gray-600/40 backdrop-blur-md text-gray-400 text-center">
-        No news to display.
-      </div>
-    );
-  }
+  if (newsList.length === 0) return null;
 
   const handlePrev = () => {
     setIndex((prev) => (prev - 1 + newsList.length) % newsList.length);
@@ -33,76 +27,49 @@ export default function NewsSlider({ newsList = [] }) {
   const currentNews = newsList[index];
 
   return (
-    <div className="relative flex flex-col justify-center w-full h-[320px] p-8 rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-white/10 backdrop-blur-xl backdrop-saturate-150">
-      {/* Animated Content */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={index}
-          initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          exit={{ opacity: 0, y: -20, filter: "blur(4px)" }}
-          transition={{ duration: 0.6, ease: "easeInOut" }}
-          className="text-center px-6"
-        >
-          <motion.h3
-            className="text-3xl font-semibold text-white mb-4 drop-shadow-lg"
-            initial={{ scale: 0.95 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.4 }}
+    <div className="w-full max-w-4xl mx-auto">
+      <div className="relative flex items-center bg-deep-navy/40 backdrop-blur-md border border-white/10 rounded-full px-4 py-2 md:px-6 md:py-3 shadow-lg overflow-hidden">
+        {/* Label Badge */}
+        <div className="flex-shrink-0 flex items-center gap-2 bg-accent/20 text-white px-3 py-1 rounded-full text-xs md:text-sm font-semibold tracking-wider mr-4 border border-accent/20">
+          <FaBell className="animate-pulse" />
+          <span>LATEST</span>
+        </div>
+
+        {/* Content */}
+        <div className="flex-1 relative h-6 md:h-8 overflow-hidden">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5 }}
+              className="absolute inset-0 flex items-center"
+            >
+              <p className="text-white/90 text-xs md:text-sm font-medium truncate pr-4">
+                <span className="font-bold text-white mr-2">{currentNews.title}:</span>
+                <span className="opacity-80">{currentNews.content}</span>
+              </p>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Controls */}
+        <div className="flex-shrink-0 flex items-center gap-2 ml-2 border-l border-white/10 pl-3">
+          <button
+            onClick={handlePrev}
+            className="p-1.5 rounded-full hover:bg-white/10 text-white/70 hover:text-white transition-colors"
           >
-            {currentNews.title}
-          </motion.h3>
-          <p className="text-gray-200 text-lg leading-relaxed max-w-3xl mx-auto">
-            {currentNews.content}
-          </p>
-        </motion.div>
-      </AnimatePresence>
-
-      {/* Controls */}
-      <button
-        onClick={handlePrev}
-        className="absolute left-6 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-md transition-all p-3 rounded-full shadow-md border border-white/20"
-      >
-        <FaChevronLeft className="text-white text-lg" />
-      </button>
-
-      <button
-        onClick={handleNext}
-        className="absolute right-6 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-md transition-all p-3 rounded-full shadow-md border border-white/20"
-      >
-        <FaChevronRight className="text-white text-lg" />
-      </button>
-
-      {/* Dots Indicator */}
-      <div className="flex justify-center absolute bottom-4 left-0 right-0 space-x-2">
-        {newsList.map((_, i) => (
-          <motion.div
-            key={i}
-            className={`h-2.5 w-2.5 rounded-full ${
-              i === index ? "bg-white" : "bg-white/40"
-            }`}
-            animate={{
-              scale: i === index ? 1.3 : 1,
-              opacity: i === index ? 1 : 0.6,
-            }}
-            transition={{ duration: 0.3 }}
-          ></motion.div>
-        ))}
+            <FaChevronLeft size={12} />
+          </button>
+          <button
+            onClick={handleNext}
+            className="p-1.5 rounded-full hover:bg-white/10 text-white/70 hover:text-white transition-colors"
+          >
+            <FaChevronRight size={12} />
+          </button>
+        </div>
       </div>
-
-      {/* Soft Gradient Overlay */}
-      <motion.div
-        className="absolute inset-0 pointer-events-none bg-gradient-to-br from-blue-400/10 via-transparent to-purple-500/10"
-        animate={{
-          opacity: [0.5, 0.8, 0.5],
-          scale: [1, 1.05, 1],
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
     </div>
   );
 }

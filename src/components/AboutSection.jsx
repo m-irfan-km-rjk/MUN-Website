@@ -18,7 +18,7 @@ const AboutSection = () => {
             About The Conference
           </h2>
         </div>
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Side: About Text */}
           <motion.div
@@ -28,7 +28,7 @@ const AboutSection = () => {
             transition={{ duration: 0.8 }}
           >
             <p className="text-lg text-text-primary/80 leading-relaxed">
-              TKM College of Engineering Model United Nations 2025 sets the stage for a groundbreaking simulation of the International Cricket Council (ICC). This conference invites delegates to step into the shoes of global cricket administrators to debate the future of the sport. Topics will range from regulating T20 leagues and balancing international schedules to promoting cricket in emerging nations. Prepare for a dynamic committee experience that blends sports governance with international diplomacy.
+              TKM Model United Nations is a flagship diplomatic conference hosted by TKM College of Engineering, designed to inspire young leaders to engage with global challenges. The conference brings together passionate delegates to debate international issues, practise negotiation, and develop strong communication skills. With well-structured committees, experienced chairs, and a vibrant learning environment, TKM MUN offers a meaningful platform that blends academic excellence with real-world diplomacy.
             </p>
           </motion.div>
 

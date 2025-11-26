@@ -37,8 +37,10 @@ const ContactSection = () => {
                 <div className="flex items-start gap-4">
                   <Phone size={20} className="text-accent mt-1 flex-shrink-0" />
                   <div>
-                    <p>Adithya V, Secretary General: +91 12345 67890</p>
-                    <p>Meenakshi S, Director General: +91 09876 54321</p>
+                    <p>Arundhathy San, Secretary General: +91 90748 47881</p>
+                    <p>Heloise Jose, Deputy Secretary General: +91 81380 10368</p>
+                    <p>Fathima Thaha, Director General: +91 90748 47881</p>
+                    <p>Sreyas Warrier, Chief Advisor: +91 95623 50219</p>
                   </div>
                 </div>
               </div>
@@ -46,10 +48,10 @@ const ContactSection = () => {
             <div>
               <h3 className="text-2xl font-semibold text-accent mb-6">Follow Us</h3>
               <div className="flex gap-4">
-                <a 
-                  href="https://www.instagram.com/munsoc_tkmce/?hl=en" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
+                <a
+                  href="https://www.instagram.com/munsoc_tkmce/?hl=en"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="p-3 border border-mid-blue/30 rounded-lg text-accent hover:bg-dark-blue/40 transition-colors"
                 >
                   <Instagram size={24} />

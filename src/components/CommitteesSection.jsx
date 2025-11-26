@@ -11,7 +11,7 @@ const committees = [
     name: "UNGA",
     fullName: "United Nations General Assembly",
     description:
-      "Deliberate on wide-ranging global concerns, from peace and security to sustainable development and human rights.",
+      "Deliberate on broad global issues ranging from peace and security to sustainable development. Engage in inclusive debate that shapes impactful international resolutions.",
     logoUrl: "/UNGA.png",
   },
   {
@@ -19,7 +19,7 @@ const committees = [
     name: "UNHRC",
     fullName: "United Nations Human Rights Council",
     description:
-      "Champion and critique human-rights practices worldwide while drafting resolutions to protect vulnerable communities.",
+      "Address pressing human rights concerns worldwide and work toward protecting the dignity and freedoms of individuals. Explore solutions through constructive dialogue and global cooperation.",
     logoUrl: "/UNHRC.png",
   },
   {
@@ -27,7 +27,7 @@ const committees = [
     name: "UNSC",
     fullName: "United Nations Security Council",
     description:
-      "Respond to urgent conflicts with binding resolutions, sanctions, and peacekeeping mandates that reshape geopolitics.",
+      "Tackle urgent threats to international peace and security through strategic discussion and crisis-focused deliberation. Navigate high-stakes decision-making with real-world diplomatic pressures.",
     logoUrl: "/UNSC.png",
     customScale: "scale-150",
   },
@@ -36,7 +36,7 @@ const committees = [
     name: "IP",
     fullName: "International Press",
     description:
-      "Investigate proceedings, craft compelling narratives, and deliver real-time reporting that influences public perception.",
+      "Capture the essence of committee proceedings through journalism, photography, and reporting. Craft narratives, conduct interviews, and present unbiased coverage of the conference.",
     logoUrl: "/IP.png",
   },
   {
@@ -45,7 +45,7 @@ const committees = [
     name: "ICC",
     fullName: "International Cricket Council",
     description:
-      "Strategize over fixtures, regulations, and the spirit of cricket while mediating international sporting diplomacy.",
+      "Debate key issues shaping the world of cricket, from governance and fairness to global development of the sport. Experience a unique blend of sports diplomacy and international policy-making.",
     // UPDATED: Added the logo URL
     logoUrl: "/ICC.png",
     // ADDED: Custom scale to match the others
@@ -111,8 +111,8 @@ const CommitteesSection = () => {
       return () => mediaQuery.removeEventListener("change", updateIsTouch);
     }
 
-    mediaQuery.addListener(updateIsTouch);
-    return () => mediaQuery.removeListener(updateIsTouch);
+    mediaQuery.addEventListener("change", updateIsTouch);
+    return () => mediaQuery.removeEventListener("change", updateIsTouch);
   }, []);
 
   useEffect(() => {
