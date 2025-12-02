@@ -28,9 +28,9 @@ const HeroSection = ({ newsList, loading }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
-            className="text-xl md:text-3xl text-text-primary/90 font-light tracking-wide mb-12 max-w-3xl mx-auto leading-relaxed"
+            className="text-xl md:text-xl text-text-primary/90 font-medium tracking-wide mb-12 max-w-3xl mx-auto leading-relaxed"
           >
-            Where Global Strategy Meets <span className="text-accent font-medium">Sportsmanship</span>.
+            <span className="text-white font-bold">Unire . Discere . Progredere</span>
           </motion.p>
 
           <motion.div
