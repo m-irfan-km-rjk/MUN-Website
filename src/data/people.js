@@ -8,7 +8,7 @@ const people_pics = {
 const mainMembers = [
   { name: "Arundhathy San", position: "Secretary General", imageUrl: people_pics.arundathy },
   { name: "Heloise Jose", position: "Deputy Secretary General", imageUrl: people_pics.heloise },
-  { name: "Ashika", position: "Director General", imageUrl: people_pics.ashika },
+  { name: "Aashika", position: "Director General", imageUrl: people_pics.ashika },
   { name: "Sreyas Warrier", position: "Chief Advisor", imageUrl: people_pics.sreyas },
 ];
 

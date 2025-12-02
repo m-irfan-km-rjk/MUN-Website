@@ -42,12 +42,12 @@ const committees = [
   {
     // UPDATED: Set icon to null
     icon: null,
-    name: "ICC",
-    fullName: "International Cricket Council",
+    name: "KLA",
+    fullName: "Kerala Legislative Assembly",
     description:
-      "Debate key issues shaping the world of cricket, from governance and fairness to global development of the sport. Experience a unique blend of sports diplomacy and international policy-making.",
+      "Debate state-level policies, governance challenges, and public welfare issues within Kerala. Experience the dynamics of lawmaking and regional decision-making in a realistic parliamentary setup.",
     // UPDATED: Added the logo URL
-    logoUrl: "/ICC.png",
+    logoUrl: "/KLA.png",
     // ADDED: Custom scale to match the others
     customScale: "scale-150",
   },

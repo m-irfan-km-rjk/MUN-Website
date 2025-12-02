@@ -85,6 +85,7 @@ const Navbar = () => {
             className="md:hidden bg-background border-t border-mid-blue/20 flex flex-col text-center overflow-hidden"
           >
             {[
+              { href: 'https://forms.gle/yFk2MuzPctFHQC5g9', label: 'Register' },
               { href: '#about', label: 'About' },
               { href: '#committees', label: 'Committees' },
               { href: '#team', label: 'Secretariat' },

@@ -13,11 +13,18 @@ import { useState, useEffect } from "react";
 export default function Home() {
 
   const [newsList, setNewsList] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchData = async () => {
-    const req = await fetch("/api/dashboard/news");
-    const data = await req.json();
-    setNewsList(data);
+    try {
+      const req = await fetch("/api/dashboard/news");
+      const data = await req.json();
+      setNewsList(data);
+    } catch (error) {
+      console.error("Failed to fetch news:", error);
+    } finally {
+      setLoading(false);
+    }
   }
 
   useEffect(() => {
@@ -27,7 +34,7 @@ export default function Home() {
   return (
     <main>
       <Navbar />
-      <HeroSection newsList={newsList} />
+      <HeroSection newsList={newsList} loading={loading} />
       <AboutSection />
       <CommitteesSection />
       <TeamSection />

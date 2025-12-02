@@ -4,7 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import NewsSlider from './NewsFeed';
 
-const HeroSection = ({ newsList }) => {
+const HeroSection = ({ newsList, loading }) => {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center px-6 overflow-hidden">
       {/* Background Glow Effect */}
@@ -62,7 +62,7 @@ const HeroSection = ({ newsList }) => {
         transition={{ delay: 1.2, duration: 0.8 }}
         className="absolute bottom-8 left-0 right-0 px-4 z-20"
       >
-        <NewsSlider newsList={newsList} />
+        <NewsSlider newsList={newsList} loading={loading} />
       </motion.div>
     </section>
   );

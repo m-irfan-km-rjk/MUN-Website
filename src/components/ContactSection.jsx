@@ -32,14 +32,14 @@ const ContactSection = () => {
               <div className="space-y-4 text-text-primary/80">
                 <div className="flex items-center gap-4">
                   <Mail size={20} className="text-accent flex-shrink-0" />
-                  <span>contact@tkmmun.in</span>
+                  <span>dlgtkmmun@gmail.com</span>
                 </div>
                 <div className="flex items-start gap-4">
                   <Phone size={20} className="text-accent mt-1 flex-shrink-0" />
                   <div>
                     <p>Arundhathy San, Secretary General: +91 90748 47881</p>
                     <p>Heloise Jose, Deputy Secretary General: +91 81380 10368</p>
-                    <p>Fathima Thaha, Director General: +91 90748 47881</p>
+                    <p>Aashika, Director General: +91 90748 47881</p>
                     <p>Sreyas Warrier, Chief Advisor: +91 95623 50219</p>
                   </div>
                 </div>
