@@ -195,7 +195,7 @@ const CommitteesSection = () => {
                 variants={cardVariants}
                 whileHover={isTouchDevice ? undefined : { y: -8 }}
                 transition={{ type: "spring", stiffness: 300 }}
-                className={`group relative flex w-full flex-col justify-end overflow-hidden rounded-3xl border border-mid-blue/20 bg-dark-blue/30 p-6 text-left shadow-[0_18px_45px_-20px_rgba(44,106,185,0.55)] transition-all duration-300 ease-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-mid-blue hover:border-mid-blue/60 hover:bg-dark-blue/50 hover:shadow-[0_25px_60px_-25px_rgba(44,106,185,0.65)] ${isTouchDevice
+                className={`group relative flex w-full flex-col justify-end overflow-hidden rounded-3xl border border-mid-blue/20 bg-dark-blue/30 p-6 text-left shadow-[0_18px_45px_-20px_rgba(155,92,145,0.25)] transition-all duration-300 ease-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-mid-blue hover:border-mid-blue/60 hover:bg-dark-blue/50 hover:shadow-[0_25px_60px_-25px_rgba(155,92,145,0.35)] ${isTouchDevice
                   ? "min-h-[15rem]"
                   : "h-80 hover:-translate-y-3"
                   }`}
@@ -229,7 +229,7 @@ const CommitteesSection = () => {
                   <p className="text-sm text-text-primary/70">{committee.fullName}</p>
                 </div>
                 {isTouchDevice && activeMobileCommittee?.name === committee.name && (
-                  <div className="pointer-events-none absolute inset-0 z-20 flex flex-col justify-end rounded-3xl bg-gradient-to-b from-dark-blue/75 via-dark-blue/80 to-dark-blue/90 p-6 text-left shadow-[0_24px_65px_-28px_rgba(44,106,185,0.7)]">
+                  <div className="pointer-events-none absolute inset-0 z-20 flex flex-col justify-end rounded-3xl bg-gradient-to-b from-dark-blue/75 via-dark-blue/80 to-dark-blue/90 p-6 text-left shadow-[0_24px_65px_-28px_rgba(155,92,145,0.35)]">
                     <div className="space-y-3 text-text-primary">
                       <p className="text-[0.65rem] uppercase tracking-[0.28em] text-mid-blue/60">Committee Spotlight</p>
                       <div className="space-y-1">
@@ -254,11 +254,11 @@ const CommitteesSection = () => {
                 exit="exit"
                 variants={overlayVariants}
                 transition={{ duration: 0.3, ease: 'easeOut' }}
-                className="pointer-events-none absolute left-1/2 top-1/2 z-20 flex h-96 w-full -translate-x-1/2 -translate-y-1/2 items-center rounded-3xl border border-mid-blue/25 bg-gradient-to-br from-dark-blue/85 via-dark-blue/65 to-mid-blue/40 p-12 text-left shadow-[0_32px_82px_-28px_rgba(44,106,185,0.6)] backdrop-blur-xl backdrop-saturate-150"
+                className="pointer-events-none absolute left-1/2 top-1/2 z-20 flex h-96 w-full -translate-x-1/2 -translate-y-1/2 items-center rounded-3xl border border-mid-blue/25 bg-gradient-to-br from-dark-blue/85 via-dark-blue/65 to-mid-blue/40 p-12 text-left shadow-[0_32px_82px_-28px_rgba(rgba(155,92,145,0.35))] backdrop-blur-xl backdrop-saturate-150"
               >
                 <div className="relative flex h-full w-full items-center gap-10 text-text-primary">
                   {delayedCommittee.logoUrl && (
-                    <div className="relative hidden h-64 w-64 flex-shrink-0 overflow-hidden rounded-3xl border border-mid-blue/20 bg-dark-blue/40 p-6 shadow-[0_18px_45px_-22px_rgba(44,106,185,0.6)] sm:flex">
+                    <div className="relative hidden h-64 w-64 flex-shrink-0 overflow-hidden rounded-3xl border border-mid-blue/20 bg-dark-blue/40 p-6 shadow-[0_18px_45px_-22px_rgba(155,92,145,0.3)] sm:flex">
                       <Image
                         src={delayedCommittee.logoUrl}
                         alt={`${delayedCommittee.name} emblem`}
