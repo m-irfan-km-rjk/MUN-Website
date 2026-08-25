@@ -15,7 +15,7 @@ export default function MFooter() {
   return (
     <footer
       ref={ref}
-      className="bg-[#00233E] text-[#E8E8E8] py-10 w-full border-t border-[#145374]"
+      className="bg-[#34052E] text-[#D9D9D9] py-10 w-full border-t border-[#6B3563]"
     >
       {/* Animated Content Only */}
       <motion.div
@@ -45,19 +45,19 @@ export default function MFooter() {
         <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-4 sm:gap-8 text-base font-medium">
           <a
             href="#"
-            className="hover:text-[#5588A3] transition-colors duration-200"
+            className="hover:text-[#D9D9D9] transition-colors duration-200"
           >
             About
           </a>
           <a
             href="#"
-            className="hover:text-[#5588A3] transition-colors duration-200"
+            className="hover:text-[#D9D9D9] transition-colors duration-200"
           >
             Committees
           </a>
           <a
             href="#"
-            className="hover:text-[#5588A3] transition-colors duration-200"
+            className="hover:text-[#D9D9D9] transition-colors duration-200"
           >
             Contact
           </a>
@@ -67,19 +67,19 @@ export default function MFooter() {
         <div className="flex justify-center sm:justify-end gap-6 text-xl">
           <a
             href="#"
-            className="hover:text-[#5588A3] transition-colors duration-200"
+            className="hover:text-[#D9D9D9] transition-colors duration-200"
           >
             <i className="fab fa-facebook-f"></i>
           </a>
           <a
             href="#"
-            className="hover:text-[#5588A3] transition-colors duration-200"
+            className="hover:text-[#D9D9D9] transition-colors duration-200"
           >
             <i className="fab fa-instagram"></i>
           </a>
           <a
             href="#"
-            className="hover:text-[#5588A3] transition-colors duration-200"
+            className="hover:text-[#D9D9D9] transition-colors duration-200"
           >
             <i className="fab fa-linkedin-in"></i>
           </a>
@@ -87,7 +87,7 @@ export default function MFooter() {
       </motion.div>
 
       {/* Divider & Copyright */}
-      <div className="border-t border-[#145374] mt-10 pt-5 text-center text-sm text-[#E8E8E8]/70">
+      <div className="border-t border-[#6B3563] mt-10 pt-5 text-center text-sm text-[#D9D9D9]/70">
         © {new Date().getFullYear()} Model United Nations. All rights reserved.
       </div>
     </footer>

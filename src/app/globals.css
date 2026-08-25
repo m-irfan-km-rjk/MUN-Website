@@ -2,23 +2,23 @@
 
 @theme {
   --font-sans: var(--font-poppins);
+  /* Og Color palette*/
+  --color-light-gray: #D9D9D9;
+  --color-mid-blue: #9B5C91;
+  --color-dark-blue: #450C40;
+  --color-deep-navy: #34052E;
 
-  /* Original color palette */
-  --color-light-gray: #E8E8E8;
-  --color-mid-blue: #5588A3;
-  --color-dark-blue: #145374;
-  --color-deep-navy: #00334E;
 
   /* Color aliases */
-  --color-background: var(--color-deep-navy);
-  --color-text-primary: var(--color-light-gray);
-  --color-accent: var(--color-mid-blue);
+  --color-background: #34052E;
+  --color-text-primary:#D9D9D9;
+  --color-accent: #D9D9D9;
 }
 
 body {
   @apply bg-background text-text-primary font-sans antialiased;
   /* Spotlight effect */
-  background-image: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(120, 119, 198, 0.3), transparent);
+  background-image: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(217, 217, 217, 0.12), transparent);
 }
 
 @keyframes marquee {
