@@ -1,97 +1,82 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Mail, Phone, Instagram } from 'lucide-react';
+
+const contacts = [
+  ['Arundhathy San', 'Secretary General', '+91 90748 47881'],
+  ['Heloise Jose', 'Deputy Secretary General', '+91 81380 10368'],
+  ['Aashika', 'Director General', '+91 90748 47881'],
+  ['Sreyas Warrier', 'Chief Advisor', '+91 95623 50219'],
+];
 
 const ContactSection = () => {
   return (
-    <section id="contact" className="py-24 sm:py-32 border-t border-mid-blue/20">
-      <div className="container mx-auto px-6">
-        <motion.h2
+    <section id="contact" className="max-w-7xl mx-auto py-24 relative z-10">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-7">
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.5 }}
-          className="text-4xl sm:text-5xl font-medium text-text-primary text-center mb-16"
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.8 }}
+          className="bg-parchment text-ink border-2 border-gold p-8 rounded space-y-6 shadow-[0_8px_24px_rgba(0,0,0,0.35)]"
         >
-          Get in Touch
-        </motion.h2>
+          <div>
+            <p className="font-display text-[10px] uppercase tracking-[0.3em] text-gold-dark font-bold mb-2">Correspondence Desk</p>
+            <h2 className="text-3xl font-semibold uppercase">Official Dispatch &amp; Inquiries</h2>
+            <p className="text-lg text-ink/75 mt-2">
+              Submit correspondence, delegation enquiry, or accommodation protocols to the Grand Secretariat.
+            </p>
+          </div>
 
-        {/* Reverted to the more aesthetic two-card layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 bg-background">
-          {/* Left Card: Contact & Socials */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8 }}
-            className="bg-dark-blue/20 border border-mid-blue/30 p-8 rounded-lg space-y-8"
-          >
-            <div>
-              <h3 className="text-2xl font-semibold text-accent mb-6">Contact Information</h3>
-              <div className="space-y-4 text-text-primary/80">
-                <div className="flex items-center gap-4">
-                  <Mail size={20} className="text-accent flex-shrink-0" />
-                  <span>dlgtkmmun@gmail.com</span>
-                </div>
-                <div className="flex items-start gap-4">
-                  <Phone size={20} className="text-accent mt-1 flex-shrink-0" />
-                  <div>
-                    <p>Arundhathy San, Secretary General: +91 90748 47881</p>
-                    <p>Heloise Jose, Deputy Secretary General: +91 81380 10368</p>
-                    <p>Aashika, Director General: +91 90748 47881</p>
-                    <p>Sreyas Warrier, Chief Advisor: +91 95623 50219</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div>
-              <h3 className="text-2xl font-semibold text-accent mb-6">Follow Us</h3>
-              <div className="flex gap-4">
-                <a
-                  href="https://www.instagram.com/munsoc_tkmce/?hl=en"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 border border-mid-blue/30 rounded-lg text-accent hover:bg-dark-blue/40 transition-colors"
-                >
-                  <Instagram size={24} />
-                </a>
-              </div>
-            </div>
-          </motion.div>
+          <div className="flex items-center gap-3">
+            <span className="material-symbols-outlined text-gold-dark">mail</span>
+            <a href="mailto:dlgtkmmun@gmail.com" className="hover:underline">dlgtkmmun@gmail.com</a>
+          </div>
 
-          {/* Right Card: Event Details & Map */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8 }}
-            className="bg-dark-blue/20 border border-mid-blue/30 p-8 rounded-lg flex flex-col"
+          <div className="space-y-3">
+            {contacts.map(([name, role, phone]) => (
+              <div key={role} className="flex items-start gap-3">
+                <span className="material-symbols-outlined text-gold-dark">call</span>
+                <p><span className="font-semibold">{name}</span>, {role}: {phone}</p>
+              </div>
+            ))}
+          </div>
+
+          <a
+            href="https://www.instagram.com/munsoc_tkmce/?hl=en"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="wax-gold-btn inline-flex items-center gap-2 border border-gold-dark px-6 py-2 rounded font-display text-[10px] uppercase tracking-[0.2em] text-maroon-dark hover:bg-gold/30"
           >
-            <h3 className="text-2xl font-semibold text-accent mb-6">Event Details</h3>
-            <div className="space-y-4 text-text-primary/80 mb-8">
-              <div>
-                <p className="font-bold text-text-primary">Date:</p>
-                <p>December 5th, 6th & 7th, 2025</p>
-              </div>
-              <div>
-                <p className="font-bold text-text-primary">Venue:</p>
-                <p>TKM College of Engineering, Karikode, Kollam, Kerala</p>
-              </div>
-            </div>
-            <div className="w-full flex-grow rounded-lg overflow-hidden min-h-[250px]">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3941.654303498822!2d76.6346215750172!3d8.911333091129929!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05e3a24f33664d%3A0x452435ac35e1b12b!2sTKM%20College%20of%20Engineering!5e0!3m2!1sen!2sin!4v1728645719888!5m2!1sen!2sin"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
-            </div>
-          </motion.div>
-        </div>
+            <span className="material-symbols-outlined text-[18px]">photo_camera</span> Follow Us
+          </a>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.8, delay: 0.1 }}
+          className="border-2 border-gold bg-maroon-dark p-3 rounded flex flex-col shadow-[0_8px_24px_rgba(0,0,0,0.35)]"
+        >
+          <div className="w-full grow min-h-75 overflow-hidden rounded">
+            <iframe
+              title="TKM College of Engineering map"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3941.654303498822!2d76.6346215750172!3d8.911333091129929!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05e3a24f33664d%3A0x452435ac35e1b12b!2sTKM%20College%20of%20Engineering!5e0!3m2!1sen!2sin!4v1728645719888!5m2!1sen!2sin"
+              width="100%"
+              height="100%"
+              style={{ border: 0, minHeight: 300 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+          <div className="pt-3 text-center">
+            <p className="font-display text-[10px] uppercase tracking-[0.25em] text-gold-light font-bold">Ceremonial Anchor</p>
+            <p className="text-lg text-cream">TKM College of Engineering, Karikode, Kollam, Kerala</p>
+            <p className="text-muted">December 5th, 6th &amp; 7th, 2025</p>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -32,14 +32,25 @@ export default function Home() {
   }, []);
 
   return (
-    <main>
+    <main className="w-full pt-20 min-h-screen">
       <Navbar />
-      <HeroSection newsList={newsList} loading={loading} />
-      <AboutSection />
-      <CommitteesSection />
-      <TeamSection />
-      <OldPhotoGallery />
-      <ContactSection />
+
+      {/* Upper realm: cream → taupe → oxblood */}
+      <div className="relative w-full overflow-hidden bg-gradient-to-b from-[#FEF8E2] via-[#A48E81] via-40% to-[#4B1C14]">
+        <div className="candle-glow-1" />
+        <HeroSection newsList={newsList} loading={loading} />
+        <AboutSection />
+      </div>
+
+      {/* Lower realm: oxblood */}
+      <div className="relative w-full overflow-hidden bg-oxblood px-6">
+        <div className="candle-glow-2" />
+        <CommitteesSection />
+        <TeamSection />
+        <OldPhotoGallery />
+        <ContactSection />
+      </div>
+
       <MFooter />
     </main>
   );

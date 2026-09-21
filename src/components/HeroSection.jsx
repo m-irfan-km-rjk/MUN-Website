@@ -4,67 +4,89 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import NewsSlider from './NewsFeed';
 
+const REGISTER_URL = 'https://forms.gle/yFk2MuzPctFHQC5g9';
+
+const Scrollwork = ({ flip }) => (
+  <svg className={`h-6 w-32 fill-none stroke-current text-gold opacity-90 ${flip ? 'rotate-180' : ''}`} viewBox="0 0 120 20">
+    <path
+      className="scrollwork-path"
+      d="M0,10 Q30,0 60,10 T120,10 Q90,20 60,10 T0,10 Z M60,5 Q70,9 85,7 M60,15 Q70,11 85,13"
+      strokeWidth="1.2"
+    />
+  </svg>
+);
+
 const HeroSection = ({ newsList, loading }) => {
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center px-6 overflow-hidden">
-      {/* Background Glow Effect */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent/20 rounded-full blur-[120px] -z-10" />
-
-      <div className="container mx-auto text-center z-10 flex flex-col h-full justify-center pt-20 pb-32">
-        <div className="max-w-5xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            <h1 className="text-6xl md:text-9xl font-bold tracking-tight mb-6 relative inline-block">
-              <span className="bg-clip-text text-transparent bg-gradient-to-b from-white to-text-primary/80 drop-shadow-lg">
-                TKM MUN
-              </span>
-            </h1>
-          </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
-            className="text-xl md:text-xl text-text-primary/90 font-medium tracking-wide mb-12 max-w-3xl mx-auto leading-relaxed"
-          >
-            <span className="text-white font-bold">Unire . Discere . Progredere</span>
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.6, duration: 0.5 }}
-          >
-            <button
-              onClick={() => window.location.href = 'https://forms.gle/yFk2MuzPctFHQC5g9'}
-              className="group relative px-8 py-4 bg-transparent overflow-hidden rounded-full transition-all duration-300 hover:shadow-[0_0_40px_-10px_rgba(85,136,163,0.5)]"
-            >
-              <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute inset-0 border border-accent/50 rounded-full group-hover:border-accent transition-colors duration-300" />
-              <span className="relative text-lg font-medium text-white tracking-wider group-hover:text-accent transition-colors duration-300 flex items-center justify-center gap-2 cursor-pointer">
-                Register Now
-                <svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </span>
-            </button>
-          </motion.div>
+    <>
+      <section id="home" className="relative pt-12 pb-16 px-6 md:px-12 max-w-7xl mx-auto flex flex-col items-center text-center z-10">
+        <div className="inline-flex items-center gap-2 px-4 py-1 rounded bg-parchment/80 border border-gold shadow-sm mb-2">
+          <span className="material-symbols-outlined text-[16px] text-[#775a01] animate-pulse">stars</span>
+          <span className="font-display text-[10px] tracking-[0.25em] text-maroon-dark uppercase font-bold">
+            Annual Diplomatic Convocation · MMXXV
+          </span>
+          <span className="material-symbols-outlined text-[16px] text-[#775a01] animate-pulse">stars</span>
         </div>
+
+        <motion.h1
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+          className="hero-title-gold font-cormorant text-6xl md:text-7xl lg:text-[80px] leading-tight tracking-[0.25em] uppercase font-bold my-1 select-none"
+        >
+          TKM MUN
+        </motion.h1>
+
+        <p className="font-cormorant italic text-2xl md:text-3xl text-gold font-semibold tracking-wider mt-1 mb-2 drop-shadow-[0_1px_3px_rgba(40,24,16,0.4)]">
+          “Unire · Discere · Progredere”
+        </p>
+
+        <div className="flex items-center justify-center gap-4 w-full max-w-lg my-1">
+          <Scrollwork />
+          <div className="flex items-center gap-1 px-3 py-1 rounded-full bg-maroon-dark text-cream border border-gold shadow-md">
+            <span className="material-symbols-outlined text-[20px] text-gold-light">military_tech</span>
+            <span className="material-symbols-outlined text-[22px] text-gold-light">shield</span>
+            <span className="material-symbols-outlined text-[20px] text-gold-light">edit_note</span>
+          </div>
+          <Scrollwork flip />
+        </div>
+
+        <p className="text-lg text-ink max-w-2xl mt-1 font-medium">
+          The Sovereign Model United Nations Conference of TKM College of Engineering, Kollam
+        </p>
+
+        <div className="flex flex-wrap items-center justify-center gap-6 mt-7">
+          <a
+            href={REGISTER_URL}
+            className="wax-gold-btn inline-flex items-center gap-2 bg-gold text-maroon-dark border border-gold-dark font-display text-xs uppercase tracking-[0.15em] px-10 py-4 rounded font-bold shadow-[0_0_15px_rgba(201,164,76,0.35)] hover:bg-[#d8b660] hover:shadow-[0_0_24px_rgba(201,164,76,0.65)] hover:-translate-y-0.5"
+          >
+            <span className="material-symbols-outlined text-[20px]">history_edu</span>
+            Register Now
+          </a>
+          <a
+            href="#assemblies"
+            className="wax-gold-btn group inline-flex items-center gap-2 bg-maroon-dark/60 text-gold-light border border-gold font-display text-xs uppercase tracking-[0.15em] px-10 py-4 rounded backdrop-blur-sm hover:bg-maroon-dark hover:border-gold-light"
+          >
+            Explore Committees
+            <span className="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+          </a>
+        </div>
+      </section>
+
+      <div className="max-w-6xl mx-auto px-5 md:px-12 mb-16 relative z-10">
+        <NewsSlider newsList={newsList} loading={loading} />
       </div>
 
-      {/* News Bar (Replaces Scroll Indicator) */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.2, duration: 0.8 }}
-        className="absolute bottom-8 left-0 right-0 px-4 z-20"
-      >
-        <NewsSlider newsList={newsList} loading={loading} />
-      </motion.div>
-    </section>
+      <div className="w-full flex items-center justify-center gap-4 max-w-5xl mx-auto px-6 py-6 relative z-10">
+        <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gold to-gold" />
+        <div className="flex items-center gap-2 text-gold">
+          <span className="material-symbols-outlined text-[18px]">circle</span>
+          <span className="material-symbols-outlined text-[24px]">shield_with_heart</span>
+          <span className="material-symbols-outlined text-[18px]">circle</span>
+        </div>
+        <div className="flex-1 h-px bg-gradient-to-l from-transparent via-gold to-gold" />
+      </div>
+    </>
   );
 };
 

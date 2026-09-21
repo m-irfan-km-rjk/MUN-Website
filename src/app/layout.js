@@ -1,31 +1,47 @@
-import { Poppins } from "next/font/google";
+import { Cinzel, Cormorant_Garamond, EB_Garamond } from "next/font/google";
 import "./globals.css";
-import BackgroundAnimation from "@/components/BackgroundAnimation"; // 1. Import it here
+import Atmosphere from "@/components/Atmosphere";
 
-const poppins = Poppins({
+const cinzel = Cinzel({
   subsets: ["latin"],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-poppins'
+  weight: ["400", "600", "700", "800"],
+  variable: "--font-cinzel",
+});
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-cormorant",
+});
+
+const garamond = EB_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+  variable: "--font-garamond",
 });
 
 export const metadata = {
-  title: "TKM MUN: The International Cricket Council",
-  description: "The official website for the TKM College of Engineering Mock UN, focusing on the International Cricket Council.",
+  title: "TKM MUN: Collegium Diplomaticum",
+  description: "The official website for the TKM College of Engineering Model United Nations conference.",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${poppins.variable} font-sans antialiased relative`}>
-        {/* 2. Place it here, just inside the body tag */}
-        <BackgroundAnimation /> 
-        
-        {/* This div ensures your page content sits on top of the animation */}
-        <div className="relative z-10"> 
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap"
+        />
+      </head>
+      <body className={`${cinzel.variable} ${cormorant.variable} ${garamond.variable} font-sans antialiased relative selection:bg-gold selection:text-maroon-dark`}>
+        <Atmosphere />
+        <div className="relative z-10">
           {children}
         </div>
       </body>
     </html>
   );
 }
-

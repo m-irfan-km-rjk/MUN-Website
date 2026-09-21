@@ -6,10 +6,10 @@ const people_pics = {
 };
 
 const mainMembers = [
-  { name: "Arundhathy San", position: "Secretary General", imageUrl: people_pics.arundathy },
-  { name: "Heloise Jose", position: "Deputy Secretary General", imageUrl: people_pics.heloise },
-  { name: "Aashika", position: "Director General", imageUrl: people_pics.ashika },
-  { name: "Sreyas Warrier", position: "Chief Advisor", imageUrl: people_pics.sreyas },
+  { name: "Arundhathy San", position: "Secretary General", tagline: "Her Excellency · Master of Treaties", imageUrl: people_pics.arundathy },
+  { name: "Heloise Jose", position: "Deputy Secretary General", tagline: "Custodian of Procedures", imageUrl: people_pics.heloise },
+  { name: "Aashika", position: "Director General", tagline: "Chancellor of Logistics & Assembly", imageUrl: people_pics.ashika },
+  { name: "Sreyas Warrier", position: "Chief Advisor", tagline: "Plenipotentiary Counsel", imageUrl: people_pics.sreyas },
 ];
 
 const otherMembers = {
