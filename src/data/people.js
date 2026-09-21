@@ -13,7 +13,7 @@ const mainMembers = [
 ];
 
 const otherMembers = {
-  accomodation: {
+  accommodation: {
     "aswanth_k": "/people/Accomodation/ASWANTH K .jpg",
     "saniya_s_kumar": "/people/Accomodation/Saniya S Kumar.jpg",
   },

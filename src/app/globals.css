@@ -31,6 +31,8 @@ html {
 
 body {
   @apply font-sans antialiased;
+  font-size: 1.125rem;
+  line-height: 1.65;
   background-color: #4b1c14;
   color: #fef8e2;
 }

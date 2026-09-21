@@ -41,7 +41,7 @@ const Navbar = () => {
         <div className="flex items-center gap-4">
           <Link
             href={REGISTER_URL}
-            className="wax-gold-btn hidden sm:block font-display text-[10px] uppercase tracking-[0.18em] text-gold-light border border-gold px-4 py-1.5 rounded hover:bg-gold hover:text-maroon-dark shadow-[0_0_12px_rgba(201,164,76,0.15)] hover:shadow-[0_0_18px_rgba(201,164,76,0.45)]"
+            className="wax-gold-btn hidden sm:block font-display text-xs font-bold uppercase tracking-[0.15em] bg-gold text-maroon-dark border border-gold-dark px-5 py-2 rounded shadow-[0_0_12px_rgba(201,164,76,0.3)] hover:bg-[#d8b660] hover:shadow-[0_0_18px_rgba(201,164,76,0.55)]"
           >
             Register
           </Link>

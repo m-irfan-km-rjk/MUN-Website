@@ -29,14 +29,14 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${cinzel.variable} ${cormorant.variable} ${garamond.variable}`}>
       <head>
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap"
         />
       </head>
-      <body className={`${cinzel.variable} ${cormorant.variable} ${garamond.variable} font-sans antialiased relative selection:bg-gold selection:text-maroon-dark`}>
+      <body className={`font-sans antialiased relative selection:bg-gold selection:text-maroon-dark`}>
         <Atmosphere />
         <div className="relative z-10">
           {children}

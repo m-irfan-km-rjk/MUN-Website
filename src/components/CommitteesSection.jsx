@@ -3,12 +3,14 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
+const REGISTER_URL = 'https://forms.gle/yFk2MuzPctFHQC5g9';
+
 const committees = [
   {
     name: 'UNGA',
     fullName: 'United Nations General Assembly',
     agenda: 'Revisiting Multilateral Sovereignty and Climate Reparations in Post-Colonial Maritime Corridors.',
-    allocations: 'Double / Single',
+    allocations: 'Single or double delegations',
     logoUrl: '/UNGA.png',
   },
   {
@@ -59,11 +61,20 @@ const CommitteeCard = ({ committee, index }) => (
       <span className="font-display text-xs text-gold-light font-bold tracking-[0.2em]">{committee.name}</span>
       <h3 className="text-xl text-cream mt-1 font-bold leading-snug">{committee.fullName}</h3>
       <div className="w-full h-px bg-gold/40 my-3" />
-      <p className="text-[15px] leading-relaxed text-muted italic">Agenda: “{committee.agenda}”</p>
+      <p className="text-base leading-relaxed text-cream/90 italic">Agenda: “{committee.agenda}”</p>
     </div>
-    <div className="mt-6 pt-3 border-t border-gold/30 flex items-center justify-between gap-3">
-      <span className="font-display text-[10px] text-gold-light uppercase tracking-wider">Allocations: {committee.allocations}</span>
-      <span className="material-symbols-outlined text-gold-light text-[20px] group-hover:translate-x-1.5 transition-transform duration-300">arrow_outward</span>
+    <div className="mt-6 pt-4 border-t border-gold/30 space-y-3">
+      <p className="text-base text-cream">
+        <span className="font-display text-xs uppercase tracking-wider text-gold-light mr-2">Allocations</span>
+        {committee.allocations}
+      </p>
+      <a
+        href={REGISTER_URL}
+        className="inline-flex items-center gap-2 font-display text-xs uppercase tracking-wider text-gold-light hover:text-white underline-offset-4 hover:underline"
+      >
+        Register for this committee
+        <span className="material-symbols-outlined text-[18px] group-hover:translate-x-1.5 transition-transform duration-300" aria-hidden="true">arrow_forward</span>
+      </a>
     </div>
   </motion.div>
 );

@@ -12,7 +12,7 @@ const pillars = [
 const highlights = [
   { icon: 'verified_user', value: '150+', label: 'Delegates & Dignitaries across the subcontinent' },
   { icon: 'account_balance', value: '5', label: 'Distinct Sovereign Assemblies & Councils' },
-  { icon: 'event_note', value: 'DEC 5–7', label: 'Three Days of Rigorous Parliamentary Debate' },
+  { icon: 'event_note', value: '4–6 DEC', label: 'Three Days of Rigorous Parliamentary Debate' },
   { icon: 'apartment', value: 'TKMCE', label: 'Karikode, Kollam Campus, Malabar Coast' },
 ];
 
@@ -28,16 +28,16 @@ const AboutSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.8 }}
-            className="lg:col-span-6 flex flex-col gap-4 text-cream"
+            className="lg:col-span-6 flex flex-col gap-4 text-[#F3E9DC]"
           >
             <div className="inline-flex items-center gap-2 text-gold-light">
               <span className="font-display text-[10px] uppercase tracking-[0.25em] font-bold">The Convocation</span>
               <span className="w-12 h-px bg-gold" />
             </div>
-            <h2 className="drop-cap-illuminated text-4xl font-semibold text-gold-light leading-tight uppercase">
+            <h2 className="text-4xl font-semibold text-gold-light leading-tight uppercase">
               A Sanctum for Diplomatic Discourse &amp; Statecraft
             </h2>
-            <div className="space-y-3 text-lg text-parchment/90 leading-relaxed text-justify">
+            <div className="space-y-3 text-lg text-[#F3E9DC] leading-relaxed">
               <p>
                 Founded upon the venerated halls of TKM College of Engineering, Kollam, TKM MUN convenes the most formidable minds to debate the fate of global geopolitics. Delegates assume the mantle of ambassadors, sovereign ministers, and investigative journalists, navigating international crises, negotiating delicate bilateral treaties, and formulating binding resolutions.
               </p>

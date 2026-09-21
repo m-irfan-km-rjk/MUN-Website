@@ -16,7 +16,7 @@ const ArchCard = ({ name, position, tagline, imageUrl, index }) => (
     className="secretariat-frame group bg-maroon-dark border border-gold rounded-t-full rounded-b-lg p-4 flex flex-col items-center text-center shadow-2xl hover:border-blush transition-colors duration-500"
   >
     <div className="w-36 h-48 rounded-t-full rounded-b-md overflow-hidden border-2 border-gold mb-4 relative mt-2 bg-ink shadow-inner group-hover:border-blush transition-colors duration-500">
-      <Image src={imageUrl} alt={name} fill sizes="150px" className="object-cover sepia-[0.3]" />
+      <Image src={imageUrl} alt={name} fill sizes="150px" className="object-cover sepia-[.15] saturate-[.9]" />
     </div>
     <span className="font-display text-xs text-gold-light font-bold tracking-widest uppercase">{name}</span>
     <span className="text-xl text-cream mt-1 font-semibold">{position}</span>
