@@ -1,94 +1,40 @@
 "use client";
-import { motion, useAnimation } from "framer-motion";
-import { useEffect } from "react";
-import { useInView } from "react-intersection-observer";
+
+const links = [
+  { href: '#about', label: 'About' },
+  { href: '#assemblies', label: 'Committees' },
+  { href: '#secretariat', label: 'Secretariat' },
+  { href: '#contact', label: 'Contact' },
+];
 
 export default function MFooter() {
-  const controls = useAnimation();
-  const [ref, inView] = useInView({ threshold: 0.2 });
-
-  useEffect(() => {
-    if (inView) controls.start("visible");
-    else controls.start("hidden");
-  }, [controls, inView]);
-
   return (
-    <footer
-      ref={ref}
-      className="bg-[#34052E] text-[#D9D9D9] py-10 w-full border-t border-[#6B3563]"
-    >
-      {/* Animated Content Only */}
-      <motion.div
-        initial="hidden"
-        animate={controls}
-        variants={{
-          hidden: { opacity: 0, y: 50 },
-          visible: {
-            opacity: 1,
-            y: 0,
-            transition: { duration: 0.6, ease: "easeOut" },
-          },
-        }}
-        className="w-full max-w-6xl mx-auto px-8 flex flex-col sm:flex-row justify-between items-center sm:items-start gap-8 text-center sm:text-left"
-      >
-        {/* Logo / Title */}
-        <div className="flex-1">
-          <h2 className="text-2xl font-semibold text-white mb-3">
-            Model United Nations
-          </h2>
-          <p className="text-sm text-[#E8E8E8]/80 leading-relaxed max-w-sm mx-auto sm:mx-0">
-            Inspiring leadership, diplomacy, and global collaboration.
-          </p>
+    <footer className="relative z-10 w-full bg-maroon-dark border-t border-gold/60 text-center">
+      <div className="h-2 w-full footer-braid-drift" />
+      <div className="mx-auto max-w-6xl px-6 py-12">
+        <h2 className="font-display text-sm uppercase tracking-[0.3em] text-gold-light font-bold mb-2">
+          ◆ Collegium Diplomaticum TKM ◆
+        </h2>
+        <p className="font-cormorant italic text-xl text-gold mb-2">“Unire · Discere · Progredere”</p>
+        <p className="text-base text-muted mb-6">
+          Inspiring leadership, diplomacy, and global collaboration.
+        </p>
+
+        <div className="flex flex-wrap justify-center gap-8 mb-8">
+          {links.map(({ href, label }) => (
+            <a
+              key={label}
+              href={href}
+              className="font-display text-[10px] uppercase tracking-[0.25em] text-[#d1c5b2] hover:text-gold-light transition-colors"
+            >
+              {label}
+            </a>
+          ))}
         </div>
 
-        {/* Links */}
-        <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-4 sm:gap-8 text-base font-medium">
-          <a
-            href="#"
-            className="hover:text-[#D9D9D9] transition-colors duration-200"
-          >
-            About
-          </a>
-          <a
-            href="#"
-            className="hover:text-[#D9D9D9] transition-colors duration-200"
-          >
-            Committees
-          </a>
-          <a
-            href="#"
-            className="hover:text-[#D9D9D9] transition-colors duration-200"
-          >
-            Contact
-          </a>
+        <div className="border-t border-gold/20 pt-5 text-sm text-muted/70">
+          © {new Date().getFullYear()} TKM MUN. Under the patronage of TKM College of Engineering, Kollam, Kerala.
         </div>
-
-        {/* Social Icons */}
-        <div className="flex justify-center sm:justify-end gap-6 text-xl">
-          <a
-            href="#"
-            className="hover:text-[#D9D9D9] transition-colors duration-200"
-          >
-            <i className="fab fa-facebook-f"></i>
-          </a>
-          <a
-            href="#"
-            className="hover:text-[#D9D9D9] transition-colors duration-200"
-          >
-            <i className="fab fa-instagram"></i>
-          </a>
-          <a
-            href="#"
-            className="hover:text-[#D9D9D9] transition-colors duration-200"
-          >
-            <i className="fab fa-linkedin-in"></i>
-          </a>
-        </div>
-      </motion.div>
-
-      {/* Divider & Copyright */}
-      <div className="border-t border-[#6B3563] mt-10 pt-5 text-center text-sm text-[#D9D9D9]/70">
-        © {new Date().getFullYear()} Model United Nations. All rights reserved.
       </div>
     </footer>
   );
