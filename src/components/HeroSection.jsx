@@ -16,14 +16,14 @@ const Scrollwork = ({ flip }) => (
   </svg>
 );
 
-const HeroSection = ({ newsList, loading }) => {
+const HeroSection = ({ newsList, loading, error }) => {
   return (
     <>
       <section id="home" className="relative pt-12 pb-16 px-6 md:px-12 max-w-7xl mx-auto flex flex-col items-center text-center z-10">
         <div className="inline-flex items-center gap-2 px-4 py-1 rounded bg-parchment/80 border border-gold shadow-sm mb-2">
           <span className="material-symbols-outlined text-[16px] text-[#775a01] animate-pulse">stars</span>
           <span className="font-display text-[10px] tracking-[0.25em] text-maroon-dark uppercase font-bold">
-            Annual Diplomatic Convocation · MMXXV
+            Annual Diplomatic Convocation
           </span>
           <span className="material-symbols-outlined text-[16px] text-[#775a01] animate-pulse">stars</span>
         </div>
@@ -32,12 +32,12 @@ const HeroSection = ({ newsList, loading }) => {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="hero-title-gold font-cormorant text-6xl md:text-7xl lg:text-[80px] leading-tight tracking-[0.25em] uppercase font-bold my-1 select-none"
+          className="relative text-[#4A1C14] [text-shadow:0_2px_0_rgba(201,164,76,0.55)] font-cormorant text-6xl md:text-7xl lg:text-[80px] leading-tight tracking-[0.25em] uppercase font-bold my-1 select-none"
         >
           TKM MUN
         </motion.h1>
 
-        <p className="font-cormorant italic text-2xl md:text-3xl text-gold font-semibold tracking-wider mt-1 mb-2 drop-shadow-[0_1px_3px_rgba(40,24,16,0.4)]">
+        <p className="font-cormorant italic text-2xl md:text-3xl text-[#4A1C14] font-semibold tracking-wider mt-1 mb-2">
           “Unire · Discere · Progredere”
         </p>
 
@@ -53,6 +53,9 @@ const HeroSection = ({ newsList, loading }) => {
 
         <p className="text-lg text-ink max-w-2xl mt-1 font-medium">
           The Sovereign Model United Nations Conference of TKM College of Engineering, Kollam
+        </p>
+        <p className="font-cormorant italic text-xl md:text-2xl text-[#4A1C14] font-semibold mt-2">
+          4–6 December · TKM College of Engineering, Kollam
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-6 mt-7">
@@ -74,7 +77,7 @@ const HeroSection = ({ newsList, loading }) => {
       </section>
 
       <div className="max-w-6xl mx-auto px-5 md:px-12 mb-16 relative z-10">
-        <NewsSlider newsList={newsList} loading={loading} />
+        <NewsSlider newsList={newsList} loading={loading} error={error} />
       </div>
 
       <div className="w-full flex items-center justify-center gap-4 max-w-5xl mx-auto px-6 py-6 relative z-10">

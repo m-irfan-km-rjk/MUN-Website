@@ -14,14 +14,22 @@ export default function Home() {
 
   const [newsList, setNewsList] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   const fetchData = async () => {
     try {
       const req = await fetch("/api/dashboard/news");
-      const data = await req.json();
-      setNewsList(data);
-    } catch (error) {
-      console.error("Failed to fetch news:", error);
+      const data = req.ok ? await req.json() : null;
+      if (Array.isArray(data)) {
+        setNewsList(data);
+      } else {
+        // Expected when the news backend is unavailable; the Dispatch bar shows its fallback.
+        console.warn(`News unavailable (HTTP ${req.status}); showing the default announcement.`);
+        setError(true);
+      }
+    } catch (err) {
+      console.warn("News request failed; showing the default announcement.", err);
+      setError(true);
     } finally {
       setLoading(false);
     }
@@ -35,10 +43,14 @@ export default function Home() {
     <main className="w-full pt-20 min-h-screen">
       <Navbar />
 
-      {/* Upper realm: cream → taupe → oxblood */}
-      <div className="relative w-full overflow-hidden bg-gradient-to-b from-[#FEF8E2] via-[#A48E81] via-40% to-[#4B1C14]">
+      {/* Hero: the gradient is only a backdrop and ends on the About band's colour */}
+      <div className="relative w-full overflow-hidden bg-gradient-to-b from-[#FEF8E2] via-[#A48E81] via-45% to-[#5A362E]">
         <div className="candle-glow-1" />
-        <HeroSection newsList={newsList} loading={loading} />
+        <HeroSection newsList={newsList} loading={loading} error={error} />
+      </div>
+
+      {/* About: solid dark umber so body text stays readable */}
+      <div className="relative w-full overflow-hidden bg-[#5A362E]">
         <AboutSection />
       </div>
 
