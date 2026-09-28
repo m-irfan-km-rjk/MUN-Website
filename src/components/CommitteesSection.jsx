@@ -9,6 +9,7 @@ const committees = [
   {
     name: 'UNGA',
     fullName: 'United Nations General Assembly',
+    description: 'The principal deliberative, policymaking, and representative organ of the United Nations, bringing together all 193 member states to discuss and coordinate on international peace, security, and development.',
     agenda: 'Revisiting Multilateral Sovereignty and Climate Reparations in Post-Colonial Maritime Corridors.',
     allocations: 'Single or double delegations',
     logoUrl: '/UNGA.png',
@@ -16,6 +17,7 @@ const committees = [
   {
     name: 'UNHRC',
     fullName: 'United Nations Human Rights Council',
+    description: 'The UN body responsible for strengthening the promotion and protection of human rights around the globe, addressing violations and making recommendations on human rights situations worldwide.',
     agenda: 'Safeguarding Indigenous Liberties and Regulating Algorithmic Surveillance in Disputed Territories.',
     allocations: 'Single Delegate',
     logoUrl: '/UNHRC.png',
@@ -23,6 +25,7 @@ const committees = [
   {
     name: 'UNSC',
     fullName: 'United Nations Security Council',
+    description: 'The most powerful body of the United Nations, charged with maintaining international peace and security, settling disputes, and authorizing the use of force when necessary.',
     agenda: 'Defusing Asymmetric Escalations and Nuclear Proliferation in the Indo-Pacific Basin.',
     allocations: 'Specialized Cabinet',
     logoUrl: '/UNSC.png',
@@ -30,6 +33,7 @@ const committees = [
   {
     name: 'IP',
     fullName: 'International Press Corps',
+    description: 'The media wing of the conference, where correspondents gather intelligence, file dispatches, and hold delegations accountable through rigorous investigative journalism and press briefings.',
     agenda: 'Unrestricted Investigative Journalism, Propaganda Counter-Intelligence, and Press Communiqués.',
     allocations: 'Individual Correspondents',
     logoUrl: '/IP.png',
@@ -37,6 +41,7 @@ const committees = [
   {
     name: 'KLA',
     fullName: 'Kerala Legislative Assembly',
+    description: 'A simulation of the state legislature of Kerala, debating regional policy, governance, and development with regional dialect and local parliamentary procedure.',
     agenda: 'Decentralized Coastal Resilience, Maritime Infrastructure, and Sustainable Riverine Policy for Peninsular Sovereignty.',
     allocations: 'Regional Plenipotentiaries (Regional Dialect Allowed)',
     logoUrl: '/KLA.png',
@@ -62,6 +67,14 @@ const CommitteeCard = ({ committee, index }) => (
       <h3 className="text-xl text-cream mt-1 font-bold leading-snug">{committee.fullName}</h3>
       <div className="w-full h-px bg-gold/40 my-3" />
       <p className="text-base leading-relaxed text-cream/90 italic">Agenda: “{committee.agenda}”</p>
+      <div className="mt-4 overflow-hidden">
+        <span className="font-display text-[10px] uppercase tracking-wider text-gold-light">About</span>
+        <div className="max-h-0 overflow-hidden transition-all duration-700 ease-[0.16,1,0.3,1] group-hover:max-h-48">
+          <p className="text-sm text-cream/85 leading-relaxed mt-1 translate-y-4 opacity-0 transition-all duration-700 ease-[0.16,1,0.3,1] group-hover:translate-y-0 group-hover:opacity-100">
+            {committee.description}
+          </p>
+        </div>
+      </div>
     </div>
     <div className="mt-6 pt-4 border-t border-gold/30 space-y-3">
       <p className="text-base text-cream">
