@@ -13,6 +13,8 @@ const links = [
 ];
 
 const REGISTER_URL = 'https://forms.gle/yFk2MuzPctFHQC5g9';
+const DOCS_URL = '';
+const CONTACT_PHONE = '+91 90748 47881';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,6 +38,22 @@ const Navbar = () => {
               {label}
             </Link>
           ))}
+          <Link
+            href={DOCS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-display text-xs uppercase tracking-[0.15em] text-[#d1c5b2] hover:text-gold-light transition-colors py-1 border-b border-transparent hover:border-gold/60 inline-flex items-center gap-1.5"
+          >
+            <span className="font-display text-xs uppercase tracking-[0.15em] text-[#d1c5b2] hover:text-gold-light transition-colors py-1 border-b border-transparent hover:border-gold/60">description Docs</span>
+            
+          </Link>
+          <a
+            href={`tel:${CONTACT_PHONE.replace(/\s/g, '')}`}
+            className="font-display text-xs uppercase tracking-[0.15em] text-[#d1c5b2] hover:text-gold-light transition-colors py-1 border-b border-transparent hover:border-gold/60 inline-flex items-center gap-1.5"
+          >
+            <span className="material-symbols-outlined text-[14px]">call</span>
+            {CONTACT_PHONE}
+          </a>
         </nav>
 
         <div className="flex items-center gap-4">
@@ -65,7 +83,7 @@ const Navbar = () => {
             transition={{ duration: 0.3, ease: 'easeInOut' }}
             className="md:hidden bg-maroon-dark border-t border-gold/20 flex flex-col text-center overflow-hidden"
           >
-            {[...links, { href: REGISTER_URL, label: 'Register' }].map(({ href, label }) => (
+            {[...links, { href: DOCS_URL, label: 'Docs' }, { href: `tel:${CONTACT_PHONE.replace(/\s/g, '')}`, label: CONTACT_PHONE }].map(({ href, label }) => (
               <Link
                 key={label}
                 href={href}
@@ -75,6 +93,13 @@ const Navbar = () => {
                 {label}
               </Link>
             ))}
+            <Link
+              href={REGISTER_URL}
+              onClick={closeMenu}
+              className="block font-display text-xs uppercase tracking-[0.25em] text-gold-light py-4 border-b border-gold/15"
+            >
+              Register
+            </Link>
           </motion.div>
         )}
       </AnimatePresence>
