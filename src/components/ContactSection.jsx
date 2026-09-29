@@ -3,9 +3,8 @@
 import { motion } from 'framer-motion';
 
 const contacts = [
-  ['Arundhathy San & Aashika', 'Secretary General & Director General', '+91 90748 47881'],
-  ['Heloise Jose', 'Deputy Secretary General', '+91 81380 10368'],
-  ['Sreyas Warrier', 'Chief Advisor', '+91 95623 50219'],
+  ['Aashika', 'Chairperson', '+91 88911 89196'],
+  ['Fathima Thaha', 'Vice Chairperson', '+91 97447 17374'],
 ];
 
 const ContactSection = () => {

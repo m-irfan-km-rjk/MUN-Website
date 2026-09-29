@@ -51,7 +51,7 @@ const TeamSection = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-7 max-w-3xl mx-auto">
         {mainMembers.map((m, i) => (
           <ArchCard key={m.name} {...m} index={i} />
         ))}
