@@ -236,7 +236,209 @@ body {
   white-space: nowrap;
 }
 
+/* ---------- Torn letter loader ("The Torn Dispatch") ---------- */
+/* --p scales the whole timeline (1 = ~3.2s); TornLetterLoader.jsx reads it for its timers.
+   Base styles are the resting, sealed envelope, so reduced motion (animation: none) shows just that. */
+html.tl-seen #tl-loader { display: none; }
+html:not(.tl-seen) body:has(#tl-loader) { overflow: hidden; }
+html:not(.tl-seen) body:has(#tl-loader) #gold-motes-canvas { z-index: 61; }
+
+#tl-loader {
+  --p: 1;
+  --tl-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --tl-fall: cubic-bezier(0.55, 0, 1, 0.45);
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  overflow: hidden;
+  background: #4b1c14;
+  color: #4a1c14;
+}
+#tl-loader.is-tearing { animation: tlOut calc(0.2s * var(--p)) linear calc(2.3s * var(--p)) both; }
+#tl-loader.is-leaving { opacity: 0; animation: none; transition: opacity 0.3s ease; }
+
+.tl-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+.tl-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(90, 54, 46, 0.35) 0%, transparent 45%, rgba(20, 8, 6, 0.75) 100%);
+  animation: tlFadeIn calc(0.3s * var(--p)) ease-out both;
+}
+.tl-hero {
+  position: absolute;
+  inset: 5rem 0 0;
+  background: linear-gradient(to bottom, #fef8e2, #a48e81 45%, #5a362e);
+  opacity: 0;
+}
+.is-tearing .tl-hero { animation: tlShow calc(0.35s * var(--p)) ease calc(2s * var(--p)) both; }
+
+.tl-stage { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+.tl-land { width: min(85vw, 440px); animation: tlLand calc(0.6s * var(--p)) linear calc(0.3s * var(--p)) both; }
+.tl-env { position: relative; aspect-ratio: 400 / 260; container-type: inline-size; }
+.is-tearing .tl-env { animation: tlTilt calc(0.6s * var(--p)) ease-in-out both; }
+.tl-body, .tl-strip, .tl-strip-lift, .tl-whole, .tl-flecks { position: absolute; inset: 0; }
+.tl-body svg, .tl-strip svg, .tl-whole svg { position: absolute; inset: 0; display: block; overflow: visible; }
+.tl-body, .tl-strip, .tl-strip-lift, .tl-fly { will-change: transform; }
+.tl-env svg { filter: drop-shadow(0 10px 14px rgba(20, 8, 6, 0.4)); }
+.tl-env .tl-nick { filter: none; }
+
+.tl-hand {
+  font-family: var(--font-cormorant), serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 17px;
+  fill: #4a1c14;
+  fill-opacity: 0.85;
+}
+
+/* Torn edges: a pale, roughened stroke that draws right to left as the tear travels. */
+.tl-edge {
+  fill: none;
+  stroke: #fbf6e9;
+  stroke-width: 2.2;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  filter: url(#tl-fuzz);
+}
+.is-tearing .tl-edge { animation: tlDraw calc(0.55s * var(--p)) cubic-bezier(0.3, 0.1, 0.6, 1) calc(0.2s * var(--p)) both; }
+
+.tl-nick { opacity: 0; }
+.is-tearing .tl-nick { animation: tlShow calc(0.15s * var(--p)) ease-out both; }
+.is-tearing .tl-whole { animation: tlHide 0s linear calc(0.2s * var(--p)) both; }
+/* The two torn pieces stay hidden under the whole envelope until the tear starts. */
+.tl-body svg, .tl-strip svg { opacity: 0; }
+.is-tearing .tl-body svg, .is-tearing .tl-strip svg { animation: tlShow 0s linear calc(0.2s * var(--p)) both; }
+
+.tl-shimmer { position: absolute; aspect-ratio: 1; border-radius: 50%; overflow: hidden; pointer-events: none; }
+.tl-shimmer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 25%, rgba(255, 248, 226, 0.55) 50%, transparent 75%);
+  animation: tlShimmer calc(2s * var(--p)) ease-in-out calc(0.9s * var(--p)) infinite both;
+}
+
+/* The strip peels up from the right around its left end, then detaches and falls. */
+.is-tearing .tl-strip-lift { animation: tlLift calc(0.6s * var(--p)) cubic-bezier(0.45, 0, 0.55, 1) calc(0.2s * var(--p)) both; }
+.is-tearing .tl-strip { animation: tlFall calc(0.8s * var(--p)) linear calc(0.7s * var(--p)) both; }
+
+.tl-fleck {
+  position: absolute;
+  height: 2px;
+  margin: -1px;
+  box-shadow: 0 0 1px rgba(74, 28, 20, 0.35);
+  background: #fbf6e9;
+  border-radius: 1px;
+  opacity: 0;
+}
+.is-tearing .tl-fleck { animation: tlFleck calc(0.6s * var(--p)) var(--tl-fall) calc((0.2s + var(--d) * 1s) * var(--p)) both; }
+
+/* Letter: sits inside the envelope body, rises out, unfolds, then scales up to fill the screen. */
+.tl-fly {
+  position: absolute;
+  left: 8%;
+  top: 60%;
+  width: 84%;
+  height: 34%;
+  transform-origin: var(--tl-ox, 50%) var(--tl-oy, 50%);
+}
+.tl-rise, .tl-letter { position: absolute; inset: 0; }
+.tl-letter { perspective: 600px; }
+.tl-page, .tl-fold { position: absolute; left: 0; right: 0; text-align: center; }
+.tl-page {
+  top: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom, #fef8e2, #e9e5dc);
+  box-shadow: 0 2px 6px rgba(40, 16, 12, 0.25);
+}
+.tl-fold {
+  top: 100%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom, #e9e5dc, #ddd3c3);
+  transform-origin: 50% 0;
+  transform: rotateX(180deg);
+  backface-visibility: hidden;
+}
+.tl-page::before, .tl-fold::before { content: ''; position: absolute; border: 1px solid rgba(201, 164, 76, 0.55); }
+.tl-page::before { inset: 4px 4px 0; border-bottom: 0; }
+.tl-fold::before { inset: 0 4px 4px; border-top: 0; }
+.tl-c { position: absolute; width: 12px; height: 12px; border: 0 solid #c9a44c; opacity: 0.7; }
+.tl-c-tl { top: 1px; left: 1px; border-top-width: 2px; border-left-width: 2px; }
+.tl-c-tr { top: 1px; right: 1px; border-top-width: 2px; border-right-width: 2px; }
+.tl-c-bl { bottom: 1px; left: 1px; border-bottom-width: 2px; border-left-width: 2px; }
+.tl-c-br { bottom: 1px; right: 1px; border-bottom-width: 2px; border-right-width: 2px; }
+.tl-title {
+  font-family: var(--font-cormorant), serif;
+  font-weight: 600;
+  font-size: 6.6cqw;
+  line-height: 1.1;
+  letter-spacing: 0.3em;
+  padding-left: 0.3em;
+}
+.tl-sub {
+  margin-top: 0.6cqw;
+  font-family: var(--font-cinzel), serif;
+  font-size: 2.2cqw;
+  line-height: 1;
+  letter-spacing: 0.3em;
+  padding-left: 0.3em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+.tl-motto { font-family: var(--font-cormorant), serif; font-style: italic; font-weight: 600; font-size: 3.2cqw; opacity: 0.85; }
+
+.is-tearing .tl-rise { animation: tlRise calc(0.7s * var(--p)) var(--tl-ease) calc(0.9s * var(--p)) both; }
+.is-tearing .tl-body { animation: tlDrop calc(0.55s * var(--p)) var(--tl-fall) calc(1.6s * var(--p)) both; }
+.is-tearing .tl-fold { animation: tlUnfold calc(0.45s * var(--p)) var(--tl-ease) calc(1.6s * var(--p)) both; }
+.is-tearing .tl-fly { animation: tlFly calc(0.5s * var(--p)) var(--tl-ease) calc(1.85s * var(--p)) both; }
+
+@keyframes tlFadeIn { from { opacity: 0; } }
+@keyframes tlShow { from { opacity: 0; } to { opacity: 1; } }
+@keyframes tlHide { to { opacity: 0; } }
+@keyframes tlOut { to { opacity: 0; } }
+@keyframes tlLand {
+  0% { opacity: 0; transform: translateY(-70vh) rotate(-3deg); animation-timing-function: var(--tl-fall); }
+  62% { opacity: 1; transform: translateY(0) rotate(0); animation-timing-function: var(--tl-ease); }
+  80% { transform: translateY(-9px) rotate(0.4deg); animation-timing-function: var(--tl-fall); }
+  100% { transform: none; }
+}
+@keyframes tlTilt {
+  0% { transform: none; }
+  30%, 55% { transform: rotate(-2deg); }
+  100% { transform: none; }
+}
+@keyframes tlShimmer {
+  0% { transform: translateX(-120%) skewX(-18deg); }
+  60%, 100% { transform: translateX(120%) skewX(-18deg); }
+}
+@keyframes tlDraw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes tlLift { from { transform: none; } to { transform: rotate(-8deg); } }
+@keyframes tlFall {
+  0% { transform: none; animation-timing-function: var(--tl-ease); }
+  25% { transform: translate(4%, -8%) rotate(-5deg); animation-timing-function: var(--tl-fall); }
+  100% { transform: translate(22%, 130vh) rotate(-14deg); }
+}
+@keyframes tlFleck {
+  0% { opacity: 0; transform: none; }
+  12% { opacity: 1; }
+  100% { opacity: 0; transform: translate(var(--dx), 40px) rotate(var(--r)); }
+}
+@keyframes tlRise { from { transform: none; } to { transform: translateY(-80%); } }
+@keyframes tlDrop { from { transform: none; } to { transform: translateY(70vh) rotate(2deg); opacity: 0; } }
+@keyframes tlUnfold { from { transform: rotateX(180deg); } to { transform: none; } }
+@keyframes tlFly { from { transform: none; } to { transform: translate(var(--tl-dx), var(--tl-dy)) scale(var(--tl-s)); } }
+
 @media (prefers-reduced-motion: reduce) {
+  #tl-loader, #tl-loader *, #tl-loader *::before { animation: none !important; }
+  .tl-flecks, .tl-shimmer { display: none; }
   #gold-motes-canvas, #mouse-vignette { display: none !important; }
   .ken-burns-img, .brass-gear-turn, .compass-settle, .footer-braid-drift,
   .candle-glow-1, .candle-glow-2, .hero-title-gold::after {

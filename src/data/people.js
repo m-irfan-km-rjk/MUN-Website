@@ -1,76 +1,73 @@
 const people_pics = {
-  "arundathy": "/people/Secretary General/Arundhathy San_.jpg",
-  "heloise": "/people/Deputy Secretary General- Heloise Jose.jpg",
-  "sreyas": "/people/Director General - Sreyas S Warrier.jpg",
-  "ashika": "/people/Chief advisor_.jpg",
+  "aashika": "/people/Secretary General/Aashika P Sajan.jpg",
+  "fathima": "/people/Fathima Thaha.jpg",
 };
 
 const mainMembers = [
-  { name: "Arundhathy San", position: "Secretary General", tagline: "Her Excellency · Master of Treaties", imageUrl: people_pics.arundathy },
-  { name: "Heloise Jose", position: "Deputy Secretary General", tagline: "Custodian of Procedures", imageUrl: people_pics.heloise },
-  { name: "Aashika", position: "Director General", tagline: "Chancellor of Logistics & Assembly", imageUrl: people_pics.ashika },
-  { name: "Sreyas Warrier", position: "Chief Advisor", tagline: "Plenipotentiary Counsel", imageUrl: people_pics.sreyas },
+  { name: "Aashika P Sajan", position: "Chairperson", tagline: "Her Excellency · Master of Treaties", imageUrl: people_pics.aashika },
+  { name: "Fathima Thaha", position: "Vice Chairperson", tagline: "Custodian of Procedures", imageUrl: people_pics.fathima },
 ];
 
 const otherMembers = {
   accommodation: {
-    "aswanth_k": "/people/Accomodation/ASWANTH K .jpg",
-    "saniya_s_kumar": "/people/Accomodation/Saniya S Kumar.jpg",
+    "sharafath_salim": "/people/Accomodation/Sharafath Salim.jpg",
   },
 
   delegate_affairs: {
-    "ashwin": "/people/Delegate affairs/Ashwin.jpg",
-    "jai": "/people/Delegate affairs/Jai.jpg",
+    "adhirath": "/people/Delegate affairs/Adhirath.jpg",
   },
 
   cultural_affairs: {
-    "ghazali": "/people/Cultural Affairs/Ghazali .jpg",
+    "athila_zubair_n_v": "/people/Cultural Affairs/Athila Zubair N V.jpg",
   },
 
   design: {
-    "abhijith_v_s": "/people/Design/Abhijith vs.jpg",
+    "abhishek": "/people/Design/Abhishek.jpg",
   },
 
   documentation: {
-    "fathima_ibrahim": "/people/Documentation/Fathima Ibrahim/20250710_175218.jpg",
+    "parthiv_e_p": "/people/Documentation/Parthiv E P.jpg",
   },
 
   finance: {
-    "adhil_noufal": "/people/Finance/adhil noufal/IMG_8747.JPG",
+    "prathul_k": "/people/Finance/Prathul K.jpg",
   },
 
   hospitality: {
-    "joel_arise": "/people/Hospitality/Joel Arise.JPG",
+    "ananya_neenu_anil": "/people/Hospitality/Ananya Neenu Anil.jpg",
   },
 
   logistics: {
-    "sanjay": "/people/LOGISTICS/SANJAY.JPG",
+    "hanin_afsal": "/people/LOGISTICS/Hanin Afsal.jpg",
   },
 
   marketing: {
-    "arjun_rakesh": "/people/Marketing/Arjun Rakesh_.jpg",
+    "chaithanya_j_nair": "/people/Marketing/Chaithanya J Nair.jpg",
   },
 
   media: {
-    "ashwin_m_g": "/people/Media/Ashwin M G.jpg",
-    "nathan": "/people/Media/Nathan.jpg",
+    "nathan_k_alexander": "/people/Media/Nathan K Alexander.jpg",
+  },
+
+  membership: {
+    "nandana_sankar": "/people/Membership/Nandana Sankar.jpg",
   },
 
   operations: {
-    "hisham": "/people/Operations/Hisham.jpg",
-    "mohammed_ansil": "/people/Operations/MOHAMMED ANSIL_.jpg",
+    "hafiz_ahmed": "/people/Operations/Hafiz Ahmed.jpg",
+    "hafiz_rahuman_n": "/people/Operations/HAFIZ RAHUMAN N.jpg",
   },
 
   political_affairs: {
-    "thameem_thalhath": "/people/Political Affairs/THAMEEM THALHATH_.jpg",
+    "muhammed_ajzal": "/people/Political Affairs/Muhammed Ajzal.jpg",
   },
 
   publicity: {
-    "amritha_lekhmi_v": "/people/PUBLICITY/Amritha Lekshmi V.jpg",
+    "niramayan_s": "/people/PUBLICITY/Niramayan S.jpg",
   },
 
   sponsorship: {
-    "ankhur_s": "/people/Sponsorship/Ankhur.jpg"
+    "aswinraj_h": "/people/Sponsorship/Aswinraj H.jpg",
   },
 
   technical: {
@@ -81,11 +78,11 @@ const otherMembers = {
     "nasif_nasar": "/people/Transportation/Nasif Nasar.jpg",
   },
 
-  volunteering: {
-    "joana_johnson": "/people/Volunteering/JOANA JOHNSON/IMG_20251020_182823.jpg",
-    "nandu_mohan": "/people/Volunteering/Nandu Mohan.jpg",
-    "sanjith_santhosh": "/people/Volunteering/Sanjith Santhosh_.jpg",
-    "vandana_m": "/people/Volunteering/Vandana M.jpg",
+  general_volunteering: {
+    "aswan": "/people/General Volunteering/Aswan.jpg",
+    "shobika": "/people/General Volunteering/Shobika.jpg",
+    "sreya_sunil": "/people/General Volunteering/Sreya Sunil.jpg",
+    "sruthi": "/people/General Volunteering/Sruthi.jpg",
   }
 };
 
