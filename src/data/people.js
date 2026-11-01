@@ -82,10 +82,6 @@ const otherMembers = {
     "nandana_manoj": "/people/Technical/Nandana Manoj.jpg",
   },
 
-  transportation: {
-    "nasif_nasar": "/people/Transportation/Nasif Nasar.jpg",
-  },
-
   general_volunteering: {
     "aswan": "/people/General Volunteering/Aswan.jpg",
     "shobika": "/people/General Volunteering/Shobika.jpg",

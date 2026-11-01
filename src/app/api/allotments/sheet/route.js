@@ -55,7 +55,9 @@ export async function GET(request) {
     const query = url.searchParams.get("q")?.trim().toLowerCase();
     const status = url.searchParams.get("status")?.trim().toLowerCase();
     const committee = url.searchParams.get("committee")?.trim().toLowerCase();
-    const selectedSheets = committeeSheets[committee]
+    const selectedSheets = committee === "others" || !committee
+      ? Object.entries(committeeSheets)
+      : committeeSheets[committee]
       ? [[committee, committeeSheets[committee]]]
       : [];
 
