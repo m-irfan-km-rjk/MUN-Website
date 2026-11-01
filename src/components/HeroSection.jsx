@@ -23,7 +23,7 @@ const HeroSection = ({ newsList, loading, error }) => {
         <div className="inline-flex items-center gap-2 px-4 py-1 rounded bg-parchment/80 border border-gold shadow-sm mb-2">
           <span className="material-symbols-outlined text-[16px] text-[#775a01] animate-pulse">stars</span>
           <span className="font-display text-[10px] tracking-[0.25em] text-[#582119] uppercase font-bold">
-            Root Rise
+            Annual Diplomatic Convocation
           </span>
           <span className="material-symbols-outlined text-[16px] text-[#775a01] animate-pulse">stars</span>
         </div>
@@ -38,7 +38,7 @@ const HeroSection = ({ newsList, loading, error }) => {
         </motion.h1>
 
         <p className="font-cormorant italic text-2xl md:text-3xl text-[#371510] font-semibold tracking-wider mt-1 mb-2">
-          “Unire · Discere · Progredere”
+          “Root · Rise · Represent”
         </p>
 
         <div className="flex items-center justify-center gap-4 w-full max-w-lg my-1">

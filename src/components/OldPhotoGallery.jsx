@@ -2,15 +2,31 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
+import CircularCarousel from './CircularCarousel';
 
-const images = Array.from({ length: 20 }, (_, index) => `/assets/event${index + 1}.jpg`);
+const items = Array.from({ length: 20 }, (_, index) => ({
+  src: `/assets/event${index + 1}.jpg`,
+  alt: `Past event photo ${index + 1}`,
+  title: `Archive ${String(index + 1).padStart(2, '0')}`,
+}));
 
 export default function OldPhotoGallery() {
+  const [active, setActive] = useState(0);
   const [selected, setSelected] = useState(null);
 
+  const step = (d) => {
+    const next = (selected + d + items.length) % items.length;
+    setSelected(next);
+    setActive(next);
+  };
+
   useEffect(() => {
-    if (!selected) return;
-    const onKey = (e) => e.key === 'Escape' && setSelected(null);
+    if (selected === null) return;
+    const onKey = (e) => {
+      if (e.key === 'Escape') setSelected(null);
+      else if (e.key === 'ArrowRight') step(1);
+      else if (e.key === 'ArrowLeft') step(-1);
+    };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [selected]);
@@ -21,37 +37,24 @@ export default function OldPhotoGallery() {
         <span className="font-display text-[10px] text-gold-light tracking-[0.25em] uppercase font-bold">Archives of Diplomacy</span>
         <h2 className="text-4xl text-gold-light font-semibold mt-1 uppercase">Chronicles &amp; Commencements</h2>
         <p className="text-base text-muted mt-2">
-          Echoes of diplomacy, impassioned debate, and momentous pacts from prior editions. Click any archive to inspect in the High Chamber Lightbox.
+          Echoes of diplomacy, impassioned debate, and momentous pacts from prior editions. Click the centred archive to inspect in the High Chamber Lightbox.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {images.map((src, i) => (
-          <motion.button
-            key={src}
-            type="button"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: (i % 3) * 0.1 }}
-            onClick={() => setSelected(src)}
-            className="group relative h-56 overflow-hidden rounded border border-gold/50 hover:border-gold-light transition-colors duration-500 shadow-md bg-maroon-dark cursor-pointer"
-          >
-            <Image
-              src={src}
-              alt={`Past event photo ${i + 1}`}
-              fill
-              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-              className="ken-burns-img object-cover brightness-90 sepia-[0.35] group-hover:brightness-100 group-hover:sepia-0 transition-[filter] duration-700"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent opacity-70 pointer-events-none" />
-            <span className="material-symbols-outlined absolute bottom-3 right-4 text-[20px] text-gold-light opacity-0 group-hover:opacity-100 transition-opacity">visibility</span>
-          </motion.button>
-        ))}
-      </div>
+      <CircularCarousel
+        items={items}
+        activeIndex={active}
+        onActiveChange={setActive}
+        onItemClick={(i) => {
+          setActive(i);
+          setSelected(i);
+        }}
+        paused={selected !== null}
+        label="Archives of Diplomacy photo carousel"
+      />
 
       <AnimatePresence>
-        {selected && (
+        {selected !== null && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -74,8 +77,22 @@ export default function OldPhotoGallery() {
               >
                 ✕
               </button>
+              <button
+                onClick={() => step(-1)}
+                aria-label="Previous photo"
+                className="absolute left-3 top-1/2 -translate-y-1/2 z-10 text-gold-light bg-maroon-dark/90 border border-gold/60 w-9 h-9 hover:bg-maroon-dark"
+              >
+                ‹
+              </button>
+              <button
+                onClick={() => step(1)}
+                aria-label="Next photo"
+                className="absolute right-3 top-1/2 -translate-y-1/2 z-10 text-gold-light bg-maroon-dark/90 border border-gold/60 w-9 h-9 hover:bg-maroon-dark"
+              >
+                ›
+              </button>
               <div className="relative w-full h-full">
-                <Image src={selected} alt="Selected event" fill sizes="900px" className="object-cover" />
+                <Image src={items[selected].src} alt={items[selected].alt} fill sizes="900px" className="object-cover" />
               </div>
             </motion.div>
           </motion.div>

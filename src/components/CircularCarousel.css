@@ -1,0 +1,122 @@
+.cc-root {
+  position: relative;
+  outline: none;
+  user-select: none;
+}
+.cc-root:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 6px;
+  border-radius: 4px;
+}
+
+.cc-stage {
+  position: relative;
+  height: 480px;
+  overflow: hidden;
+  perspective: 1200px;
+  touch-action: pan-y;
+  cursor: grab;
+  --cc-w: 440px;
+  --cc-h: 330px;
+}
+.cc-stage:active {
+  cursor: grabbing;
+}
+.cc-stage[data-size='sm'] {
+  height: 360px;
+  --cc-w: 70%;
+  --cc-h: 285px;
+}
+
+.cc-item {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: var(--cc-w);
+  height: var(--cc-h);
+  will-change: transform, opacity;
+  visibility: hidden;
+}
+
+.cc-card {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--color-gold);
+  border-radius: 4px;
+  background: var(--color-maroon-dark);
+  cursor: inherit;
+}
+.cc-card:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 3px;
+}
+
+.cc-img {
+  object-fit: cover;
+  pointer-events: none;
+  filter: brightness(0.92) sepia(0.2);
+}
+
+/* Sepia/dim veil that eases off as an item approaches the centre. */
+.cc-dim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(42, 26, 18, 0.55), rgba(88, 33, 25, 0.45));
+  opacity: calc(0.75 * (1 - var(--cc-near, 0)));
+}
+
+/* Warm glow on the centred card (opacity-only animation). */
+.cc-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: 4px;
+  box-shadow: 0 0 40px 6px rgba(201, 164, 76, 0.45), inset 0 0 0 1px rgba(217, 201, 138, 0.6);
+  opacity: var(--cc-near, 0);
+}
+
+.cc-caption {
+  margin-top: 0.5rem;
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--color-gold-light);
+}
+
+.cc-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  color: var(--color-muted);
+}
+.cc-arrow {
+  width: 2rem;
+  height: 2rem;
+  line-height: 1;
+  font-size: 1.25rem;
+  color: var(--color-gold-light);
+  border: 1px solid rgba(201, 164, 76, 0.5);
+  border-radius: 4px;
+  background: transparent;
+  transition: background 0.2s;
+}
+.cc-arrow:hover {
+  background: rgba(201, 164, 76, 0.15);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cc-arrow {
+    transition: none;
+  }
+}
