@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 
 const statusFilters = [
-  { key: "all", label: "All" },
   { key: "available", label: "Available / Left" },
   { key: "allotted", label: "Allotted" },
   { key: "allotted-not-confirmed", label: "Allotted, Not Confirmed" },
@@ -20,19 +19,26 @@ const committeeFilters = [
 export default function AllotmentTracker() {
   const [rows, setRows] = useState([]);
   const [query, setQuery] = useState("");
-  const [statusFilter, setStatusFilter] = useState("all");
-  const [committeeFilter, setCommitteeFilter] = useState("unga");
-  const [loading, setLoading] = useState(true);
+  const [statusFilter, setStatusFilter] = useState("");
+  const [committeeFilter, setCommitteeFilter] = useState("");
+  const [loading, setLoading] = useState(false);
   const [totals, setTotals] = useState({ allotted: 0, "allotted-not-confirmed": 0, available: 0 });
 
   const fetchRows = async () => {
     try {
-      const params = new URLSearchParams({ q: query, status: statusFilter, committee: committeeFilter });
+      if (!query.trim() || !committeeFilter) {
+        setRows([]);
+        setLoading(false);
+        return;
+      }
+
+      const params = new URLSearchParams({ q: query, committee: committeeFilter });
+      if (statusFilter) params.set("status", statusFilter);
       const response = await fetch(`/api/allotments/sheet?${params}`, { cache: "no-store" });
       if (!response.ok) throw new Error("Unable to load allotments");
       setRows(await response.json());
 
-      const totalsResponse = await fetch(`/api/allotments/sheet?status=all&committee=${committeeFilter}`, { cache: "no-store" });
+      const totalsResponse = await fetch(`/api/allotments/sheet?committee=${committeeFilter}`, { cache: "no-store" });
       if (totalsResponse.ok) {
         const allCountries = await totalsResponse.json();
         setTotals({
@@ -49,7 +55,9 @@ export default function AllotmentTracker() {
   };
 
   useEffect(() => {
+    setLoading(Boolean(query.trim() && committeeFilter));
     fetchRows();
+    if (!query.trim() || !committeeFilter) return;
     const timer = setInterval(fetchRows, 15000);
     return () => clearInterval(timer);
   }, [query, statusFilter, committeeFilter]);
@@ -66,23 +74,27 @@ export default function AllotmentTracker() {
             className="w-full bg-cream text-maroon-dark border border-gold px-4 py-3 rounded outline-none focus:ring-2 focus:ring-gold-light" />
           <select value={statusFilter} onChange={(event) => setStatusFilter(event.target.value)}
             className="bg-cream text-maroon-dark border border-gold px-4 py-3 rounded">
+            <option value="">Status</option>
             {statusFilters.map((item) => <option key={item.key} value={item.key}>{item.label}</option>)}
           </select>
           <select value={committeeFilter} onChange={(event) => setCommitteeFilter(event.target.value)}
             className="bg-cream text-maroon-dark border border-gold px-4 py-3 rounded">
+            <option value="">Select Committee</option>
             {committeeFilters.map((item) => <option key={item.key} value={item.key}>{item.label}</option>)}
           </select>
         </div>
-        <div className="flex gap-6 mb-4 text-xs font-display uppercase tracking-wider text-gold-light">
-          <span>Allotted: {totals.allotted}</span>
-          <span>Allotted, Not Confirmed: {totals["allotted-not-confirmed"]}</span>
-          <span>Available / Left: {totals.available}</span>
-          <span className="ml-auto flex items-center gap-2"><i className="w-2 h-2 rounded-full bg-gold animate-pulse" />Live</span>
-        </div>
+        {query.trim() && committeeFilter ? (
+          <div className="flex gap-6 mb-4 text-xs font-display uppercase tracking-wider text-gold-light">
+            <span>Allotted: {totals.allotted}</span>
+            <span>Allotted, Not Confirmed: {totals["allotted-not-confirmed"]}</span>
+            <span>Available / Left: {totals.available}</span>
+            <span className="ml-auto flex items-center gap-2"><i className="w-2 h-2 rounded-full bg-gold animate-pulse" />Live</span>
+          </div>
+        ) : null}
         <div className="overflow-x-auto">
           {loading ? <p className="py-10 text-center text-cream/70">Loading allotments…</p> : rows.length === 0 ? (
             <div className="py-10 text-center border border-dashed border-gold/40 rounded text-cream/75">
-              No matching allotments yet. Updates appear here automatically.
+              Search a country to view committee allotments.
             </div>
           ) : (
             <table className="w-full text-left text-sm">

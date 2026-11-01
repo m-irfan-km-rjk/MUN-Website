@@ -54,10 +54,10 @@ export async function GET(request) {
     const url = new URL(request.url);
     const query = url.searchParams.get("q")?.trim().toLowerCase();
     const status = url.searchParams.get("status")?.trim().toLowerCase();
-    const committee = url.searchParams.get("committee")?.trim().toLowerCase() || "unga";
+    const committee = url.searchParams.get("committee")?.trim().toLowerCase();
     const selectedSheets = committeeSheets[committee]
       ? [[committee, committeeSheets[committee]]]
-      : [["unga", committeeSheets.unga]];
+      : [];
 
     const committees = await Promise.all(selectedSheets.map(async ([committeeKey, sheetName]) => {
       const sheetUrl = new URL(`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq`);
