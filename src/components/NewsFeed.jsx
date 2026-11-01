@@ -8,7 +8,7 @@ const REGISTER_URL = "https://forms.gle/yFk2MuzPctFHQC5g9";
 // Shown whenever there is no live news (loading, error or empty), so the bar is never blank.
 const FALLBACK = {
   title: "Registrations open",
-  content: "4–6 December · TKM College of Engineering, Kollam",
+  content: "4th, 5th and 6th December · TKM College of Engineering, Kollam",
 };
 
 export default function NewsSlider({ newsList = [], loading = false, error = false }) {

@@ -21,13 +21,19 @@ const MemberCard = ({ member, index, featured = false }) => {
       className={`secretariat-frame group relative shrink-0 ${featured ? 'w-[220px] lg:w-[250px]' : widths[index % 5]} ${featured ? 'lg:-translate-y-4' : offsets[index % 5]} ${overlap} snap-center`}
     >
       <div className={`relative h-[300px] lg:h-[360px] overflow-hidden rounded-[22px] border border-gold/80 bg-ink shadow-[0_22px_45px_rgba(20,8,6,0.48)] transition-transform duration-500 group-hover:-translate-y-2 ${featured || index % 5 === 2 ? 'lg:h-[390px]' : ''}`}>
-        <Image
-          src={member.imageUrl}
-          alt={member.name}
-          fill
-          sizes="250px"
-          className="object-cover object-top sepia-[.08] saturate-[.92] transition-transform duration-700 group-hover:scale-[1.04]"
-        />
+        {member.imageUrl ? (
+          <Image
+            src={member.imageUrl}
+            alt={member.name}
+            fill
+            sizes="250px"
+            className="object-cover object-top sepia-[.08] saturate-[.92] transition-transform duration-700 group-hover:scale-[1.04]"
+          />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-b from-[#315A49] to-maroon-dark">
+            <span className="font-display text-4xl text-gold-light">{member.name.charAt(0)}</span>
+          </div>
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-[#24100d] via-transparent to-transparent opacity-95" />
         <div className="absolute inset-x-0 bottom-0 px-4 pb-5 text-center">
           <p className="font-display text-[13px] font-bold uppercase tracking-[0.12em] text-gold-light drop-shadow-md">
@@ -61,7 +67,7 @@ const TeamSection = () => {
   ];
 
   const filteredMembers = activeCategory === 'all'
-    ? extras
+    ? [...mainMembers, ...extras]
     : activeCategory === 'main'
       ? mainMembers
       : extras.filter((member) => member.category === activeCategory);
@@ -112,7 +118,7 @@ const TeamSection = () => {
               key={`${member.name}-${member.position}`}
               member={member}
               index={index}
-              featured={activeCategory === 'main' && member.position === 'Chairperson'}
+              featured={activeCategory === 'main' && member.position === 'Secretary General'}
             />
           ))}
         </div>

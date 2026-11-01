@@ -73,8 +73,8 @@ export default function AllotmentTracker() {
         <span className="font-display text-[10px] text-gold-light tracking-[0.25em] uppercase font-bold">Live Delegate Register</span>
         <h2 className="text-4xl text-cream font-semibold mt-1 uppercase">Allotment Tracker</h2>
       </div>
-      <div className="bg-maroon-dark border border-gold/60 rounded-lg p-4 md:p-6 shadow-2xl">
-        <div className="grid md:grid-cols-[1fr_220px_220px] gap-3 mb-5">
+      <div className="overflow-hidden rounded-2xl border border-gold/50 bg-maroon-dark/95 shadow-2xl">
+        <div className="grid gap-3 border-b border-gold/25 bg-black/10 p-4 md:grid-cols-[1fr_220px_220px] md:p-6">
           <div className="relative">
             <input value={query}
               onChange={(event) => {
@@ -119,11 +119,11 @@ export default function AllotmentTracker() {
             {committeeFilters.map((item) => <option key={item.key} value={item.key}>{item.label}</option>)}
           </select>
         </div>
-        <div className="flex flex-wrap gap-x-6 gap-y-2 mb-4 text-xs font-display uppercase tracking-wider text-gold-light">
-          <span>Allotted: {totals.allotted}</span>
-          <span>Allotted, Not Confirmed: {totals["allotted-not-confirmed"]}</span>
-          <span>Available / Left: {totals.available}</span>
-          <span className="ml-auto flex items-center gap-2"><i className="w-2 h-2 rounded-full bg-gold animate-pulse" />Live</span>
+        <div className="grid grid-cols-2 gap-3 border-b border-gold/20 px-4 py-4 md:grid-cols-4 md:px-6">
+          <div className="rounded-xl border border-gold/20 bg-maroon-card px-4 py-3"><p className="text-xl font-bold text-gold-light">{totals.available}</p><p className="text-[10px] uppercase tracking-wider text-cream/70">Available</p></div>
+          <div className="rounded-xl border border-gold/20 bg-maroon-card px-4 py-3"><p className="text-xl font-bold text-gold-light">{totals.allotted}</p><p className="text-[10px] uppercase tracking-wider text-cream/70">Allotted</p></div>
+          <div className="rounded-xl border border-gold/20 bg-maroon-card px-4 py-3"><p className="text-xl font-bold text-gold-light">{totals["allotted-not-confirmed"]}</p><p className="text-[10px] uppercase tracking-wider text-cream/70">Pending confirmation</p></div>
+          <div className="flex items-center justify-end rounded-xl border border-gold/20 bg-maroon-card px-4 py-3 text-xs uppercase tracking-wider text-gold-light"><i className="mr-2 h-2 w-2 rounded-full bg-gold animate-pulse" />Live</div>
         </div>
         <div className="overflow-x-auto">
           {loading ? <p className="py-10 text-center text-cream/70">Loading allotments…</p> : rows.length === 0 ? (

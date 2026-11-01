@@ -14,11 +14,11 @@ export default function FoundersSection() {
     <section className="relative z-10 w-full bg-transparent px-5 pb-12 pt-12 md:px-12 md:pb-16 md:pt-16">
       <div className="mx-auto max-w-5xl">
         <div className="mb-10 text-center">
-          <span className="font-display text-[10px] font-bold uppercase tracking-[0.25em] text-gold-light/80">
+          <span className="font-display text-[10px] font-bold uppercase tracking-[0.25em] text-[#FFE6A6] drop-shadow-[0_0_8px_rgba(201,164,76,0.45)]">
             Our Origins
           </span>
-          <h2 className="mt-1 font-display text-3xl font-semibold uppercase text-gold-light md:text-4xl">
-            Founders of MUN
+          <h2 className="mt-1 font-display text-3xl font-bold uppercase text-[#FFE6A6] drop-shadow-[0_2px_10px_rgba(201,164,76,0.55)] md:text-4xl">
+            Founders of TKM MUN
           </h2>
         </div>
 

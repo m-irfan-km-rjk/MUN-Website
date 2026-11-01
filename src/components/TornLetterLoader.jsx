@@ -227,7 +227,6 @@ export default function TornLetterLoader() {
                     <span className="tl-c tl-c-tl" />
                     <span className="tl-c tl-c-tr" />
                     <p className="tl-title">TKM MUN</p>
-                    <p className="tl-sub">Collegium Diplomaticum</p>
                   </div>
                   <div className="tl-fold">
                     <span className="tl-c tl-c-bl" />

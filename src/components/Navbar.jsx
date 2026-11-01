@@ -24,7 +24,6 @@ const Navbar = () => {
       <div className="h-20 max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
         <Link href="/" onClick={closeMenu} className="flex flex-col">
           <span className="font-display text-sm text-gold-light tracking-[0.2em] uppercase font-bold leading-none">TKM MUN</span>
-          <span className="font-display text-[10px] text-[#d1c5b2] tracking-[0.25em] uppercase mt-1 leading-none">Collegium Diplomaticum</span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-10">

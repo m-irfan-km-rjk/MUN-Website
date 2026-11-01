@@ -1,11 +1,13 @@
 const people_pics = {
   "aashika": "/people/Secretary General/Aashika P Sajan.jpg",
   "fathima": "/people/Fathima Thaha.jpg",
+  "shawn": "/people/Shawn Jose.jpg",
 };
 
 const mainMembers = [
-  { name: "Aashika P Sajan", position: "Chairperson", tagline: "Her Excellency · Master of Treaties", imageUrl: people_pics.aashika },
-  { name: "Fathima Thaha", position: "Vice Chairperson", tagline: "Custodian of Procedures", imageUrl: people_pics.fathima },
+  { name: "Aashika P Sajan", position: "Secretary General", tagline: "Secretary General · TKM MUN", imageUrl: people_pics.aashika },
+  { name: "Fathima Thaha", position: "Deputy Secretary General", tagline: "Deputy Secretary General · TKM MUN", imageUrl: people_pics.fathima },
+  { name: "Shawn Jose", position: "Director General", tagline: "Director General · TKM MUN", imageUrl: people_pics.shawn },
 ];
 
 const otherMembers = {

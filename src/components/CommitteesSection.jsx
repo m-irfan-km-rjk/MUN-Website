@@ -68,9 +68,9 @@ const CommitteesSection = () => {
           <span className="font-display text-[10px] text-gold-light tracking-[0.25em] uppercase font-bold">Chambers of Consensus</span>
           <span className="w-8 h-px bg-gold" />
         </div>
-        <h2 className="text-4xl text-gold-light font-semibold tracking-wide uppercase">The Five Sovereign Assemblies</h2>
+        <h2 className="text-4xl text-gold-light font-semibold tracking-wide uppercase">Five Committees. Countless Perspectives. One Global Stage.</h2>
         <p className="text-lg text-muted mt-3">
-          Select your delegation beneath the emblems of multilateral law, high military strategy, legislative advocacy, and investigative press.
+          Explore the five distinguished committees of TKM MUN, each offering a unique platform to engage with international affairs, challenge perspectives, negotiate solutions and shape the course of global discourse. Choose your committee and take your place at the negotiating table.
         </p>
       </div>
 

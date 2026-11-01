@@ -13,7 +13,7 @@ export default function MFooter() {
       <div className="h-2 w-full footer-braid-drift" />
       <div className="mx-auto max-w-6xl px-6 py-12">
         <h2 className="font-display text-sm uppercase tracking-[0.3em] text-gold-light font-bold mb-2">
-          ◆ Collegium Diplomaticum TKM ◆
+          ◆ TKM MUN ◆
         </h2>
         <p className="font-cormorant italic text-xl text-gold mb-2">“Unire · Discere · Progredere”</p>
         <p className="text-base text-muted mb-6">

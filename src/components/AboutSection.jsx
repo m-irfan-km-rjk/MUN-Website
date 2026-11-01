@@ -12,7 +12,7 @@ const pillars = [
 const highlights = [
   { icon: 'verified_user', value: '150+', label: 'Delegates & Dignitaries across the subcontinent' },
   { icon: 'account_balance', value: '5', label: 'Distinct Sovereign Assemblies & Councils' },
-  { icon: 'event_note', value: '4–6 DEC', label: 'Three Days of Rigorous Parliamentary Debate' },
+  { icon: 'event_note', value: '4–6 DEC', label: '4th, 5th and 6th December' },
   { icon: 'apartment', value: 'TKMCE', label: 'Karikode, Kollam Campus, Malabar Coast' },
 ];
 
@@ -31,18 +31,18 @@ const AboutSection = () => {
             className="lg:col-span-6 flex flex-col gap-4 text-[#F3E9DC]"
           >
             <div className="inline-flex items-center gap-2 text-gold-light">
-              <span className="font-display text-[10px] uppercase tracking-[0.25em] font-bold">The Convocation</span>
+              <span className="font-display text-[10px] uppercase tracking-[0.25em] font-bold">About TKM MUN</span>
               <span className="w-12 h-px bg-gold" />
             </div>
             <h2 className="text-4xl font-semibold text-gold-light leading-tight uppercase">
-              A Sanctum for Diplomatic Discourse &amp; Statecraft
+              A Space for Diplomacy, Debate &amp; Discussion
             </h2>
             <div className="space-y-3 text-lg text-[#F3E9DC] leading-relaxed">
               <p>
-                Founded upon the venerated halls of TKM College of Engineering, Kollam, TKM MUN convenes the most formidable minds to debate the fate of global geopolitics. Delegates assume the mantle of ambassadors, sovereign ministers, and investigative journalists, navigating international crises, negotiating delicate bilateral treaties, and formulating binding resolutions.
+                Hosted at TKM College of Engineering, Kollam, TKM MUN brings together students from diverse backgrounds to discuss global issues, exchange ideas and explore different perspectives.
               </p>
               <p>
-                Steeped in intellectual rigor and parliamentary decorum, this convocation tests rhetoric, strategic poise, and moral conviction beneath the grandeur of formal consensus.
+                Through committee simulations, delegates step into the roles of diplomats, policymakers and journalists, taking part in debates, negotiations and discussions on matters of international importance. More than just a debate, TKM MUN is a space to build confidence, think critically, develop leadership skills and experience the true spirit of diplomacy and collaboration.
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">

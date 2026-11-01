@@ -5,22 +5,22 @@
   --font-display: var(--font-cinzel), serif;
   --font-cormorant: var(--font-cormorant), serif;
 
-  /* Baroque palette */
+  /* Root Rise palette: earth, forest growth and warm gold */
   --color-gold: #c9a44c;
-  --color-gold-light: #ffdf9a;
-  --color-gold-dark: #6b5128;
+  --color-gold-light: #d9c98a;
+  --color-gold-dark: #7a6635;
   --color-blush: #ffe2d6;
-  --color-oxblood: #371510;
-  --color-maroon-dark: #371510;
-  --color-maroon-card: #4c211a;
-  --color-maroon-hover: #5d2b22;
+  --color-oxblood: #582119;
+  --color-maroon-dark: #582119;
+  --color-maroon-card: #68271f;
+  --color-maroon-hover: #743329;
   --color-parchment: #e9e5dc;
   --color-cream: #fef8e2;
   --color-ink: #2a1a12;
   --color-muted: #ccbcac;
 
   /* Aliases used by other components */
-  --color-background: #371510;
+  --color-background: #582119;
   --color-text-primary: #fef8e2;
   --color-accent: #c9a44c;
 }
@@ -34,7 +34,7 @@ body {
   @apply font-sans antialiased;
   font-size: 1.125rem;
   line-height: 1.65;
-  background-color: #371510;
+  background-color: #582119;
   color: #fef8e2;
 }
 

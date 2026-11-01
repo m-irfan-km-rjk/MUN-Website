@@ -12,6 +12,7 @@ import Countdown from "@/components/Countdown";
 import FoundersSection from "@/components/FoundersSection";
 import AllotmentTracker from "@/components/AllotmentTracker";
 import CulturalGallery from "@/components/CulturalGallery";
+import CampusAmbassadorLeaderboard from "@/components/CampusAmbassadorLeaderboard";
 import { useState, useEffect } from "react";
 
 export default function Home() {
@@ -48,7 +49,7 @@ export default function Home() {
       <Navbar />
 
       {/* Hero: the gradient is only a backdrop and ends on the About band's colour */}
-      <div className="relative w-full overflow-hidden bg-gradient-to-b from-[#FEF8E2] from-0% via-[#B49D91] via-35% via-[#7A5147] via-70% to-[#371510] to-100%">
+      <div className="relative w-full overflow-hidden bg-gradient-to-b from-[#FEF8E2] from-0% via-[#B49D91] via-35% via-[#7A5147] via-70% to-[#582119] to-100%">
         <div className="candle-glow-1" />
         <HeroSection newsList={newsList} loading={loading} error={error} />
         <FoundersSection />
@@ -56,7 +57,7 @@ export default function Home() {
       </div>
 
       {/* About: solid site theme so body text stays readable */}
-      <div className="relative w-full overflow-hidden bg-[#371510]">
+      <div className="relative w-full overflow-hidden bg-[#582119]">
         <AboutSection />
       </div>
 
@@ -64,6 +65,7 @@ export default function Home() {
       <div className="relative w-full overflow-hidden bg-oxblood px-6">
         <div className="candle-glow-2" />
         <AllotmentTracker />
+        <CampusAmbassadorLeaderboard />
         <CommitteesSection />
         <TeamSection />
         <CulturalGallery />

@@ -28,7 +28,7 @@ const garamond = EB_Garamond({
 });
 
 export const metadata = {
-  title: "TKM MUN: Collegium Diplomaticum",
+  title: "TKM MUN | Root Rise",
   description: "The official website for the TKM College of Engineering Model United Nations conference.",
 };
 

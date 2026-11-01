@@ -22,8 +22,8 @@ const HeroSection = ({ newsList, loading, error }) => {
       <section id="home" className="relative pt-12 pb-16 px-6 md:px-12 max-w-7xl mx-auto flex flex-col items-center text-center z-10">
         <div className="inline-flex items-center gap-2 px-4 py-1 rounded bg-parchment/80 border border-gold shadow-sm mb-2">
           <span className="material-symbols-outlined text-[16px] text-[#775a01] animate-pulse">stars</span>
-          <span className="font-display text-[10px] tracking-[0.25em] text-maroon-dark uppercase font-bold">
-            Annual Diplomatic Convocation
+          <span className="font-display text-[10px] tracking-[0.25em] text-[#582119] uppercase font-bold">
+            Root Rise
           </span>
           <span className="material-symbols-outlined text-[16px] text-[#775a01] animate-pulse">stars</span>
         </div>
@@ -55,7 +55,7 @@ const HeroSection = ({ newsList, loading, error }) => {
           The Sovereign Model United Nations Conference of TKM College of Engineering, Kollam
         </p>
         <p className="font-cormorant italic text-xl md:text-2xl text-[#371510] font-semibold mt-2">
-          4–6 December · TKM College of Engineering, Kollam
+          4th, 5th and 6th December · TKM College of Engineering, Kollam
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-6 mt-7">

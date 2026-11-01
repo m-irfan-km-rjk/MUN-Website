@@ -3,8 +3,8 @@
 import { motion } from 'framer-motion';
 
 const contacts = [
-  ['Aashika', 'Chairperson', '+91 88911 89196'],
-  ['Fathima Thaha', 'Vice Chairperson', '+91 97447 17374'],
+  ['Aashika', 'Secretary General', '+91 88911 89196'],
+  ['Fathima Thaha', 'Deputy Secretary General', '+91 97447 17374'],
 ];
 
 const ContactSection = () => {
@@ -72,7 +72,7 @@ const ContactSection = () => {
           <div className="pt-3 text-center">
             <p className="font-display text-[10px] uppercase tracking-[0.25em] text-gold-light font-bold">Ceremonial Anchor</p>
             <p className="text-lg text-cream">TKM College of Engineering, Karikode, Kollam, Kerala</p>
-            <p className="text-muted">4–6 December</p>
+            <p className="text-muted">4th, 5th and 6th December</p>
           </div>
         </motion.div>
       </div>

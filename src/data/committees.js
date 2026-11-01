@@ -4,7 +4,7 @@ export const committees = [
     name: "UNGA",
     fullName: "United Nations General Assembly – Special Political and Decolonization Committee",
     description: "The principal deliberative, policymaking, and representative organ of the United Nations, bringing together member states to discuss peace, security, development, and decolonization.",
-    agenda: "Revisiting Multilateral Sovereignty and Climate Reparations in Post-Colonial Maritime Corridors.",
+    agenda: "Addressing the implications of climate change on international security and peaceful relations.",
     allocations: "Single or double delegations",
     logoUrl: "/UNGA.png",
     executiveBoard: [
@@ -18,7 +18,7 @@ export const committees = [
     name: "UNHRC",
     fullName: "United Nations Human Rights Council",
     description: "The UN body responsible for strengthening the promotion and protection of human rights around the globe, addressing violations and making recommendations on human rights situations worldwide.",
-    agenda: "Safeguarding Indigenous Liberties and Regulating Algorithmic Surveillance in Disputed Territories.",
+    agenda: "Strengthening the protection of human rights defenders and civil society in conflict situations.",
     allocations: "Single Delegate",
     logoUrl: "/UNHRC.png",
     executiveBoard: [
@@ -32,7 +32,7 @@ export const committees = [
     name: "UNSC",
     fullName: "War Cabinet",
     description: "A specialized crisis cabinet focused on fast-moving geopolitical threats, asymmetric escalation, military strategy, and urgent strategic decision-making.",
-    agenda: "Defusing Asymmetric Escalations and Nuclear Proliferation in the Indo-Pacific Basin.",
+    agenda: "Responding to evolving regional security threats and protecting civilian populations during armed conflict.",
     allocations: "Specialized Cabinet",
     logoUrl: "/UNSC.png",
     executiveBoard: [
@@ -46,7 +46,7 @@ export const committees = [
     name: "IP",
     fullName: "International Press Corps",
     description: "The media wing of the conference, where correspondents gather intelligence, file dispatches, and hold delegations accountable through investigative journalism and press briefings.",
-    agenda: "Unrestricted Investigative Journalism, Propaganda Counter-Intelligence, and Press Communiqués.",
+    agenda: "Reporting on the conference, promoting ethical journalism and countering misinformation.",
     allocations: "Individual Correspondents",
     logoUrl: "/IP.png",
     executiveBoard: [
@@ -59,7 +59,7 @@ export const committees = [
     name: "KLA",
     fullName: "Kerala Legislative Assembly",
     description: "A simulation of the state legislature of Kerala, debating regional policy, governance, and development with regional dialect and local parliamentary procedure.",
-    agenda: "Decentralized Coastal Resilience, Maritime Infrastructure, and Sustainable Riverine Policy for Peninsular Sovereignty.",
+    agenda: "Strengthening coastal resilience, public infrastructure and disaster preparedness in Kerala.",
     allocations: "Regional Plenipotentiaries (Regional Dialect Allowed)",
     logoUrl: "/KLA.png",
     executiveBoard: [
