@@ -10,7 +10,6 @@ const statusFilters = [
 ];
 
 const committeeFilters = [
-  { key: "all", label: "All Committees" },
   { key: "unga", label: "UNGA" },
   { key: "unhrc", label: "UNHRC" },
   { key: "war-cabinet", label: "War Cabinet" },
@@ -22,7 +21,7 @@ export default function AllotmentTracker() {
   const [rows, setRows] = useState([]);
   const [query, setQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
-  const [committeeFilter, setCommitteeFilter] = useState("all");
+  const [committeeFilter, setCommitteeFilter] = useState("unga");
   const [loading, setLoading] = useState(true);
   const [totals, setTotals] = useState({ allotted: 0, "allotted-not-confirmed": 0, available: 0 });
 
