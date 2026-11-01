@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const images = [1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => `/assets/event${n}.jpg`);
+const images = Array.from({ length: 20 }, (_, index) => `/assets/event${index + 1}.jpg`);
 
 export default function OldPhotoGallery() {
   const [selected, setSelected] = useState(null);

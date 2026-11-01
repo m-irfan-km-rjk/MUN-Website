@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-const images = [7, 8, 9].map((number) => `/assets/event${number}.jpg`);
+const images = [1, 2, 3].map((number) => `/assets/event${number}.jpg`);
 
 export default function CulturalGallery() {
   return (
