@@ -1,4 +1,25 @@
-const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/1T841BPrCqErxEnLeAhfqgWSJVuXhSdpDxqLQ6kgvoD0/export?format=csv";
+const SHEET_ID = "1T841BPrCqErxEnLeAhfqgWSJVuXhSdpDxqLQ6kgvoD0";
+
+const committeeSheets = {
+  all: null,
+  unga: "UNGA",
+  unhrc: "UNHRC",
+  "war-cabinet": "War Cabinet",
+  ip: "IP",
+  kla: "KLA",
+};
+
+function normalizeStatus(value) {
+  const status = value?.trim().toUpperCase() || "";
+  if (!status) return null;
+  if (status === "AVAILABLE") return "available";
+  if (
+    status === "ALLOTED NOT CONFIRMED" ||
+    status === "ALLOTED, NOT CONFIRMED" ||
+    status === "ALLOTED BUT NOT CONFIRMED"
+  ) return "allotted-not-confirmed";
+  return "allotted";
+}
 
 function parseCsv(csv) {
   return csv
@@ -31,30 +52,51 @@ function parseCsv(csv) {
 
 export async function GET(request) {
   try {
-    const response = await fetch(SHEET_CSV_URL, { cache: "no-store" });
-    if (!response.ok) throw new Error(`Spreadsheet request failed: ${response.status}`);
-
-    const csv = await response.text();
-    const [header, ...rows] = parseCsv(csv);
-    const countryIndex = header.findIndex((cell) => cell.toUpperCase() === "COUNTRY" || !cell);
-    const statusIndex = header.findIndex((cell) => cell.toUpperCase() === "STATUS");
-
-    const countries = rows
-      .filter((row) => row[0]?.trim() && row[0].toUpperCase() !== "STATUS")
-      .map((row) => {
-        const name = (countryIndex >= 0 ? row[countryIndex] : row[0])?.trim();
-        const sheetStatus = (statusIndex >= 0 ? row[statusIndex] : row[1])?.trim().toUpperCase();
-        const allotted = sheetStatus !== "AVAILABLE";
-
-        return { name, status: allotted ? "allotted" : "available" };
-      })
-      .filter((row) => row.name);
-
     const url = new URL(request.url);
     const query = url.searchParams.get("q")?.trim().toLowerCase();
     const status = url.searchParams.get("status")?.trim().toLowerCase();
+    const committee = url.searchParams.get("committee")?.trim().toLowerCase() || "all";
+    const selectedSheets = committee === "all"
+      ? Object.entries(committeeSheets).filter(([key]) => key !== "all")
+      : [[committee, committeeSheets[committee]]].filter(([, sheet]) => sheet);
 
-    const filtered = countries.filter((country) => {
+    const committees = await Promise.all(selectedSheets.map(async ([committeeKey, sheetName]) => {
+      const sheetUrl = new URL(`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq`);
+      sheetUrl.searchParams.set("tqx", "out:csv");
+      sheetUrl.searchParams.set("sheet", sheetName);
+      const response = await fetch(sheetUrl, { cache: "no-store" });
+      if (!response.ok) throw new Error(`Spreadsheet request failed for ${sheetName}: ${response.status}`);
+
+      const csv = await response.text();
+      const [header, ...rows] = parseCsv(csv);
+      const normalizedHeader = header.map((cell) => cell.toUpperCase().trim());
+      const nameIndex = normalizedHeader.findIndex((cell) =>
+        ["COUNTRY", "PORTFOLIO", "PORTFOLIOS", "MEMBER"].includes(cell)
+      );
+      const statusIndex = normalizedHeader.findIndex((cell) => cell === "STATUS");
+      const constituencyIndex = normalizedHeader.findIndex((cell) => cell === "CONSTITUENCY");
+      const allianceIndex = normalizedHeader.findIndex((cell) => cell === "ALLIANCE");
+
+      return rows
+        .filter((row) => row[nameIndex >= 0 ? nameIndex : 0]?.trim())
+        .map((row) => {
+          const name = (nameIndex >= 0 ? row[nameIndex] : row[0])?.trim();
+          const detailParts = [
+            constituencyIndex >= 0 ? row[constituencyIndex]?.trim() : "",
+            allianceIndex >= 0 ? row[allianceIndex]?.trim() : "",
+          ].filter(Boolean);
+          return {
+            committee: committeeKey,
+            name,
+            detail: detailParts.join(" - "),
+            status: normalizeStatus(statusIndex >= 0 ? row[statusIndex] : row[1]),
+          };
+        })
+        .filter((row) => row.name && row.status);
+    }));
+
+    const allocations = committees.flat();
+    const filtered = allocations.filter((country) => {
       const matchesQuery = !query || country.name.toLowerCase().includes(query);
       const matchesStatus = !status || status === "all" || country.status === status;
       return matchesQuery && matchesStatus;
