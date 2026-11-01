@@ -252,7 +252,7 @@ export default function TornLetterLoader() {
             <div className="tl-whole">
               <Piece />
               <svg className="tl-nick" viewBox={`0 0 ${W} ${H}`} width="100%" height="100%">
-                <path d={`M${W + 1} ${RIGHT_Y - 3}L${W - 7} ${RIGHT_Y + 0.5}L${W + 1} ${RIGHT_Y + 2.5}Z`} fill="#4b1c14" />
+                <path d={`M${W + 1} ${RIGHT_Y - 3}L${W - 7} ${RIGHT_Y + 0.5}L${W + 1} ${RIGHT_Y + 2.5}Z`} fill="#371510" />
               </svg>
               <div
                 className="tl-shimmer"

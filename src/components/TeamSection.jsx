@@ -7,42 +7,67 @@ import { mainMembers, otherMembers } from '../data/people';
 
 const titleCase = (s) => s.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
 
-const ArchCard = ({ name, position, tagline, imageUrl, index }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 24, scale: 0.96 }}
-    whileInView={{ opacity: 1, y: 0, scale: 1 }}
-    viewport={{ once: true, amount: 0.2 }}
-    transition={{ duration: 0.9, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-    className="secretariat-frame group bg-maroon-dark border border-gold rounded-t-full rounded-b-lg p-4 flex flex-col items-center text-center shadow-2xl hover:border-blush transition-colors duration-500"
-  >
-    <div className="w-36 h-48 rounded-t-full rounded-b-md overflow-hidden border-2 border-gold mb-4 relative mt-2 bg-ink shadow-inner group-hover:border-blush transition-colors duration-500">
-      <Image src={imageUrl} alt={name} fill sizes="150px" className="object-cover sepia-[.15] saturate-[.9]" />
-    </div>
-    <span className="font-display text-xs text-gold-light font-bold tracking-widest uppercase">{name}</span>
-    <span className="text-xl text-cream mt-1 font-semibold">{position}</span>
-    {tagline && <span className="italic text-[15px] text-gold mt-1">{tagline}</span>}
-  </motion.div>
-);
+const MemberCard = ({ member, index, featured = false }) => {
+  const offsets = ['translate-y-12 lg:translate-y-16', 'translate-y-3 lg:translate-y-6', 'lg:-translate-y-4', 'translate-y-3 lg:translate-y-6', 'translate-y-12 lg:translate-y-16'];
+  const widths = ['w-[210px] lg:w-[230px]', 'w-[210px] lg:w-[230px]', 'w-[220px] lg:w-[250px]', 'w-[210px] lg:w-[230px]', 'w-[210px] lg:w-[230px]'];
+  const overlap = featured || index === 0 ? '' : '-ml-[18px] lg:-ml-[42px]';
+
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 36, scale: 0.94 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, amount: 0.25 }}
+      transition={{ duration: 0.65, delay: index * 0.07, ease: [0.16, 1, 0.3, 1] }}
+      className={`secretariat-frame group relative shrink-0 ${featured ? 'w-[220px] lg:w-[250px]' : widths[index % 5]} ${featured ? 'lg:-translate-y-4' : offsets[index % 5]} ${overlap} snap-center`}
+    >
+      <div className={`relative h-[300px] lg:h-[360px] overflow-hidden rounded-[22px] border border-gold/80 bg-ink shadow-[0_22px_45px_rgba(20,8,6,0.48)] transition-transform duration-500 group-hover:-translate-y-2 ${featured || index % 5 === 2 ? 'lg:h-[390px]' : ''}`}>
+        <Image
+          src={member.imageUrl}
+          alt={member.name}
+          fill
+          sizes="250px"
+          className="object-cover object-top sepia-[.08] saturate-[.92] transition-transform duration-700 group-hover:scale-[1.04]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#24100d] via-transparent to-transparent opacity-95" />
+        <div className="absolute inset-x-0 bottom-0 px-4 pb-5 text-center">
+          <p className="font-display text-[13px] font-bold uppercase tracking-[0.12em] text-gold-light drop-shadow-md">
+            {member.name}
+          </p>
+          <p className="mt-1 text-sm font-semibold text-cream">
+            {member.position}
+          </p>
+        </div>
+      </div>
+    </motion.article>
+  );
+};
 
 const TeamSection = () => {
-  const [showMore, setShowMore] = useState(false);
+  const [activeCategory, setActiveCategory] = useState('all');
 
   const extras = Object.entries(otherMembers).flatMap(([category, members]) =>
     Object.entries(members).map(([key, imageUrl]) => ({
       name: titleCase(key),
       position: titleCase(category),
+      category,
       imageUrl,
     }))
   );
 
+  const categories = [
+    { key: 'all', label: 'All' },
+    { key: 'main', label: 'Secretariat' },
+    ...Object.keys(otherMembers).map((key) => ({ key, label: titleCase(key) })),
+  ];
+
+  const filteredMembers = activeCategory === 'all'
+    ? extras
+    : activeCategory === 'main'
+      ? mainMembers
+      : extras.filter((member) => member.category === activeCategory);
+
   return (
     <section id="secretariat" className="max-w-7xl mx-auto py-24 relative z-10">
-      <div className="flex items-center justify-center gap-4 max-w-4xl mx-auto mb-20 text-gold">
-        <div className="flex-1 h-px bg-gold/40" />
-        <span className="material-symbols-outlined text-2xl text-gold-light">auto_awesome</span>
-        <div className="flex-1 h-px bg-gold/40" />
-      </div>
-
       <div className="text-center max-w-2xl mx-auto mb-16">
         <span className="font-display text-[10px] text-gold-light tracking-[0.25em] uppercase font-bold">Executive Board</span>
         <h2 className="text-4xl text-gold-light font-semibold mt-1 uppercase">The High Secretariat</h2>
@@ -51,29 +76,47 @@ const TeamSection = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-7 max-w-3xl mx-auto">
-        {mainMembers.map((m, i) => (
-          <ArchCard key={m.name} {...m} index={i} />
-        ))}
-      </div>
-
-      <div className="flex justify-center mt-10">
-        <button
-          onClick={() => setShowMore(!showMore)}
-          className="wax-gold-btn inline-flex items-center gap-2 border border-gold text-gold-light font-display text-[10px] uppercase tracking-[0.2em] px-10 py-2 rounded bg-maroon-dark/60 hover:bg-maroon-dark hover:text-cream transition-colors"
-        >
-          <span className="material-symbols-outlined text-[18px]">group</span>
-          {showMore ? 'Show Fewer Members' : 'Show More Secretariat Members'}
-        </button>
-      </div>
-
-      {showMore && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7 mt-10">
-          {extras.map((m, i) => (
-            <ArchCard key={m.position + m.name} {...m} index={i % 4} />
+      <div className="mb-12 flex justify-center">
+        <div className="secretariat-scroll flex max-w-full gap-2 overflow-x-auto px-4 pb-3 snap-x snap-mandatory">
+          {categories.map((category) => (
+            <button
+              key={category.key}
+              type="button"
+              onClick={() => setActiveCategory(category.key)}
+              className={`shrink-0 snap-center rounded-full border px-4 py-2 text-xs font-semibold transition-colors ${
+                activeCategory === category.key
+                  ? 'border-gold bg-gold text-maroon-dark shadow-[0_8px_24px_rgba(201,164,76,0.25)]'
+                  : 'border-gold/60 bg-transparent text-gold-light hover:border-gold-light hover:text-cream'
+              }`}
+            >
+              {category.label}
+            </button>
           ))}
         </div>
-      )}
+      </div>
+
+      <div className="relative">
+        <div
+          className={`secretariat-scroll flex min-h-[410px] items-start overflow-x-auto py-8 snap-x snap-mandatory ${
+            filteredMembers.length <= 3
+              ? filteredMembers.length === 1
+                ? 'justify-start px-[calc(50%-105px)] lg:justify-center lg:px-4'
+                : filteredMembers.length === 2
+                  ? 'justify-start px-[calc(50%-192px)] lg:justify-center lg:px-4'
+                  : 'justify-start px-[calc(50%-375px)] lg:justify-center lg:px-4'
+              : 'justify-start px-[calc(50%-105px)] lg:px-8'
+          }`}
+        >
+          {filteredMembers.map((member, index) => (
+            <MemberCard
+              key={`${member.name}-${member.position}`}
+              member={member}
+              index={index}
+              featured={activeCategory === 'main' && member.position === 'Chairperson'}
+            />
+          ))}
+        </div>
+      </div>
     </section>
   );
 };

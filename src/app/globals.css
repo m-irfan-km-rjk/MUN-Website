@@ -10,31 +10,47 @@
   --color-gold-light: #ffdf9a;
   --color-gold-dark: #6b5128;
   --color-blush: #ffe2d6;
-  --color-oxblood: #4b1c14;
-  --color-maroon-dark: #3a2117;
-  --color-maroon-card: #69443e;
-  --color-maroon-hover: #592c26;
+  --color-oxblood: #371510;
+  --color-maroon-dark: #371510;
+  --color-maroon-card: #4c211a;
+  --color-maroon-hover: #5d2b22;
   --color-parchment: #e9e5dc;
   --color-cream: #fef8e2;
   --color-ink: #2a1a12;
   --color-muted: #ccbcac;
 
   /* Aliases used by other components */
-  --color-background: #4b1c14;
+  --color-background: #371510;
   --color-text-primary: #fef8e2;
   --color-accent: #c9a44c;
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 88px;
 }
 
 body {
   @apply font-sans antialiased;
   font-size: 1.125rem;
   line-height: 1.65;
-  background-color: #4b1c14;
+  background-color: #371510;
   color: #fef8e2;
+}
+
+.secretariat-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #c9a44c transparent;
+}
+
+.secretariat-scroll::-webkit-scrollbar {
+  display: block;
+  height: 7px;
+}
+
+.secretariat-scroll::-webkit-scrollbar-thumb {
+  background: #c9a44c;
+  border-radius: 999px;
 }
 
 ::-webkit-scrollbar {
@@ -251,7 +267,7 @@ html:not(.tl-seen) body:has(#tl-loader) #gold-motes-canvas { z-index: 61; }
   inset: 0;
   z-index: 60;
   overflow: hidden;
-  background: #4b1c14;
+  background: #371510;
   color: #4a1c14;
 }
 #tl-loader.is-tearing { animation: tlOut calc(0.2s * var(--p)) linear calc(2.3s * var(--p)) both; }
@@ -267,7 +283,7 @@ html:not(.tl-seen) body:has(#tl-loader) #gold-motes-canvas { z-index: 61; }
 .tl-hero {
   position: absolute;
   inset: 5rem 0 0;
-  background: linear-gradient(to bottom, #fef8e2, #a48e81 45%, #5a362e);
+  background: linear-gradient(to bottom, #fef8e2, #a48e81 45%, #371510);
   opacity: 0;
 }
 .is-tearing .tl-hero { animation: tlShow calc(0.35s * var(--p)) ease calc(2s * var(--p)) both; }

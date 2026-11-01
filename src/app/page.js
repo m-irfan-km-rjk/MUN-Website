@@ -8,6 +8,10 @@ import TeamSection from "@/components/TeamSection";
 import ContactSection from "@/components/ContactSection";
 import MFooter from "@/components/MFooter";
 import OldPhotoGallery from "@/components/OldPhotoGallery";
+import Countdown from "@/components/Countdown";
+import FoundersSection from "@/components/FoundersSection";
+import AllotmentTracker from "@/components/AllotmentTracker";
+import CulturalGallery from "@/components/CulturalGallery";
 import { useState, useEffect } from "react";
 
 export default function Home() {
@@ -44,21 +48,25 @@ export default function Home() {
       <Navbar />
 
       {/* Hero: the gradient is only a backdrop and ends on the About band's colour */}
-      <div className="relative w-full overflow-hidden bg-gradient-to-b from-[#FEF8E2] via-[#A48E81] via-45% to-[#5A362E]">
+      <div className="relative w-full overflow-hidden bg-gradient-to-b from-[#FEF8E2] from-0% via-[#B49D91] via-35% via-[#7A5147] via-70% to-[#371510] to-100%">
         <div className="candle-glow-1" />
         <HeroSection newsList={newsList} loading={loading} error={error} />
+        <FoundersSection />
+        <Countdown />
       </div>
 
-      {/* About: solid dark umber so body text stays readable */}
-      <div className="relative w-full overflow-hidden bg-[#5A362E]">
+      {/* About: solid site theme so body text stays readable */}
+      <div className="relative w-full overflow-hidden bg-[#371510]">
         <AboutSection />
       </div>
 
       {/* Lower realm: oxblood */}
       <div className="relative w-full overflow-hidden bg-oxblood px-6">
         <div className="candle-glow-2" />
+        <AllotmentTracker />
         <CommitteesSection />
         <TeamSection />
+        <CulturalGallery />
         <OldPhotoGallery />
         <ContactSection />
       </div>
