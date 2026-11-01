@@ -13,8 +13,14 @@ const otherMembers = {
     "sharafath_salim": "/people/Accomodation/Sharafath Salim.jpg",
   },
 
+  creative: {
+    "athira_mani": "/people/Creative/Athira Mani.jpg",
+  },
+
   delegate_affairs: {
     "adhirath": "/people/Delegate affairs/Adhirath.jpg",
+    "anaswara_s": "/people/Delegate affairs/Anaswara S.jpg",
+    "irin_mariya": "/people/Delegate affairs/Irin Mariya.jpg",
   },
 
   cultural_affairs: {
@@ -23,6 +29,7 @@ const otherMembers = {
 
   design: {
     "abhishek": "/people/Design/Abhishek.jpg",
+    "manya_rajeevan": "/people/Design/Manya Rajeevan.jpg",
   },
 
   documentation: {
@@ -47,6 +54,7 @@ const otherMembers = {
 
   media: {
     "nathan_k_alexander": "/people/Media/Nathan K Alexander.jpg",
+    "mohammed_nas": "/people/Media/Mohammed Nas.jpg",
   },
 
   membership: {
@@ -71,7 +79,7 @@ const otherMembers = {
   },
 
   technical: {
-    "vrindha_vinod": "/people/Technical/Vrindha Vinod - Technical head.jpg",
+    "nandana_manoj": "/people/Technical/Nandana Manoj.jpg",
   },
 
   transportation: {

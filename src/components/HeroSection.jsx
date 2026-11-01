@@ -32,12 +32,12 @@ const HeroSection = ({ newsList, loading, error }) => {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="relative text-[#4A1C14] [text-shadow:0_2px_0_rgba(201,164,76,0.55)] font-cormorant text-6xl md:text-7xl lg:text-[80px] leading-tight tracking-[0.25em] uppercase font-bold my-1 select-none"
+          className="relative text-[#371510] [text-shadow:0_2px_0_rgba(201,164,76,0.55)] font-cormorant text-6xl md:text-7xl lg:text-[80px] leading-tight tracking-[0.25em] uppercase font-bold my-1 select-none"
         >
           TKM MUN
         </motion.h1>
 
-        <p className="font-cormorant italic text-2xl md:text-3xl text-[#4A1C14] font-semibold tracking-wider mt-1 mb-2">
+        <p className="font-cormorant italic text-2xl md:text-3xl text-[#371510] font-semibold tracking-wider mt-1 mb-2">
           “Unire · Discere · Progredere”
         </p>
 
@@ -54,7 +54,7 @@ const HeroSection = ({ newsList, loading, error }) => {
         <p className="text-lg text-ink max-w-2xl mt-1 font-medium">
           The Sovereign Model United Nations Conference of TKM College of Engineering, Kollam
         </p>
-        <p className="font-cormorant italic text-xl md:text-2xl text-[#4A1C14] font-semibold mt-2">
+        <p className="font-cormorant italic text-xl md:text-2xl text-[#371510] font-semibold mt-2">
           4–6 December · TKM College of Engineering, Kollam
         </p>
 

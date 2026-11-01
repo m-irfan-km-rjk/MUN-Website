@@ -2,51 +2,9 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { committees } from '@/data/committees';
 
 const REGISTER_URL = 'https://forms.gle/yFk2MuzPctFHQC5g9';
-
-const committees = [
-  {
-    name: 'UNGA',
-    fullName: 'United Nations General Assembly',
-    description: 'The principal deliberative, policymaking, and representative organ of the United Nations, bringing together all 193 member states to discuss and coordinate on international peace, security, and development.',
-    agenda: 'Revisiting Multilateral Sovereignty and Climate Reparations in Post-Colonial Maritime Corridors.',
-    allocations: 'Single or double delegations',
-    logoUrl: '/UNGA.png',
-  },
-  {
-    name: 'UNHRC',
-    fullName: 'United Nations Human Rights Council',
-    description: 'The UN body responsible for strengthening the promotion and protection of human rights around the globe, addressing violations and making recommendations on human rights situations worldwide.',
-    agenda: 'Safeguarding Indigenous Liberties and Regulating Algorithmic Surveillance in Disputed Territories.',
-    allocations: 'Single Delegate',
-    logoUrl: '/UNHRC.png',
-  },
-  {
-    name: 'UNSC',
-    fullName: 'United Nations Security Council',
-    description: 'The most powerful body of the United Nations, charged with maintaining international peace and security, settling disputes, and authorizing the use of force when necessary.',
-    agenda: 'Defusing Asymmetric Escalations and Nuclear Proliferation in the Indo-Pacific Basin.',
-    allocations: 'Specialized Cabinet',
-    logoUrl: '/UNSC.png',
-  },
-  {
-    name: 'IP',
-    fullName: 'International Press Corps',
-    description: 'The media wing of the conference, where correspondents gather intelligence, file dispatches, and hold delegations accountable through rigorous investigative journalism and press briefings.',
-    agenda: 'Unrestricted Investigative Journalism, Propaganda Counter-Intelligence, and Press Communiqués.',
-    allocations: 'Individual Correspondents',
-    logoUrl: '/IP.png',
-  },
-  {
-    name: 'KLA',
-    fullName: 'Kerala Legislative Assembly',
-    description: 'A simulation of the state legislature of Kerala, debating regional policy, governance, and development with regional dialect and local parliamentary procedure.',
-    agenda: 'Decentralized Coastal Resilience, Maritime Infrastructure, and Sustainable Riverine Policy for Peninsular Sovereignty.',
-    allocations: 'Regional Plenipotentiaries (Regional Dialect Allowed)',
-    logoUrl: '/KLA.png',
-  },
-];
 
 const CommitteeCard = ({ committee, index }) => (
   <motion.div
@@ -81,6 +39,15 @@ const CommitteeCard = ({ committee, index }) => (
         <span className="font-display text-xs uppercase tracking-wider text-gold-light mr-2">Allocations</span>
         {committee.allocations}
       </p>
+      <a
+        href={`/assemblies/${committee.slug}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center gap-2 border-t border-gold/30 pt-3 font-display text-[10px] uppercase tracking-wider text-gold-light hover:text-cream transition-colors"
+      >
+        View Executive Board &amp; biographies
+        <span className="material-symbols-outlined text-[16px]">open_in_new</span>
+      </a>
       <a
         href={REGISTER_URL}
         className="inline-flex items-center gap-2 font-display text-xs uppercase tracking-wider text-gold-light hover:text-white underline-offset-4 hover:underline"
