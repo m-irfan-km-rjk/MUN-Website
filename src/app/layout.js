@@ -43,9 +43,10 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className={`font-sans antialiased relative selection:bg-gold selection:text-maroon-dark`}>
+        <div className="fresco-bg" aria-hidden="true" />
         <TornLetterLoader />
         <Atmosphere />
-        <div className="relative z-10">
+        <div className="relative">
           {children}
         </div>
       </body>

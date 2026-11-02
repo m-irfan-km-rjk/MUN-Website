@@ -9,9 +9,9 @@ const links = [
 
 export default function MFooter() {
   return (
-    <footer className="relative z-10 w-full bg-maroon-dark border-t border-gold/60 text-center">
+    <footer className="relative w-full bg-maroon-dark border-t border-gold/60 text-center">
       <div className="h-2 w-full footer-braid-drift" />
-      <div className="mx-auto max-w-6xl px-6 py-12">
+      <div className="relative z-10 mx-auto max-w-6xl px-6 py-12">
         <h2 className="font-display text-sm uppercase tracking-[0.3em] text-gold-light font-bold mb-2">
           ◆ TKM MUN ◆
         </h2>

@@ -461,3 +461,18 @@ html:not(.tl-seen) body:has(#tl-loader) #gold-motes-canvas { z-index: 61; }
     animation: none !important;
   }
 }
+
+/* Ceiling-fresco texture: one layer spanning the whole page (absolute inside the relative <body>), overlay-blended
+   so it works on cream and maroon. The portrait fresco is shown at full width, uncropped, and repeats down the page;
+   the tile is the image plus its mirror, so the repeat has no seam.
+   Sits above section backgrounds but below section content (z-10) and the header (z-50).
+   --fresco-boost (0 at the hero, 1 once scrolled past it, set in Atmosphere) strengthens it on the maroon sections. */
+.fresco-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  opacity: calc(0.26 + 0.14 * var(--fresco-boost, 0));
+  background: url('/images/ceiling-fresco-tile.webp') center top / 100% auto repeat-y;
+}

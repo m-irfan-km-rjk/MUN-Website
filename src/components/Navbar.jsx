@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -22,11 +23,12 @@ const Navbar = () => {
   return (
     <header className="fixed top-0 left-0 right-0 w-full z-50 bg-maroon-dark/95 backdrop-blur-md border-b border-gold/80 shadow-[0_4px_20px_rgba(40,24,16,0.35)]">
       <div className="h-20 max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
-        <Link href="/" onClick={closeMenu} className="flex flex-col">
-          <span className="font-display text-sm text-gold-light tracking-[0.2em] uppercase font-bold leading-none">TKM MUN</span>
+        <Link href="/" onClick={closeMenu} className="flex items-center gap-3">
+          <Image src={encodeURI('/logos/COLLEGE LOGO.png')} alt="College logo" width={56} height={56} priority className="h-12 w-12 md:h-14 md:w-14 object-contain" />
+          <Image src={encodeURI('/logos/MUN LOGO.png')} alt="TKM MUN logo" width={56} height={56} priority className="hidden min-[840px]:block h-12 w-12 md:h-14 md:w-14 object-contain" />
         </Link>
 
-        <nav className="hidden md:flex items-center gap-10">
+        <nav className="hidden md:flex items-center md:gap-4 lg:gap-10">
           {links.map(({ href, label }) => (
             <Link
               key={label}

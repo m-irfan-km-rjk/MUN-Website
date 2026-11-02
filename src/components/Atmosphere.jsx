@@ -56,6 +56,9 @@ export default function Atmosphere() {
       const max = document.documentElement.scrollHeight - window.innerHeight;
       const pct = max > 0 ? (window.scrollY / max) * 100 : 0;
       if (fillRef.current) fillRef.current.style.height = `${pct}%`;
+      // Fresco background strengthens as the page scrolls past the hero (see .fresco-bg).
+      const boost = Math.min(1, window.scrollY / (window.innerHeight * 0.9));
+      document.documentElement.style.setProperty('--fresco-boost', boost.toFixed(3));
     };
 
     window.addEventListener('resize', resize);

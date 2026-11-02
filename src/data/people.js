@@ -1,10 +1,12 @@
 const people_pics = {
+  "fayis": "/people/Faculty Coordinator/Fayis T P.jpeg",
   "aashika": "/people/Secretary General/Aashika P Sajan.jpg",
   "fathima": "/people/Fathima Thaha.jpg",
   "shawn": "/people/Shawn Jose.jpg",
 };
 
 const mainMembers = [
+  { name: "Fayis T P", position: "Faculty Coordinator", tagline: "Faculty Coordinator · TKM MUN", imageUrl: people_pics.fayis },
   { name: "Aashika P Sajan", position: "Secretary General", tagline: "Secretary General · TKM MUN", imageUrl: people_pics.aashika },
   { name: "Fathima Thaha", position: "Deputy Secretary General", tagline: "Deputy Secretary General · TKM MUN", imageUrl: people_pics.fathima },
   { name: "Shawn Jose", position: "Director General", tagline: "Director General · TKM MUN", imageUrl: people_pics.shawn },
