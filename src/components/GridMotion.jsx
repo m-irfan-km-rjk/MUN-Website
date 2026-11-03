@@ -1,112 +1,81 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 
 /**
- * Grid Motion (React Bits) adapted for this site: rows of tiles drift against each other as the
- * mouse moves; touch devices get a slow automatic drift; reduced-motion gets a static grid.
- * `items` are React nodes, row-major (ROWS x cols).
+ * Grid Motion (React Bits) adapted for this site: a tilted grid whose rows scroll endlessly in
+ * alternating directions at different speeds. Each row's content is rendered twice so the loop is
+ * seamless (the row slides exactly one copy, then repeats). Reduced-motion gets a static grid.
+ *
+ * `rows` is an array of arrays of React nodes (one array per row).
  */
-const ROWS = 4;
-const INERTIA = [0.6, 0.4, 0.3, 0.2];
+const DURATIONS = [70, 90, 80, 100]; // seconds per loop, different per row for a layered feel
 
-export default function GridMotion({ items = [], cols = 7, gradientColor = 'rgba(88, 33, 25, 1)', children }) {
+export default function GridMotion({ rows = [], gradientColor = 'rgba(88, 33, 25, 1)', children }) {
   const wrapRef = useRef(null);
   const rowRefs = useRef([]);
-  const [mode, setMode] = useState('static'); // 'static' | 'mouse' | 'drift'
+  const [reduced, setReduced] = useState(false);
 
   useEffect(() => {
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const touch = window.matchMedia('(hover: none), (pointer: coarse)');
-    const update = () => setMode(reduce.matches ? 'static' : touch.matches ? 'drift' : 'mouse');
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const update = () => setReduced(mq.matches);
     update();
-    reduce.addEventListener('change', update);
-    touch.addEventListener('change', update);
-    return () => {
-      reduce.removeEventListener('change', update);
-      touch.removeEventListener('change', update);
-    };
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
   }, []);
 
   useEffect(() => {
-    const rows = rowRefs.current.filter(Boolean);
-    if (mode === 'static' || !rows.length) return undefined;
+    const els = rowRefs.current.filter(Boolean);
+    if (reduced || !els.length) return undefined;
 
-    if (mode === 'drift') {
-      // Slow back-and-forth drift, alternating direction per row.
-      const tweens = rows.map((row, i) =>
-        gsap.fromTo(
-          row,
-          { x: i % 2 === 0 ? -50 : 50 },
-          { x: i % 2 === 0 ? 50 : -50, duration: 16 + i * 3, ease: 'sine.inOut', repeat: -1, yoyo: true }
-        )
+    const tweens = els.map((el, i) => {
+      const left = i % 2 === 0; // alternate direction per row
+      return gsap.fromTo(
+        el,
+        { xPercent: left ? 0 : -50 },
+        { xPercent: left ? -50 : 0, duration: DURATIONS[i % DURATIONS.length], ease: 'none', repeat: -1 }
       );
-      return () => {
-        tweens.forEach((t) => t.kill());
-        gsap.set(rows, { clearProps: 'transform' });
-      };
-    }
+    });
 
-    // Mouse: rows shift at different speeds/inertia. Only works while the section is on screen.
-    let mouseX = window.innerWidth / 2;
-    let visible = true;
-    const maxMove = 220;
-    const onMove = (e) => {
-      mouseX = e.clientX;
-    };
-    const update = () => {
-      if (!visible) return;
-      rows.forEach((row, i) => {
-        const dir = i % 2 === 0 ? 1 : -1;
-        const x = ((mouseX / window.innerWidth) * maxMove - maxMove / 2) * dir;
-        gsap.to(row, { x, duration: 1.2 + INERTIA[i % INERTIA.length], ease: 'power2.out', overwrite: 'auto' });
-      });
-    };
+    // Don't animate while the section is off screen.
     const io = new IntersectionObserver(([entry]) => {
-      visible = entry.isIntersecting;
+      tweens.forEach((t) => (entry.isIntersecting ? t.resume() : t.pause()));
     });
     if (wrapRef.current) io.observe(wrapRef.current);
-    window.addEventListener('mousemove', onMove, { passive: true });
-    gsap.ticker.add(update);
-    return () => {
-      gsap.ticker.remove(update);
-      window.removeEventListener('mousemove', onMove);
-      io.disconnect();
-      gsap.killTweensOf(rows);
-      gsap.set(rows, { clearProps: 'transform' });
-    };
-  }, [mode, cols]);
 
-  const grid = useMemo(
-    () =>
-      Array.from({ length: ROWS }, (_, r) => (
-        <div
-          key={r}
-          ref={(el) => {
-            rowRefs.current[r] = el;
-          }}
-          className="grid gap-2 sm:gap-3 md:gap-4"
-          style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`, willChange: 'transform' }}
-        >
-          {items.slice(r * cols, r * cols + cols).map((item, c) => (
-            <div key={c} className="relative min-h-0">
-              {item}
-            </div>
-          ))}
-        </div>
-      )),
-    [items, cols]
-  );
+    return () => {
+      io.disconnect();
+      tweens.forEach((t) => t.kill());
+      gsap.set(els, { clearProps: 'transform' });
+    };
+  }, [reduced, rows]);
 
   return (
     <div ref={wrapRef} className="relative h-full w-full overflow-hidden">
-      {/* Oversized, tilted grid so rows can slide without exposing edges. */}
+      {/* Oversized, tilted grid so rows never expose their edges. */}
       <div
-        className="absolute left-1/2 top-1/2 grid h-[150%] w-[160%] -translate-x-1/2 -translate-y-1/2 rotate-[-15deg] grid-rows-4 gap-2 sm:gap-3 md:gap-4"
+        className="absolute left-1/2 top-1/2 grid h-[150%] w-[160%] -translate-x-1/2 -translate-y-1/2 rotate-[-15deg] grid-cols-[minmax(0,1fr)] gap-2 sm:gap-3 md:gap-4"
+        style={{ gridTemplateRows: `repeat(${rows.length}, minmax(0, 1fr))` }}
         aria-hidden="true"
       >
-        {grid}
+        {rows.map((items, r) => (
+          <div
+            key={r}
+            ref={(el) => {
+              rowRefs.current[r] = el;
+            }}
+            className="flex h-full w-max min-w-0 gap-2 sm:gap-3 md:gap-4"
+            style={{ willChange: 'transform' }}
+          >
+            {/* Two identical halves: the loop slides exactly one half. */}
+            {[0, 1].map((half) => (
+              <div key={half} className="flex h-full shrink-0 gap-2 sm:gap-3 md:gap-4">
+                {items}
+              </div>
+            ))}
+          </div>
+        ))}
       </div>
 
       {/* Edges melt into the section background. */}
