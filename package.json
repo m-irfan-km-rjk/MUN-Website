@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "predev": "node scripts/gen-culturals.mjs",
-    "prebuild": "node scripts/gen-culturals.mjs"
+    "predev": "node scripts/gen-culturals.mjs && node scripts/gen-albums.mjs",
+    "prebuild": "node scripts/gen-culturals.mjs && node scripts/gen-albums.mjs"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",

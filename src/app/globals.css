@@ -488,3 +488,27 @@ html:not(.tl-seen) body:has(#tl-loader) #gold-motes-canvas { z-index: 61; }
   opacity: calc(0.26 + 0.14 * var(--fresco-boost, 0));
   background: url('/images/ceiling-fresco-tile.webp') center top / 100% auto repeat-y;
 }
+
+/* ---------- Archive gallery ---------- */
+/* Slow shimmer that sweeps across a panel's 1px gold border. Border-only, so the paint area is tiny. */
+.gold-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 38%, rgba(255, 238, 180, 0.95) 50%, transparent 62%) 220% 0 / 260% 100% no-repeat;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  animation: borderSweep 7s linear infinite;
+  animation-delay: var(--sweep-delay, 0s);
+}
+@keyframes borderSweep {
+  0% { background-position: 220% 0; }
+  45%, 100% { background-position: -120% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gold-shimmer::after { animation: none; }
+}

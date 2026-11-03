@@ -8,14 +8,16 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const committee = committees.find((item) => item.slug === params.committee);
+  const { committee: slug } = await params;
+  const committee = committees.find((item) => item.slug === slug);
   return {
     title: committee ? `${committee.fullName} | TKM MUN'26` : "Committee | TKM MUN'26",
   };
 }
 
-export default function CommitteePage({ params }) {
-  const committee = committees.find((item) => item.slug === params.committee);
+export default async function CommitteePage({ params }) {
+  const { committee: slug } = await params;
+  const committee = committees.find((item) => item.slug === slug);
   if (!committee) notFound();
 
   return (

@@ -1,6 +1,7 @@
 'use client';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
+import { gsap } from 'gsap';
 import './CircularCarousel.css';
 
 /**
@@ -18,6 +19,12 @@ import './CircularCarousel.css';
  *  - autoplayDelay:  number (ms)
  *  - paused:         boolean                           externally pause autoplay (e.g. lightbox open)
  *  - label:          string                            aria-label for the carousel
+ *  - showFooter:     boolean (default true)            show the built-in caption + counter/arrows
+ *  - introState:    undefined | 'hold' | 'play' | 'out'   fan-out intro: 'hold' stacks every card in the centre,
+ *                                                    'play' springs them out into the arc, 'out' folds them back
+ *  - tilt:           boolean                           mild 3D tilt of the centred card following the cursor
+ *  - wheelAny:       boolean                           vertical wheel also navigates (for modal use)
+ *  - loadRadius:     number (optional)                 only load images within this many slots of the centre
  */
 const wrapDelta = (d, n) => ((((d + n / 2) % n) + n) % n) - n / 2;
 const mod = (i, n) => ((i % n) + n) % n;
@@ -34,6 +41,11 @@ export default function CircularCarousel({
   autoplayDelay = 4500,
   paused = false,
   label = 'Photo archive carousel',
+  showFooter = true,
+  loadRadius,
+  introState,
+  tilt = false,
+  wheelAny = false,
 }) {
   const n = items.length;
   const stageRef = useRef(null);
@@ -51,6 +63,15 @@ export default function CircularCarousel({
     wheelTimer: 0,
   });
   const reduced = useRef(false);
+  // Intro clock in seconds (>= 90 means finished / no intro). Each card springs out with a delay by distance.
+  const intro = useRef({ t: introState ? 0 : 99 });
+  const introP = (ad) => {
+    const t = intro.current.t;
+    if (t >= 90) return 1;
+    const x = Math.min(1, Math.max(0, (t - ad * 0.09) / 0.7));
+    const c1 = 1.70158;
+    return 1 + (c1 + 1) * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2);
+  };
   const cb = useRef({ onActiveChange, onItemClick });
   cb.current = { onActiveChange, onItemClick };
 
@@ -71,13 +92,14 @@ export default function CircularCarousel({
         continue;
       }
       const a = d * step;
-      const x = Math.sin(a) * R;
-      const z = (Math.cos(a) - 1) * R;
-      const rot = (-a * 180) / Math.PI;
+      const sp = introP(ad);
+      const x = Math.sin(a) * R * sp;
+      const z = (Math.cos(a) - 1) * R * sp;
+      const rot = ((-a * 180) / Math.PI) * sp;
       const near = Math.max(0, 1 - ad);
       const scale = 0.84 + 0.16 * near;
       el.style.visibility = 'visible';
-      el.style.opacity = String(Math.max(0, 1 - ad * 0.26));
+      el.style.opacity = String(Math.max(0, 1 - ad * 0.26) * Math.min(1, sp * 1.4));
       el.style.zIndex = String(100 - Math.round(ad * 10));
       el.style.transform = `translate3d(${x.toFixed(1)}px,0,${z.toFixed(1)}px) rotateY(${rot.toFixed(
         2
@@ -150,6 +172,32 @@ export default function CircularCarousel({
     return () => ro.disconnect();
   }, [radius, bend, render]);
 
+  // Fan-out intro (opt-in): hold = stacked in the centre, play = spring out, out = fold back in.
+  useEffect(() => {
+    const o = intro.current;
+    if (!introState) {
+      o.t = 99;
+      render();
+      return undefined;
+    }
+    if (reduced.current && introState !== 'hold') {
+      o.t = introState === 'out' ? 0 : 99;
+      render();
+      return undefined;
+    }
+    let tween;
+    if (introState === 'hold') {
+      o.t = 0;
+      render();
+    } else if (introState === 'play') {
+      tween = gsap.to(o, { t: 1.6, duration: 1.6, ease: 'none', onUpdate: render, onComplete: () => { o.t = 99; render(); } });
+    } else if (introState === 'out') {
+      o.t = o.t >= 90 ? 1.6 : o.t;
+      tween = gsap.to(o, { t: 0, duration: 0.45, ease: 'power2.in', onUpdate: render });
+    }
+    return () => tween?.kill();
+  }, [introState, render]);
+
   useEffect(() => {
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
     const sync = () => {
@@ -216,10 +264,10 @@ export default function CircularCarousel({
     if (!el) return;
     const onWheel = (e) => {
       const horizontal = Math.abs(e.deltaX) > Math.abs(e.deltaY);
-      if (!horizontal && !e.shiftKey) return;
+      if (!wheelAny && !horizontal && !e.shiftKey) return;
       e.preventDefault();
       const s = st.current;
-      s.target += (e.deltaX || e.deltaY) * 0.004;
+      s.target += (e.deltaX || e.deltaY) * (wheelAny ? 0.012 : 0.004);
       start();
       clearTimeout(s.wheelTimer);
       s.wheelTimer = setTimeout(() => {
@@ -232,7 +280,20 @@ export default function CircularCarousel({
       el.removeEventListener('wheel', onWheel);
       clearTimeout(st.current.wheelTimer);
     };
-  }, [start]);
+  }, [start, wheelAny]);
+
+  const onTilt = (e) => {
+    if (!tilt || e.pointerType !== 'mouse' || st.current.dragging) return;
+    const r = stageRef.current.getBoundingClientRect();
+    const nx = ((e.clientX - r.left) / r.width - 0.5) * 2;
+    const ny = ((e.clientY - r.top) / r.height - 0.5) * 2;
+    stageRef.current.style.setProperty('--tilt-x', `${(nx * 7).toFixed(2)}deg`);
+    stageRef.current.style.setProperty('--tilt-y', `${(-ny * 5).toFixed(2)}deg`);
+  };
+  const onTiltEnd = () => {
+    stageRef.current?.style.setProperty('--tilt-x', '0deg');
+    stageRef.current?.style.setProperty('--tilt-y', '0deg');
+  };
 
   const onKeyDown = (e) => {
     if (e.key === 'ArrowRight') {
@@ -284,7 +345,7 @@ export default function CircularCarousel({
       onFocus={() => setFocused(true)}
       onBlur={() => setFocused(false)}
     >
-      <div className="cc-stage" ref={stageRef} onPointerDown={onPointerDown}>
+      <div className="cc-stage" ref={stageRef} onPointerDown={onPointerDown} onPointerMove={onTilt} onPointerLeave={onTiltEnd}>
         {items.map((item, i) => {
           const isCurrent = i === current;
           return (
@@ -292,6 +353,7 @@ export default function CircularCarousel({
               key={item.src}
               ref={(el) => (nodeRefs.current[i] = el)}
               className="cc-item"
+              data-current={isCurrent ? 'true' : 'false'}
               role="group"
               aria-roledescription="slide"
               aria-label={`${i + 1} of ${n}`}
@@ -303,6 +365,7 @@ export default function CircularCarousel({
                 aria-label={isCurrent ? `Open ${item.alt} in the lightbox` : `Bring ${item.alt} to the centre`}
                 onClick={() => onItemActivate(i)}
               >
+                {loadRadius === undefined || Math.abs(wrapDelta(i - current, n)) <= loadRadius ? (
                 <Image
                   src={item.src}
                   alt={item.alt}
@@ -311,7 +374,9 @@ export default function CircularCarousel({
                   loading="lazy"
                   draggable={false}
                   className="cc-img"
+                  {...(item.blur ? { placeholder: 'blur', blurDataURL: item.blur } : {})}
                 />
+                ) : null}
                 <span className="cc-dim" aria-hidden="true" />
                 <span className="cc-glow" aria-hidden="true" />
               </button>
@@ -320,6 +385,7 @@ export default function CircularCarousel({
         })}
       </div>
 
+      {showFooter && (<>
       <p className="cc-caption font-display" aria-live="polite">
         {title}
       </p>
@@ -334,6 +400,7 @@ export default function CircularCarousel({
           ›
         </button>
       </div>
+      </>)}
     </div>
   );
 }
