@@ -14,7 +14,6 @@ const mainMembers = [
 
 const otherMembers = {
   technical: {
-    "vrindha_vinod": "/people/Technical/Vrindha Vinod - Technical head.jpg",
     "nandana_manoj": "/people/Technical/Nandana Manoj.jpg",
   },
 
@@ -108,7 +107,6 @@ const otherMembers = {
 const memberTitles = {
   nadhran_bin_urooj: "Social Media Head, USG Media",
   mohammed_nas: "Social Media Head, USG Media",
-  vrindha_vinod: "Technical Head, USG Technical",
 };
 
 export { people_pics, mainMembers, otherMembers, memberTitles };

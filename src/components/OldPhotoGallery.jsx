@@ -1,5 +1,5 @@
 'use client';
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { gsap } from 'gsap';
 import { useReducedMotion } from 'framer-motion';
@@ -10,213 +10,82 @@ import GoldDust from './GoldDust';
 import albums from '@/data/albums.json';
 import blurs from '@/data/blurs.json';
 
-const ring = 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-light focus-visible:ring-inset';
-const HEADING = 'ARCHIVES OF DIPLOMACY & COMMENCEMENTS';
 const AUTOPLAY_S = 4;
+const ring = 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-light focus-visible:ring-inset';
 
-function useFinePointer() {
-  const [fine, setFine] = useState(false);
-  useEffect(() => {
-    const mq = window.matchMedia('(hover: hover) and (pointer: fine)');
-    const update = () => setFine(mq.matches);
-    update();
-    mq.addEventListener('change', update);
-    return () => mq.removeEventListener('change', update);
-  }, []);
-  return fine;
-}
-
-function AlbumPanel({ album, index, active, fine, reduce, paused, setRef, onActivate, onOpen }) {
+// Light on purpose: no per-image drift, parallax or entrance choreography. The motion that remains is the
+// panel expanding, the border shimmer, the dust layer and the autoplay countdown.
+function AlbumPanel({ album, index, active, setRef, onActivate, onOpen }) {
   const total = album.photos.length;
   const label = `${total} ${total === 1 ? 'Photo' : 'Photos'}`;
-  const rootRef = useRef(null);
-  const parRef = useRef(null);
-  const kbRef = useRef(null);
-  const countRef = useRef(null);
-  const kb = useRef(null);
-  const par = useRef({});
-
-  // Idle Ken-Burns drift on every cover (faster while active).
-  useEffect(() => {
-    // On touch devices only the active cover drifts, to keep phones cool.
-    if (reduce || (!fine && !active)) return undefined;
-    const dir = index % 2 ? 1 : -1;
-    kb.current = gsap.fromTo(
-      kbRef.current,
-      { scale: 1, x: 0, y: 0 },
-      { scale: 1.08, x: dir * 14, y: ((index % 3) - 1) * 9, duration: 16, ease: 'sine.inOut', repeat: -1, yoyo: true }
-    );
-    kb.current.timeScale(active ? 2.4 : 1);
-    kb.current.paused(paused);
-    return () => kb.current?.kill();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [reduce, index, fine, active]);
-  useEffect(() => {
-    kb.current?.timeScale(active ? 2.4 : 1);
-  }, [active]);
-  useEffect(() => {
-    kb.current?.paused(paused);
-  }, [paused]);
-
-  // Cursor parallax on the active cover (image shifts opposite the mouse, up to ~15px).
-  useEffect(() => {
-    if (reduce || !fine) return undefined;
-    par.current = {
-      x: gsap.quickTo(parRef.current, 'x', { duration: 0.7, ease: 'power3.out' }),
-      y: gsap.quickTo(parRef.current, 'y', { duration: 0.7, ease: 'power3.out' }),
-    };
-    return () => gsap.killTweensOf(parRef.current);
-  }, [reduce, fine]);
-  useEffect(() => {
-    if (!active) {
-      par.current.x?.(0);
-      par.current.y?.(0);
-    }
-  }, [active]);
-  const onMove = (e) => {
-    if (!active || !par.current.x || e.pointerType !== 'mouse') return;
-    const r = rootRef.current.getBoundingClientRect();
-    par.current.x(-((e.clientX - r.left) / r.width - 0.5) * 30);
-    par.current.y(-((e.clientY - r.top) / r.height - 0.5) * 30);
-  };
-
-  // "N Photos" counts up from 0 whenever the panel becomes active.
-  useEffect(() => {
-    const el = countRef.current;
-    if (!el) return undefined;
-    if (!active || reduce) {
-      el.textContent = label;
-      return undefined;
-    }
-    const o = { v: 0 };
-    const t = gsap.to(o, {
-      v: total,
-      duration: 1,
-      delay: 0.25,
-      ease: 'power2.out',
-      onUpdate: () => (el.textContent = `${Math.round(o.v)} ${total === 1 ? 'Photo' : 'Photos'}`),
-    });
-    el.textContent = `0 ${total === 1 ? 'Photo' : 'Photos'}`;
-    return () => t.kill();
-  }, [active, reduce, total, label]);
 
   return (
     <button
-      ref={(el) => {
-        rootRef.current = el;
-        setRef(index, el);
-      }}
+      ref={(el) => setRef(index, el)}
       type="button"
       aria-expanded={active}
       aria-label={`${album.title}, ${label}. ${active ? 'Open album' : 'Expand'}`}
-      onPointerEnter={(e) => {
-        if (e.pointerType === 'mouse') onActivate();
-      }}
-      onPointerMove={onMove}
+      onPointerEnter={(e) => e.pointerType === 'mouse' && onActivate()}
       // Keyboard focus expands the panel; a tap/click must not (it would open the album on the first tap).
       onFocus={(e) => e.currentTarget.matches(':focus-visible') && onActivate()}
       onClick={(e) => (active ? onOpen(index, e) : onActivate())}
       style={{ flex: `${active ? 5 : 1} 1 0%`, '--sweep-delay': `${index * -1.3}s` }}
-      className={`gold-shimmer group relative min-h-[64px] min-w-0 overflow-hidden rounded-lg border text-left transition-[flex-grow,box-shadow,border-color] duration-[900ms] ease-[cubic-bezier(0.34,1.45,0.64,1)] motion-reduce:transition-none md:min-h-0 md:min-w-[64px] ${ring} ${
-        'cursor-pointer'
-      } ${active ? 'border-gold shadow-[0_0_30px_rgba(201,164,76,0.42)]' : 'border-gold/50'}`}
+      className={`gold-shimmer group relative min-h-[64px] min-w-0 cursor-pointer overflow-hidden rounded-lg border text-left transition-[flex-grow,border-color] duration-500 ease-out motion-reduce:transition-none md:min-h-0 md:min-w-[64px] ${ring} ${
+        active ? 'border-gold' : 'border-gold/50'
+      }`}
     >
-      {/* parallax layer (oversized so a 15px shift never exposes an edge) > Ken-Burns layer > photo */}
-      <div ref={parRef} className="absolute -inset-5 will-change-transform">
-        <div ref={kbRef} className="absolute inset-0 will-change-transform">
-          <Image
-            src={album.cover}
-            alt=""
-            fill
-            sizes="(min-width: 768px) 60vw, 100vw"
-            loading="lazy"
-            className={`object-cover transition-[filter] duration-700 ${
-              active ? 'saturate-100 brightness-100' : 'saturate-[.55] brightness-[.7] group-hover:saturate-[.8] group-hover:brightness-[.9]'
-            }`}
-            {...(blurs[album.cover] ? { placeholder: 'blur', blurDataURL: blurs[album.cover] } : {})}
-          />
-        </div>
-      </div>
-      <div className="absolute inset-0 bg-gradient-to-t from-[#2a0f0b] via-maroon-dark/35 to-transparent" />
+      <Image
+        src={album.cover}
+        alt=""
+        fill
+        sizes="(min-width: 768px) 60vw, 100vw"
+        loading="lazy"
+        className={`object-cover transition-[filter] duration-300 ${active ? '' : 'saturate-[.6] brightness-[.75] group-hover:brightness-90'}`}
+        {...(blurs[album.cover] ? { placeholder: 'blur', blurDataURL: blurs[album.cover] } : {})}
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#2a0f0b] via-maroon-dark/30 to-transparent" />
 
       {/* Collapsed label: rotated on desktop, horizontal when stacked. */}
-      <div className={`absolute inset-0 flex items-center px-4 transition-opacity duration-300 md:items-end md:justify-center md:px-0 md:pb-6 ${active ? 'opacity-0' : 'opacity-100 delay-300'}`} aria-hidden="true">
-        <span className="font-cormorant text-lg font-semibold uppercase tracking-[0.18em] text-gold-light transition-transform duration-500 group-hover:-translate-y-1 md:[writing-mode:vertical-rl] md:rotate-180 md:text-xl">
+      <div className={`absolute inset-0 flex items-center px-4 transition-opacity duration-200 md:items-end md:justify-center md:px-0 md:pb-6 ${active ? 'opacity-0' : 'opacity-100'}`} aria-hidden="true">
+        <span className="font-cormorant text-lg font-semibold uppercase tracking-[0.18em] text-gold-light md:[writing-mode:vertical-rl] md:rotate-180 md:text-xl">
           {album.title}
         </span>
       </div>
 
-      {/* Expanded label: title slides up from a mask, count rolls up, gold line draws across the bottom. */}
-      <div className={`absolute inset-x-0 bottom-0 p-4 pb-5 md:p-6 md:pb-7 ${active ? '' : 'pointer-events-none'}`} aria-hidden={!active}>
-        <div className="overflow-hidden">
-          <h3 className={`font-cormorant text-2xl font-semibold uppercase tracking-[0.15em] text-gold-light transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] md:text-3xl ${active ? 'translate-y-0 delay-300' : 'translate-y-[115%]'}`}>
-            {album.title}
-          </h3>
-        </div>
-        <p ref={countRef} className={`mt-0.5 text-sm tracking-widest text-cream transition-opacity duration-500 ${active ? 'opacity-100 delay-500' : 'opacity-0'}`}>
-          {label}
-        </p>
-        <span className={`mt-3 inline-block rounded border border-gold px-5 py-2 font-display text-xs font-bold uppercase tracking-[0.15em] text-gold-light transition-[opacity,background-color,color] duration-500 group-hover:bg-gold group-hover:text-maroon-dark ${active ? 'opacity-100 delay-500' : 'opacity-0'}`}>
+      {/* Expanded label. */}
+      <div className={`absolute inset-x-0 bottom-0 p-4 pb-5 transition-opacity duration-300 md:p-6 md:pb-7 ${active ? 'opacity-100 delay-150' : 'pointer-events-none opacity-0'}`} aria-hidden={!active}>
+        <h3 className="font-cormorant text-2xl font-semibold uppercase tracking-[0.15em] text-gold-light md:text-3xl">{album.title}</h3>
+        <p className="mt-0.5 text-sm tracking-widest text-cream">{label}</p>
+        <span className="mt-3 inline-block rounded border border-gold px-5 py-2 font-display text-xs font-bold uppercase tracking-[0.15em] text-gold-light transition-colors group-hover:bg-gold group-hover:text-maroon-dark">
           View Album
         </span>
       </div>
-      <span className={`pointer-events-none absolute bottom-0 left-0 h-[2px] w-full origin-left bg-gold shadow-[0_0_10px_rgba(201,164,76,0.9)] transition-transform duration-700 ease-out ${active ? 'scale-x-100 delay-200' : 'scale-x-0'}`} />
     </button>
   );
 }
 
 export default function OldPhotoGallery() {
   const reduce = useReducedMotion();
-  const fine = useFinePointer();
   const [active, setActive] = useState(0);
+  const [open, setOpen] = useState(null); // { album, origin }
   const [zoneHover, setZoneHover] = useState(false);
   const [visible, setVisible] = useState(false);
-  const [open, setOpen] = useState(null); // { album, origin }
-
   const sectionRef = useRef(null);
-  const headingRef = useRef(null);
-  const panelsRef = useRef([]);
   const barRef = useRef(null);
-  const zoneRef = useRef(null);
-  const hideTimer = useRef(0);
+  const panelsRef = useRef([]);
   const trigger = useRef(null);
-  const entered = useRef(false);
 
   const setPanelRef = useCallback((i, el) => {
     panelsRef.current[i] = el;
   }, []);
 
-  // ---- Entrance: heading words rise from a mask, panels stagger in with a clip-path reveal + settle rotation.
-  useLayoutEffect(() => {
-    if (reduce) return undefined;
-    const words = gsap.utils.toArray('[data-w]', headingRef.current);
-    const panels = panelsRef.current.filter(Boolean);
-    gsap.set(words, { yPercent: 115 });
-    gsap.set(panels, { opacity: 0, y: 70, rotation: 3, transformOrigin: '50% 100%', clipPath: 'inset(100% 0% 0% 0%)' });
-    return () => gsap.killTweensOf([...words, ...panels]);
-  }, [reduce]);
-
+  // Autoplay: after 4s of idleness the active panel advances left to right; a gold bar shows the countdown.
+  // Pauses on hover, while the popup is open, when off screen, and for reduced motion.
   useEffect(() => {
-    const el = sectionRef.current;
-    const io = new IntersectionObserver(
-      ([e]) => {
-        setVisible(e.isIntersecting);
-        if (!e.isIntersecting || entered.current) return;
-        entered.current = true;
-        if (reduce) return;
-        const words = gsap.utils.toArray('[data-w]', headingRef.current);
-        const panels = panelsRef.current.filter(Boolean);
-        gsap.timeline()
-          .to(words, { yPercent: 0, duration: 0.9, stagger: 0.08, ease: 'power3.out' })
-          .to(panels, { opacity: 1, y: 0, rotation: 0, clipPath: 'inset(0% 0% 0% 0%)', duration: 1.1, stagger: 0.06, ease: 'power3.out', clearProps: 'clipPath,transform,opacity' }, 0.25);
-      },
-      { threshold: 0.2 }
-    );
-    io.observe(el);
+    const io = new IntersectionObserver(([e]) => setVisible(e.isIntersecting), { threshold: 0.2 });
+    io.observe(sectionRef.current);
     return () => io.disconnect();
-  }, [reduce]);
-
-  // ---- Autoplay: after 4s of idleness the active panel advances left to right; a gold bar shows the countdown.
+  }, []);
   const autoplay = visible && !zoneHover && !open && !reduce;
   useEffect(() => {
     const bar = barRef.current;
@@ -228,22 +97,19 @@ export default function OldPhotoGallery() {
     return () => t.kill();
   }, [autoplay, active]);
 
-  // ---- Shared-element open/close: the other panels fly outward (and back), the popup takes over.
+  // Opening the popup: the other panels slide away, the clicked cover flies into the popup.
   const flyOthers = (index) => {
     if (reduce) return;
     const horizontal = window.innerWidth >= 768;
     panelsRef.current.forEach((p, j) => {
       if (!p || j === index) return;
       const dir = j < index ? -1 : 1;
-      gsap.to(p, { [horizontal ? 'x' : 'y']: dir * (horizontal ? window.innerWidth : window.innerHeight) * 0.55, opacity: 0, duration: 0.6, ease: 'power3.in', overwrite: 'auto' });
+      gsap.to(p, { [horizontal ? 'x' : 'y']: dir * (horizontal ? window.innerWidth : window.innerHeight) * 0.55, opacity: 0, duration: 0.5, ease: 'power2.in', overwrite: 'auto' });
     });
   };
   const returnOthers = useCallback(() => {
-    // Bring the panels back into view before they fly home.
-    clearTimeout(hideTimer.current);
-    if (zoneRef.current) zoneRef.current.style.visibility = '';
     if (reduce) return;
-    gsap.to(panelsRef.current.filter(Boolean), { x: 0, y: 0, opacity: 1, duration: 0.75, ease: 'power3.out', stagger: 0.04, overwrite: 'auto', clearProps: 'transform,opacity' });
+    gsap.to(panelsRef.current.filter(Boolean), { x: 0, y: 0, opacity: 1, duration: 0.5, ease: 'power2.out', overwrite: 'auto', clearProps: 'transform,opacity' });
   }, [reduce]);
 
   const openAlbum = useCallback(
@@ -270,63 +136,29 @@ export default function OldPhotoGallery() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [reduce]
   );
-  useEffect(() => {
-    if (!open) return undefined;
-    const el = zoneRef.current;
-    hideTimer.current = setTimeout(() => el && (el.style.visibility = 'hidden'), reduce ? 400 : 1400);
-    return () => {
-      clearTimeout(hideTimer.current);
-      if (el) el.style.visibility = '';
-    };
-  }, [open, reduce]);
-
   const closed = useCallback(() => {
     setOpen(null);
     requestAnimationFrame(() => trigger.current?.focus({ preventScroll: true }));
   }, []);
 
-  const words = HEADING.split(' ');
-
   return (
     <section id="gallery" ref={sectionRef} className="max-w-7xl mx-auto py-24 relative z-10">
       <div className="text-center max-w-3xl mx-auto mb-10">
         <span className="font-display text-[10px] text-gold-light tracking-[0.25em] uppercase font-bold">Archives of Diplomacy</span>
-        <h2 ref={headingRef} aria-label={HEADING} className="text-4xl text-gold-light font-semibold mt-1 uppercase">
-          {words.map((w, i) => (
-            <span key={i} aria-hidden="true">
-              <span className="inline-block overflow-hidden align-bottom">
-                <span data-w className="inline-block will-change-transform">
-                  {w}
-                </span>
-              </span>
-              {i < words.length - 1 ? ' ' : ''}
-            </span>
-          ))}
-        </h2>
+        <h2 className="text-4xl text-gold-light font-semibold mt-1 uppercase">ARCHIVES OF DIPLOMACY &amp; COMMENCEMENTS</h2>
         <p className="text-base text-muted mt-2">
           Revisit the defining moments and cherished memories of TKM MUN through our archives.
         </p>
       </div>
 
-      <div ref={zoneRef} className="relative" onPointerEnter={(e) => e.pointerType === 'mouse' && setZoneHover(true)} onPointerLeave={(e) => e.pointerType === 'mouse' && setZoneHover(false)}>
+      <div className="relative" onPointerEnter={(e) => e.pointerType === 'mouse' && setZoneHover(true)} onPointerLeave={(e) => e.pointerType === 'mouse' && setZoneHover(false)}>
         {/* Floating gold dust behind the panels. */}
-        <div className="pointer-events-none absolute -inset-x-6 -inset-y-10 -z-0">
+        <div className="pointer-events-none absolute -inset-x-6 -inset-y-10">
           <GoldDust paused={Boolean(open)} />
         </div>
         <div className="relative z-10 flex h-[640px] flex-col gap-2 md:h-[520px] md:flex-row md:gap-3">
           {albums.map((album, i) => (
-            <AlbumPanel
-              key={album.id}
-              album={album}
-              index={i}
-              active={active === i}
-              fine={fine && !reduce}
-              reduce={reduce}
-              paused={Boolean(open)}
-              setRef={setPanelRef}
-              onActivate={() => setActive(i)}
-              onOpen={openAlbum}
-            />
+            <AlbumPanel key={album.id} album={album} index={i} active={active === i} setRef={setPanelRef} onActivate={() => setActive(i)} onOpen={openAlbum} />
           ))}
         </div>
       </div>

@@ -59,9 +59,9 @@ export default async function CommitteePage({ params }) {
         <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6 py-12">
           {committee.executiveBoard.map((member) => (
             <article key={member.name} className="border border-gold/40 bg-maroon-dark rounded-lg overflow-hidden shadow-[0_16px_40px_rgba(0,0,0,0.28)]">
-              <div className="relative h-72 bg-[#120b09] overflow-hidden">
+              <div className="relative z-10 h-72 bg-[#120b09] overflow-hidden">
                 {member.imageUrl ? (
-                  <Image src={member.imageUrl} alt={member.name} fill sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw" className="object-cover object-top saturate-[.82] contrast-[.96]" />
+                  <Image src={member.imageUrl} alt={member.name} fill sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw" className="object-cover object-center" />
                 ) : (
                   <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#3f261e] to-[#120b09] text-gold-light font-cormorant text-6xl font-bold">
                     {member.name.split(/\s+/).map((part) => part[0]).join("").slice(0, 2)}
