@@ -3,31 +3,28 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useState } from 'react';
-import { mainMembers, otherMembers } from '../data/people';
+import { mainMembers, otherMembers, memberTitles } from '../data/people';
 
 const titleCase = (s) => s.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
 const usgTitle = (category) => `USG ${titleCase(category)}`;
 
 const MemberCard = ({ member, index, featured = false }) => {
-  const offsets = ['lg:translate-y-16', 'lg:translate-y-6', 'lg:-translate-y-4', 'lg:translate-y-6', 'lg:translate-y-16'];
-  const widths = ['w-[210px] lg:w-[230px]', 'w-[210px] lg:w-[230px]', 'w-[220px] lg:w-[250px]', 'w-[210px] lg:w-[230px]', 'w-[210px] lg:w-[230px]'];
-  const overlap = featured || index === 0 ? '' : 'lg:-ml-[42px]';
-
   return (
     <motion.article
       initial={{ opacity: 0, y: 36, scale: 0.94 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true, amount: 0.25 }}
       transition={{ duration: 0.65, delay: index * 0.07, ease: [0.16, 1, 0.3, 1] }}
-      className={`secretariat-frame group relative shrink-0 ${featured ? 'w-[220px] lg:w-[250px]' : widths[index % 5]} ${featured ? 'lg:-translate-y-4' : offsets[index % 5]} ${overlap} snap-center`}
+      className={`secretariat-frame group relative shrink-0 w-[230px] snap-center`}
     >
-      <div className={`relative h-[300px] sm:h-[330px] lg:h-[360px] overflow-hidden rounded-[22px] border border-gold/80 bg-ink shadow-[0_22px_45px_rgba(20,8,6,0.48)] transition-transform duration-500 group-hover:-translate-y-2 ${featured || index % 5 === 2 ? 'lg:h-[390px]' : ''}`}>
+      <div className={`relative h-[360px] overflow-hidden rounded-[22px] border border-gold/80 bg-ink shadow-[0_22px_45px_rgba(20,8,6,0.48)] transition-transform duration-500 group-hover:-translate-y-4 group-hover:shadow-[0_30px_55px_rgba(20,8,6,0.6)]`}>
         {member.imageUrl ? (
           <Image
             src={member.imageUrl}
             alt={member.name}
             fill
-            sizes="250px"
+            sizes="500px"
+            quality={90}
             className="object-cover object-top sepia-[.08] saturate-[.92] transition-transform duration-700 group-hover:scale-[1.04]"
           />
         ) : (
@@ -55,7 +52,7 @@ const TeamSection = () => {
   const extras = Object.entries(otherMembers).flatMap(([category, members]) =>
     Object.entries(members).map(([key, imageUrl]) => ({
       name: titleCase(key),
-      position: usgTitle(category),
+      position: memberTitles[key] ?? usgTitle(category),
       category,
       imageUrl,
     }))
@@ -104,15 +101,7 @@ const TeamSection = () => {
 
       <div className="relative px-4 sm:px-6">
         <div
-          className={`secretariat-scroll grid min-h-[410px] grid-cols-1 justify-items-center justify-center gap-y-6 py-8 sm:grid-cols-2 lg:flex lg:items-start lg:justify-center lg:gap-y-0 lg:overflow-x-auto lg:snap-x lg:snap-mandatory ${
-            filteredMembers.length <= 3
-              ? filteredMembers.length === 1
-                ? 'lg:px-4'
-                : filteredMembers.length === 2
-                  ? 'lg:px-4'
-                  : 'lg:px-4'
-              : 'lg:px-8'
-          }`}
+          className="secretariat-scroll flex min-h-[410px] items-end gap-5 overflow-x-auto px-4 pb-8 pt-10 snap-x snap-mandatory [&>*:first-child]:ml-auto [&>*:last-child]:mr-auto lg:px-8"
         >
           {filteredMembers.map((member, index) => (
             <MemberCard

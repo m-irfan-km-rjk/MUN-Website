@@ -9,6 +9,7 @@ import SeatGrid from './allotments/SeatGrid';
 import Legend from './allotments/Legend';
 
 const REFRESH_MS = 15000;
+const PAGE_SIZE = 12;
 const validCommittee = (c) => c === 'all' || COMMITTEES.some((x) => x.key === c);
 const validStatus = (s) => STATUSES.some((x) => x.key === s);
 
@@ -26,6 +27,7 @@ export default function AllotmentTracker() {
   const [input, setInput] = useState('');
   const [query, setQuery] = useState('');
   const [hydrated, setHydrated] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
   // Live data: one request for every committee, refreshed on an interval (same endpoint as before).
   useEffect(() => {
@@ -90,6 +92,16 @@ export default function AllotmentTracker() {
     const t = setTimeout(() => setQuery(input), 250);
     return () => clearTimeout(t);
   }, [input]);
+
+  // Collapse back to one page only when a filter changes (not when live data refreshes).
+  useEffect(() => {
+    setVisibleCount(PAGE_SIZE);
+  }, [committee, status, query, showAll]);
+
+  const showLess = useCallback(() => {
+    setVisibleCount(PAGE_SIZE);
+    document.getElementById('allotments')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, []);
 
   const result = useMemo(() => filterSeats(seats, { committee, status, query, showAll }), [seats, committee, status, query, showAll]);
 
@@ -209,7 +221,17 @@ export default function AllotmentTracker() {
           {loading ? (
             <p className="py-10 text-center text-cream/70">Loading allotments…</p>
           ) : (
-            <SeatGrid result={result} committee={committee} animateKey={animateKey} onSelectSeat={onSelectSeat} onClear={clearAll} />
+            <SeatGrid
+              result={result}
+              committee={committee}
+              animateKey={animateKey}
+              onSelectSeat={onSelectSeat}
+              onClear={clearAll}
+              visibleCount={visibleCount}
+              pageSize={PAGE_SIZE}
+              onShowMore={() => setVisibleCount((n) => n + PAGE_SIZE)}
+              onShowLess={showLess}
+            />
           )}
 
           <Legend />

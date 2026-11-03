@@ -63,11 +63,7 @@ const AboutSection = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent opacity-60 pointer-events-none" />
               </div>
-              <div className="mt-3 py-2 px-4 bg-gradient-to-r from-gold via-gold-light to-gold text-maroon-dark rounded text-center shadow-inner border border-gold-dark">
-                <span className="font-display text-[10px] uppercase font-bold tracking-[0.2em] block">
-                  The Grand Council Chamber · Session of Plenipotentiaries
-                </span>
-              </div>
+              <div className="mt-3 h-9 bg-gradient-to-r from-gold via-gold-light to-gold rounded shadow-inner border border-gold-dark" />
             </div>
           </motion.div>
         </div>
