@@ -8,9 +8,9 @@ import { mainMembers, otherMembers } from '../data/people';
 const titleCase = (s) => s.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
 
 const MemberCard = ({ member, index, featured = false }) => {
-  const offsets = ['translate-y-12 lg:translate-y-16', 'translate-y-3 lg:translate-y-6', 'lg:-translate-y-4', 'translate-y-3 lg:translate-y-6', 'translate-y-12 lg:translate-y-16'];
+  const offsets = ['lg:translate-y-16', 'lg:translate-y-6', 'lg:-translate-y-4', 'lg:translate-y-6', 'lg:translate-y-16'];
   const widths = ['w-[210px] lg:w-[230px]', 'w-[210px] lg:w-[230px]', 'w-[220px] lg:w-[250px]', 'w-[210px] lg:w-[230px]', 'w-[210px] lg:w-[230px]'];
-  const overlap = featured || index === 0 ? '' : '-ml-[18px] lg:-ml-[42px]';
+  const overlap = featured || index === 0 ? '' : 'lg:-ml-[42px]';
 
   return (
     <motion.article
@@ -20,7 +20,7 @@ const MemberCard = ({ member, index, featured = false }) => {
       transition={{ duration: 0.65, delay: index * 0.07, ease: [0.16, 1, 0.3, 1] }}
       className={`secretariat-frame group relative shrink-0 ${featured ? 'w-[220px] lg:w-[250px]' : widths[index % 5]} ${featured ? 'lg:-translate-y-4' : offsets[index % 5]} ${overlap} snap-center`}
     >
-      <div className={`relative h-[300px] lg:h-[360px] overflow-hidden rounded-[22px] border border-gold/80 bg-ink shadow-[0_22px_45px_rgba(20,8,6,0.48)] transition-transform duration-500 group-hover:-translate-y-2 ${featured || index % 5 === 2 ? 'lg:h-[390px]' : ''}`}>
+      <div className={`relative h-[300px] sm:h-[330px] lg:h-[360px] overflow-hidden rounded-[22px] border border-gold/80 bg-ink shadow-[0_22px_45px_rgba(20,8,6,0.48)] transition-transform duration-500 group-hover:-translate-y-2 ${featured || index % 5 === 2 ? 'lg:h-[390px]' : ''}`}>
         {member.imageUrl ? (
           <Image
             src={member.imageUrl}
@@ -82,7 +82,7 @@ const TeamSection = () => {
         </p>
       </div>
 
-      <div className="mb-12 flex justify-center">
+      <div className="mb-12 flex justify-center px-2">
         <div className="secretariat-scroll flex max-w-full gap-2 overflow-x-auto px-4 pb-3 snap-x snap-mandatory">
           {categories.map((category) => (
             <button
@@ -101,16 +101,16 @@ const TeamSection = () => {
         </div>
       </div>
 
-      <div className="relative">
+      <div className="relative px-4 sm:px-6">
         <div
-          className={`secretariat-scroll flex min-h-[410px] items-start overflow-x-auto py-8 snap-x snap-mandatory ${
+          className={`secretariat-scroll grid min-h-[410px] grid-cols-1 justify-items-center gap-y-6 py-8 sm:grid-cols-2 lg:flex lg:items-start lg:justify-center lg:gap-y-0 lg:overflow-x-auto lg:snap-x lg:snap-mandatory ${
             filteredMembers.length <= 3
               ? filteredMembers.length === 1
-                ? 'justify-start px-[calc(50%-105px)] lg:justify-center lg:px-4'
+                ? 'lg:px-4'
                 : filteredMembers.length === 2
-                  ? 'justify-start px-[calc(50%-192px)] lg:justify-center lg:px-4'
-                  : 'justify-start px-[calc(50%-375px)] lg:justify-center lg:px-4'
-              : 'justify-start px-[calc(50%-105px)] lg:px-8'
+                  ? 'lg:px-4'
+                  : 'lg:px-4'
+              : 'lg:px-8'
           }`}
         >
           {filteredMembers.map((member, index) => (

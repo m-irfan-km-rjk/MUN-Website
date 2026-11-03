@@ -28,6 +28,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 88px;
+  overflow-x: hidden;
 }
 
 body {
@@ -36,6 +37,7 @@ body {
   line-height: 1.65;
   background-color: #582119;
   color: #fef8e2;
+  overflow-x: hidden;
 }
 
 .secretariat-scroll {
