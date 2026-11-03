@@ -20,14 +20,6 @@ const HeroSection = ({ newsList, loading, error }) => {
   return (
     <>
       <section id="home" className="relative pt-12 pb-16 px-6 md:px-12 max-w-7xl mx-auto flex flex-col items-center text-center z-10">
-        <div className="inline-flex items-center gap-2 px-4 py-1 rounded bg-parchment/80 border border-gold shadow-sm mb-2">
-          <span className="material-symbols-outlined text-[16px] text-[#775a01] animate-pulse">stars</span>
-          <span className="font-display text-[10px] tracking-[0.25em] text-[#582119] uppercase font-bold">
-            Annual Diplomatic Convocation
-          </span>
-          <span className="material-symbols-outlined text-[16px] text-[#775a01] animate-pulse">stars</span>
-        </div>
-
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -43,11 +35,6 @@ const HeroSection = ({ newsList, loading, error }) => {
 
         <div className="flex items-center justify-center gap-4 w-full max-w-lg my-1">
           <Scrollwork />
-          <div className="flex items-center gap-1 px-3 py-1 rounded-full bg-maroon-dark text-cream border border-gold shadow-md">
-            <span className="material-symbols-outlined text-[20px] text-gold-light">military_tech</span>
-            <span className="material-symbols-outlined text-[22px] text-gold-light">shield</span>
-            <span className="material-symbols-outlined text-[20px] text-gold-light">edit_note</span>
-          </div>
           <Scrollwork flip />
         </div>
 
@@ -82,11 +69,6 @@ const HeroSection = ({ newsList, loading, error }) => {
 
       <div className="w-full flex items-center justify-center gap-4 max-w-5xl mx-auto px-6 py-6 relative z-10">
         <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gold to-gold" />
-        <div className="flex items-center gap-2 text-gold">
-          <span className="material-symbols-outlined text-[18px]">circle</span>
-          <span className="material-symbols-outlined text-[24px]">shield_with_heart</span>
-          <span className="material-symbols-outlined text-[18px]">circle</span>
-        </div>
         <div className="flex-1 h-px bg-gradient-to-l from-transparent via-gold to-gold" />
       </div>
     </>

@@ -8,7 +8,6 @@ import TeamSection from "@/components/TeamSection";
 import ContactSection from "@/components/ContactSection";
 import MFooter from "@/components/MFooter";
 import OldPhotoGallery from "@/components/OldPhotoGallery";
-import Countdown from "@/components/Countdown";
 import FoundersSection from "@/components/FoundersSection";
 import AllotmentTracker from "@/components/AllotmentTracker";
 import CulturalGallery from "@/components/CulturalGallery";
@@ -53,7 +52,6 @@ export default function Home() {
         <div className="candle-glow-1" />
         <HeroSection newsList={newsList} loading={loading} error={error} />
         <FoundersSection />
-        <Countdown />
       </div>
 
       {/* About: solid site theme so body text stays readable */}

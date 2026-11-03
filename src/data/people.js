@@ -14,6 +14,7 @@ const mainMembers = [
 
 const otherMembers = {
   accommodation: {
+    "mydhily_s_pillai": "/people/Accomodation/Mydhily S Pillai.jpg",
     "sharafath_salim": "/people/Accomodation/Sharafath Salim.jpg",
   },
 
@@ -58,7 +59,6 @@ const otherMembers = {
 
   media: {
     "nathan_k_alexander": "/people/Media/Nathan K Alexander.jpg",
-    "mohammed_nas": "/people/Media/Mohammed Nas.jpg",
   },
 
   membership: {
@@ -86,8 +86,14 @@ const otherMembers = {
     "nandana_manoj": "/people/Technical/Nandana Manoj.jpg",
   },
 
+  transportation: {
+    "ajmal_n": "/people/Transportation/Ajmal N.jpg",
+    "virajit_manoj": null,
+  },
+
   general_volunteering: {
     "aswan": "/people/General Volunteering/Aswan.jpg",
+    "gowri_p": "/people/General Volunteering/Gowri P.jpg",
     "shobika": "/people/General Volunteering/Shobika.jpg",
     "sreya_sunil": "/people/General Volunteering/Sreya Sunil.jpg",
     "sruthi": "/people/General Volunteering/Sruthi.jpg",
