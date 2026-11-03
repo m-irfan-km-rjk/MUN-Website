@@ -3,12 +3,6 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
-const pillars = [
-  { icon: 'balance', label: 'Sovereign Diplomacy' },
-  { icon: 'gavel', label: 'Parliamentary Precision' },
-  { icon: 'handshake', label: 'Bilateral Resolution' },
-];
-
 const highlights = [
   { icon: 'verified_user', value: '150+', label: 'Delegates & Dignitaries across the subcontinent' },
   { icon: 'account_balance', value: '5', label: 'Distinct Sovereign Assemblies & Councils' },
@@ -44,14 +38,6 @@ const AboutSection = () => {
               <p>
                 Through committee simulations, delegates step into the roles of diplomats, policymakers and journalists, taking part in debates, negotiations and discussions on matters of international importance. More than just a debate, TKM MUN is a space to build confidence, think critically, develop leadership skills and experience the true spirit of diplomacy and collaboration.
               </p>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
-              {pillars.map((p) => (
-                <div key={p.label} className="p-4 rounded bg-maroon-dark/80 border border-gold/50 text-center flex flex-col items-center shadow-md hover:border-gold-light hover:-translate-y-1 transition-all duration-500">
-                  <span className="material-symbols-outlined text-gold-light text-3xl mb-1">{p.icon}</span>
-                  <span className="font-display text-[10px] text-gold-light uppercase tracking-wider font-bold">{p.label}</span>
-                </div>
-              ))}
             </div>
           </motion.div>
 
