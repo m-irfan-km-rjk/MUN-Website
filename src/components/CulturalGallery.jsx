@@ -4,11 +4,10 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 const images = [
-  "/assets/cultural-night-zv-4255.jpg",
-  "/assets/cultural-night-20260801.jpg",
-  "/assets/event1.jpg",
-  "/assets/event2.jpg",
-  "/assets/event3.jpg",
+  "/assets/cultural-zv4255.jpg",
+  "/assets/cultural-zv4293.jpg",
+  "/assets/cultural-zv4318.jpg",
+  "/assets/cultural-dsc00042.jpg",
 ];
 
 export default function CulturalGallery() {
