@@ -20,14 +20,14 @@ export default function Home() {
 
       <div className="relative w-full overflow-hidden bg-[#24130f]">
         <div className="absolute inset-0 bg-[url('/assets/tkm-mun-26-background.png')] bg-cover bg-center opacity-30" aria-hidden="true" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#24130f]/95 via-[#582119]/80 to-[#24130f]/95" aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#24130f]/95 via-[#582119]/80 to-[#582119]" aria-hidden="true" />
         <div className="candle-glow-1" />
         <HeroSection />
         <FoundersSection />
       </div>
 
-      {/* About: solid site theme so body text stays readable */}
-      <div className="relative w-full overflow-hidden bg-[#582119]">
+      {/* One continuous vertical blend from the landing realm into About. */}
+      <div className="relative w-full overflow-hidden bg-gradient-to-b from-[#582119] via-[#68271f] to-[#582119]">
         <AboutSection />
       </div>
 
