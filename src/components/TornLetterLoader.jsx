@@ -129,7 +129,7 @@ const Defs = () => (
         <path d={`M0 0L200 128L${W} 0Z`} fill="url(#tl-flap)" stroke="#4a1c14" strokeOpacity="0.22" />
         <rect width={W} height={H} fill="url(#tl-edges)" />
         <rect width={W} height={H} filter="url(#tl-grain)" />
-        <text className="tl-hand" x="200" y="214" textAnchor="middle">TKM MUN · By Hand of the Secretariat</text>
+        <text className="tl-hand" x="200" y="214" textAnchor="middle">Penned by the Secretariat</text>
         <use href="#tl-seal" x={SEAL.x} y={SEAL.y} width={SEAL.size} height={SEAL.size} />
       </symbol>
     </defs>
@@ -226,12 +226,11 @@ export default function TornLetterLoader() {
                   <div className="tl-page">
                     <span className="tl-c tl-c-tl" />
                     <span className="tl-c tl-c-tr" />
-                    <p className="tl-title">TKM MUN</p>
+                    <p className="tl-title">TKM MUN&apos;26</p>
                   </div>
                   <div className="tl-fold">
                     <span className="tl-c tl-c-bl" />
                     <span className="tl-c tl-c-br" />
-                    <p className="tl-motto">Unire · Discere · Progredere</p>
                   </div>
                 </div>
               </div>

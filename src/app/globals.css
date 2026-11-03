@@ -40,6 +40,16 @@ body {
   overflow-x: hidden;
 }
 
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    linear-gradient(rgba(36, 19, 15, 0.93), rgba(36, 19, 15, 0.88)),
+    url('/assets/tkm-mun-26-background.png') center / cover fixed;
+}
+
 .secretariat-scroll {
   scrollbar-width: thin;
   scrollbar-color: #c9a44c transparent;

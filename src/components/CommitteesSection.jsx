@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { committees } from '@/data/committees';
 
-const REGISTER_URL = 'https://forms.gle/yFk2MuzPctFHQC5g9';
+const REGISTER_URL = 'https://forms.gle/SgrayHWqoxcks5S6A';
 
 const CommitteeCard = ({ committee, index }) => (
   <motion.div
@@ -45,7 +45,7 @@ const CommitteeCard = ({ committee, index }) => (
         rel="noopener noreferrer"
         className="inline-flex items-center gap-2 border-t border-gold/30 pt-3 font-display text-[10px] uppercase tracking-wider text-gold-light hover:text-cream transition-colors"
       >
-        View Executive Board &amp; biographies
+        View The Secretariat &amp; biographies
         <span className="material-symbols-outlined text-[16px]">open_in_new</span>
       </a>
       <a

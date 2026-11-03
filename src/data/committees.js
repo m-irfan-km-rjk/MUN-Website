@@ -4,8 +4,8 @@ export const committees = [
     name: "UNGA",
     fullName: "United Nations General Assembly – Special Political and Decolonization Committee",
     description: "The principal deliberative, policymaking, and representative organ of the United Nations, bringing together member states to discuss peace, security, development, and decolonization.",
-    agenda: "Addressing the implications of climate change on international security and peaceful relations.",
-    allocations: "Single or double delegations",
+    agenda: "Foreign Intervention vs State Sovereignty: Examining the Limits of International Authority.",
+    allocations: "Single delegate",
     logoUrl: "/UNGA.png",
     executiveBoard: [
       { name: "Soheth A Robin", role: "Chairperson", imageUrl: "/eb/soheth.jpg", biography: "Soheth A Robin is a well-established name in the Kerala MUN circuit, with a presence across more than 20 cities and 15 states. He brings extensive diplomatic and committee experience to UNGA SPECPOL." },
@@ -18,7 +18,7 @@ export const committees = [
     name: "UNHRC",
     fullName: "United Nations Human Rights Council",
     description: "The UN body responsible for strengthening the promotion and protection of human rights around the globe, addressing violations and making recommendations on human rights situations worldwide.",
-    agenda: "Strengthening the protection of human rights defenders and civil society in conflict situations.",
+    agenda: "Addressing Human Rights Violations in the Democratic Republic of the Congo.",
     allocations: "Single Delegate",
     logoUrl: "/UNHRC.png",
     executiveBoard: [
@@ -32,8 +32,8 @@ export const committees = [
     name: "UNSC",
     fullName: "War Cabinet",
     description: "A specialized crisis cabinet focused on fast-moving geopolitical threats, asymmetric escalation, military strategy, and urgent strategic decision-making.",
-    agenda: "Responding to evolving regional security threats and protecting civilian populations during armed conflict.",
-    allocations: "Specialized Cabinet",
+    agenda: "On the brink: Cuban Missile Crisis. Freeze Date: October 27, 1962",
+    allocations: "Eastern Bloc and Western Bloc portfolios",
     logoUrl: "/UNSC.png",
     executiveBoard: [
       { name: "Siddharth S", role: "Chairperson", imageUrl: null, biography: "Siddharth brings MUNs, debates, diplomacy, and infectious confidence to the War Cabinet. Expect substance, controlled chaos, and a committee that remains memorable after the final directive." },
@@ -46,8 +46,8 @@ export const committees = [
     name: "IP",
     fullName: "International Press Corps",
     description: "The media wing of the conference, where correspondents gather intelligence, file dispatches, and hold delegations accountable through investigative journalism and press briefings.",
-    agenda: "Reporting on the conference, promoting ethical journalism and countering misinformation.",
-    allocations: "Individual Correspondents",
+    agenda: "Documenting Diplomacy: Uncovering narratives, capturing moments and telling the untold stories behind committee doors through the power of words and visuals.",
+    allocations: "Single delegate",
     logoUrl: "/IP.png",
     executiveBoard: [
       { name: "Devika Vipin", role: "Head of IPJ", imageUrl: "/eb/devika.jpg", biography: "Devika Vipin is a final-year Mechanical Engineering student at CET with a strong passion for diplomacy, journalism, and public discourse. She has chaired over 20 MUNs and serves in editorial and conference-management roles, bringing together leadership, diverse perspectives, and responsible reporting." },
@@ -59,8 +59,8 @@ export const committees = [
     name: "KLA",
     fullName: "Kerala Legislative Assembly",
     description: "A simulation of the state legislature of Kerala, debating regional policy, governance, and development with regional dialect and local parliamentary procedure.",
-    agenda: "Strengthening coastal resilience, public infrastructure and disaster preparedness in Kerala.",
-    allocations: "Regional Plenipotentiaries (Regional Dialect Allowed)",
+    agenda: "സർക്കാർ നിയമനങ്ങളിലും പൊതുമേഖലാ സ്ഥാപനങ്ങളുടെയും ബോർഡുകളുടെയും കമ്മീഷനുകളുടെയും പ്രവർത്തനങ്ങളിലും സുതാര്യതയും യോഗ്യതാധിഷ്ഠിതത്വവും ഉറപ്പാക്കുന്നതിനുള്ള പരിഷ്കാരങ്ങൾ.",
+    allocations: "Single portfolio",
     logoUrl: "/KLA.png",
     executiveBoard: [
       { name: "Arjun S. Nair", role: "Chairperson", imageUrl: "/eb/arjun.jpg", biography: "Arjun S. Nair holds a postgraduate degree in English Language and Literature and is UGC-NET qualified. A winner of Speak for India Kerala 2023 and former National Youth Parliament representative, he has chaired KLA and parliamentary simulations across major Kerala MUNs and conducts public-speaking workshops." },

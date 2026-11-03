@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaChevronLeft, FaChevronRight, FaBell } from "react-icons/fa";
 
-const REGISTER_URL = "https://forms.gle/yFk2MuzPctFHQC5g9";
+const REGISTER_URL = "https://forms.gle/SgrayHWqoxcks5S6A";
 
 // Shown whenever there is no live news (loading, error or empty), so the bar is never blank.
 const FALLBACK = {

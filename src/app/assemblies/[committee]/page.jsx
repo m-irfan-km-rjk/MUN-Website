@@ -10,7 +10,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const committee = committees.find((item) => item.slug === params.committee);
   return {
-    title: committee ? `${committee.fullName} | TKM MUN 2026` : "Committee | TKM MUN 2026",
+    title: committee ? `${committee.fullName} | TKM MUN'26` : "Committee | TKM MUN'26",
   };
 }
 
@@ -26,7 +26,7 @@ export default function CommitteePage({ params }) {
             <span className="material-symbols-outlined text-[18px]">arrow_back</span>
             Back to committees
           </Link>
-          <span className="hidden sm:block font-display text-xs uppercase tracking-[0.18em] text-gold-light">TKM MUN 2026</span>
+          <span className="hidden sm:block font-display text-xs uppercase tracking-[0.18em] text-gold-light">TKM MUN&apos;26</span>
         </div>
       </header>
 
@@ -49,7 +49,7 @@ export default function CommitteePage({ params }) {
             <p className="mt-6 text-sm"><span className="font-display text-[10px] text-gold-light uppercase tracking-wider mr-2">Allocations</span>{committee.allocations}</p>
           </div>
           <div className="rounded-lg border border-gold/40 bg-maroon-dark/50 p-5 md:p-7">
-            <p className="font-display text-xs text-gold-light uppercase tracking-[0.2em]">Executive Board</p>
+            <p className="font-display text-xs text-gold-light uppercase tracking-[0.2em]">The Secretariat</p>
             <p className="text-cream/60 text-sm mt-2">Meet the team presiding over this committee.</p>
           </div>
         </div>
@@ -59,9 +59,9 @@ export default function CommitteePage({ params }) {
             <article key={member.name} className="border border-gold/40 bg-maroon-dark rounded-lg overflow-hidden shadow-[0_16px_40px_rgba(0,0,0,0.28)]">
               <div className="relative h-72 bg-[#120b09] overflow-hidden">
                 {member.imageUrl ? (
-                  <Image src={member.imageUrl} alt={member.name} fill sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw" className="object-cover" />
+                  <Image src={member.imageUrl} alt={member.name} fill sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw" className="object-cover object-top saturate-[.82] contrast-[.96]" />
                 ) : (
-                  <div className="absolute inset-0 flex items-center justify-center bg-gold text-maroon-dark font-cormorant text-6xl font-bold">
+                  <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#3f261e] to-[#120b09] text-gold-light font-cormorant text-6xl font-bold">
                     {member.name.split(/\s+/).map((part) => part[0]).join("").slice(0, 2)}
                   </div>
                 )}

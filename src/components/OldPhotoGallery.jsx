@@ -35,9 +35,9 @@ export default function OldPhotoGallery() {
     <section id="gallery" className="max-w-7xl mx-auto py-24 relative z-10">
       <div className="text-center max-w-3xl mx-auto mb-10">
         <span className="font-display text-[10px] text-gold-light tracking-[0.25em] uppercase font-bold">Archives of Diplomacy</span>
-        <h2 className="text-4xl text-gold-light font-semibold mt-1 uppercase">Chronicles &amp; Commencements</h2>
+        <h2 className="text-4xl text-gold-light font-semibold mt-1 uppercase">ARCHIVES OF DIPLOMACY &amp; COMMENCEMENTS</h2>
         <p className="text-base text-muted mt-2">
-          Echoes of diplomacy, impassioned debate, and momentous pacts from prior editions. Click the centred archive to inspect in the High Chamber Lightbox.
+          Revisit the defining moments and cherished memories of TKM MUN through our archives.
         </p>
       </div>
 

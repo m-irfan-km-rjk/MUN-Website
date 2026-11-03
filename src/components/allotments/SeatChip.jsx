@@ -14,6 +14,7 @@ export default function SeatChip({ seat, showCommittee, onSelect }) {
     >
       <span className="w-full truncate text-sm font-semibold text-cream">{seat.name}</span>
       {showCommittee ? <span className="text-[10px] uppercase tracking-wider text-gold-light">{committeeLabel(seat.committee)}</span> : null}
+      {seat.detail ? <span className="mt-1 text-[10px] font-bold uppercase tracking-wider text-gold-light">{seat.detail}</span> : null}
       <span className={`mt-1 flex items-center gap-1.5 text-[11px] ${style.text}`}>
         <span aria-hidden="true">{style.icon}</span>
         {status?.short}

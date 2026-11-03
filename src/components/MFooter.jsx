@@ -13,9 +13,9 @@ export default function MFooter() {
       <div className="h-2 w-full footer-braid-drift" />
       <div className="relative z-10 mx-auto max-w-6xl px-6 py-12">
         <h2 className="font-display text-sm uppercase tracking-[0.3em] text-gold-light font-bold mb-2">
-          ◆ TKM MUN ◆
+          ◆ TKM MUN&apos;26 ◆
         </h2>
-        <p className="font-cormorant italic text-xl text-gold mb-2">“Unire · Discere · Progredere”</p>
+        <p className="font-cormorant italic text-xl text-gold mb-2">“Root · Rise · Represent”</p>
         <p className="text-base text-muted mb-6">
           Inspiring leadership, diplomacy, and global collaboration.
         </p>
@@ -33,7 +33,7 @@ export default function MFooter() {
         </div>
 
         <div className="border-t border-gold/20 pt-5 text-sm text-muted/70">
-          © {new Date().getFullYear()} TKM MUN. Under the patronage of TKM College of Engineering, Kollam, Kerala.
+          © {new Date().getFullYear()} TKM MUN&apos;26. Under the patronage of TKM College of Engineering, Kollam, Kerala.
         </div>
       </div>
     </footer>

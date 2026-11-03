@@ -5,6 +5,8 @@ import { motion } from 'framer-motion';
 const contacts = [
   ['Aashika', 'Secretary General', '+91 88911 89196'],
   ['Fathima Thaha', 'Deputy Secretary General', '+91 97447 17374'],
+  ['Fayis TP', 'Faculty Coordinator', '+91 99460 15067'],
+  ['Shawn', 'Director General', '+91 90480 34495'],
 ];
 
 const ContactSection = () => {
@@ -19,10 +21,10 @@ const ContactSection = () => {
           className="bg-parchment text-ink border-2 border-gold p-8 rounded space-y-6 shadow-[0_8px_24px_rgba(0,0,0,0.35)]"
         >
           <div>
-            <p className="font-display text-[10px] uppercase tracking-[0.3em] text-gold-dark font-bold mb-2">Correspondence Desk</p>
-            <h2 className="text-3xl font-semibold uppercase">Official Dispatch &amp; Inquiries</h2>
+            <p className="font-display text-[10px] uppercase tracking-[0.3em] text-gold-dark font-bold mb-2">CORRESPONDENCE DESK</p>
+            <h2 className="text-3xl font-semibold uppercase">OFFICIAL COMMUNICATIONS &amp; ENQUIRIES</h2>
             <p className="text-lg text-ink/75 mt-2">
-              Submit correspondence, delegation enquiry, or accommodation protocols to the Grand Secretariat.
+              Submit correspondence, delegation, or accommodation-related queries to the Secretariat.
             </p>
           </div>
 

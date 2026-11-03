@@ -14,7 +14,7 @@ const links = [
   { href: '#contact', label: 'Contact' },
 ];
 
-const REGISTER_URL = 'https://forms.gle/yFk2MuzPctFHQC5g9';
+const REGISTER_URL = 'https://forms.gle/SgrayHWqoxcks5S6A';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);

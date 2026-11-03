@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-const REGISTER_URL = "https://forms.gle/yFk2MuzPctFHQC5g9";
+const REGISTER_URL = "https://forms.gle/qSLJsRoFC8UTxHL99";
 
 export default function CampusAmbassadorLeaderboard() {
   return (

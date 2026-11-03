@@ -7,7 +7,7 @@ const highlights = [
   { icon: 'verified_user', value: '150+', label: 'Delegates & Dignitaries across the subcontinent' },
   { icon: 'account_balance', value: '5', label: 'Distinct Sovereign Assemblies & Councils' },
   { icon: 'event_note', value: '4–6 DEC', label: '4th, 5th and 6th December' },
-  { icon: 'apartment', value: 'TKMCE', label: 'Karikode, Kollam Campus, Malabar Coast' },
+  { icon: 'apartment', value: 'TKMCE', label: 'Karikode, Kollam, Kerala, India' },
 ];
 
 const Corner = ({ className }) => <div className={`absolute w-6 h-6 border-blush ${className}`} />;

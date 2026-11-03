@@ -2,9 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import NewsSlider from './NewsFeed';
-
-const REGISTER_URL = 'https://forms.gle/yFk2MuzPctFHQC5g9';
+const REGISTER_URL = 'https://forms.gle/SgrayHWqoxcks5S6A';
 
 const Scrollwork = ({ flip }) => (
   <svg className={`h-6 w-32 fill-none stroke-current text-gold opacity-90 ${flip ? 'rotate-180' : ''}`} viewBox="0 0 120 20">
@@ -16,7 +14,7 @@ const Scrollwork = ({ flip }) => (
   </svg>
 );
 
-const HeroSection = ({ newsList, loading, error }) => {
+const HeroSection = () => {
   return (
     <>
       <section id="home" className="relative pt-12 pb-16 px-6 md:px-12 max-w-7xl mx-auto flex flex-col items-center text-center z-10">
@@ -24,12 +22,12 @@ const HeroSection = ({ newsList, loading, error }) => {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="relative text-[#371510] [text-shadow:0_2px_0_rgba(201,164,76,0.55)] font-cormorant text-6xl md:text-7xl lg:text-[80px] leading-tight tracking-[0.25em] uppercase font-bold my-1 select-none"
+          className="relative text-gold-light [text-shadow:0_2px_12px_rgba(36,19,15,0.9)] font-cormorant text-5xl sm:text-6xl md:text-7xl lg:text-[80px] leading-tight tracking-[0.18em] sm:tracking-[0.25em] uppercase font-bold my-1 select-none break-words"
         >
-          TKM MUN
+          TKM MUN&apos;26
         </motion.h1>
 
-        <p className="font-cormorant italic text-2xl md:text-3xl text-[#371510] font-semibold tracking-wider mt-1 mb-2">
+        <p className="font-cormorant italic text-2xl md:text-3xl text-cream font-semibold tracking-wider mt-1 mb-2">
           “Root · Rise · Represent”
         </p>
 
@@ -38,10 +36,10 @@ const HeroSection = ({ newsList, loading, error }) => {
           <Scrollwork flip />
         </div>
 
-        <p className="text-lg text-ink max-w-2xl mt-1 font-medium">
+        <p className="text-lg text-cream/90 max-w-2xl mt-1 font-medium">
           The Sovereign Model United Nations Conference of TKM College of Engineering, Kollam
         </p>
-        <p className="font-cormorant italic text-xl md:text-2xl text-[#371510] font-semibold mt-2">
+        <p className="font-cormorant italic text-xl md:text-2xl text-gold-light font-semibold mt-2">
           4th, 5th and 6th December · TKM College of Engineering, Kollam
         </p>
 
@@ -62,10 +60,6 @@ const HeroSection = ({ newsList, loading, error }) => {
           </a>
         </div>
       </section>
-
-      <div className="max-w-6xl mx-auto px-5 md:px-12 mb-16 relative z-10">
-        <NewsSlider newsList={newsList} loading={loading} error={error} />
-      </div>
 
       <div className="w-full flex items-center justify-center gap-4 max-w-5xl mx-auto px-6 py-6 relative z-10">
         <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gold to-gold" />

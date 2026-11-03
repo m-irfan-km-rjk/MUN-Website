@@ -12,45 +12,17 @@ import FoundersSection from "@/components/FoundersSection";
 import AllotmentTracker from "@/components/AllotmentTracker";
 import CulturalGallery from "@/components/CulturalGallery";
 import CampusAmbassadorLeaderboard from "@/components/CampusAmbassadorLeaderboard";
-import { useState, useEffect } from "react";
-
 export default function Home() {
-
-  const [newsList, setNewsList] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-
-  const fetchData = async () => {
-    try {
-      const req = await fetch("/api/dashboard/news");
-      const data = req.ok ? await req.json() : null;
-      if (Array.isArray(data)) {
-        setNewsList(data);
-      } else {
-        // Expected when the news backend is unavailable; the Dispatch bar shows its fallback.
-        console.warn(`News unavailable (HTTP ${req.status}); showing the default announcement.`);
-        setError(true);
-      }
-    } catch (err) {
-      console.warn("News request failed; showing the default announcement.", err);
-      setError(true);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   return (
     <main className="w-full pt-20 min-h-screen">
       <Navbar />
 
-      {/* Hero: the gradient is only a backdrop and ends on the About band's colour */}
-      <div className="relative w-full overflow-hidden bg-gradient-to-b from-[#FEF8E2] from-0% via-[#B49D91] via-35% via-[#7A5147] via-70% to-[#582119] to-100%">
+      <div className="relative w-full overflow-hidden bg-[#24130f]">
+        <div className="absolute inset-0 bg-[url('/assets/tkm-mun-26-background.png')] bg-cover bg-center opacity-30" aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#24130f]/95 via-[#582119]/80 to-[#24130f]/95" aria-hidden="true" />
         <div className="candle-glow-1" />
-        <HeroSection newsList={newsList} loading={loading} error={error} />
+        <HeroSection />
         <FoundersSection />
       </div>
 

@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { mainMembers, otherMembers } from '../data/people';
 
 const titleCase = (s) => s.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+const usgTitle = (category) => `USG ${titleCase(category)}`;
 
 const MemberCard = ({ member, index, featured = false }) => {
   const offsets = ['lg:translate-y-16', 'lg:translate-y-6', 'lg:-translate-y-4', 'lg:translate-y-6', 'lg:translate-y-16'];
@@ -54,7 +55,7 @@ const TeamSection = () => {
   const extras = Object.entries(otherMembers).flatMap(([category, members]) =>
     Object.entries(members).map(([key, imageUrl]) => ({
       name: titleCase(key),
-      position: titleCase(category),
+      position: usgTitle(category),
       category,
       imageUrl,
     }))
@@ -63,7 +64,7 @@ const TeamSection = () => {
   const categories = [
     { key: 'all', label: 'All' },
     { key: 'main', label: 'Secretariat' },
-    ...Object.keys(otherMembers).map((key) => ({ key, label: titleCase(key) })),
+    ...Object.keys(otherMembers).map((key) => ({ key, label: usgTitle(key) })),
   ];
 
   const filteredMembers = activeCategory === 'all'
@@ -75,8 +76,8 @@ const TeamSection = () => {
   return (
     <section id="secretariat" className="max-w-7xl mx-auto py-24 relative z-10">
       <div className="text-center max-w-2xl mx-auto mb-16">
-        <span className="font-display text-[10px] text-gold-light tracking-[0.25em] uppercase font-bold">Executive Board</span>
-        <h2 className="text-4xl text-gold-light font-semibold mt-1 uppercase">The High Secretariat</h2>
+        <span className="font-display text-[10px] text-gold-light tracking-[0.25em] uppercase font-bold">The Secretariat</span>
+        <h2 className="text-4xl text-gold-light font-semibold mt-1 uppercase">The Secretariat</h2>
         <p className="text-base text-muted mt-2">
           The Stewards of Parliamentary Procedure, Sovereign Decorum, and Assembly Governance
         </p>
@@ -103,7 +104,7 @@ const TeamSection = () => {
 
       <div className="relative px-4 sm:px-6">
         <div
-          className={`secretariat-scroll grid min-h-[410px] grid-cols-1 justify-items-center gap-y-6 py-8 sm:grid-cols-2 lg:flex lg:items-start lg:justify-center lg:gap-y-0 lg:overflow-x-auto lg:snap-x lg:snap-mandatory ${
+          className={`secretariat-scroll grid min-h-[410px] grid-cols-1 justify-items-center justify-center gap-y-6 py-8 sm:grid-cols-2 lg:flex lg:items-start lg:justify-center lg:gap-y-0 lg:overflow-x-auto lg:snap-x lg:snap-mandatory ${
             filteredMembers.length <= 3
               ? filteredMembers.length === 1
                 ? 'lg:px-4'
