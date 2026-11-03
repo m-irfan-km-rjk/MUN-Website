@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 const images = [
+  "/assets/cultural-night-zv-4255.jpg",
   "/assets/cultural-night-20260801.jpg",
   "/assets/event1.jpg",
   "/assets/event2.jpg",
