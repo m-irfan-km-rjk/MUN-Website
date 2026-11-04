@@ -36,7 +36,7 @@ export const committees = [
     allocations: "Eastern Bloc and Western Bloc portfolios",
     logoUrl: "/UNSC.png",
     executiveBoard: [
-      { name: "Siddharth S", role: "Chairperson", imageUrl: null, biography: "Siddharth brings MUNs, debates, diplomacy, and infectious confidence to the War Cabinet. Expect substance, controlled chaos, and a committee that remains memorable after the final directive." },
+      { name: "Siddharth S", role: "Chairperson", imageUrl: "/eb/siddharth.jpg", biography: "Siddharth brings MUNs, debates, diplomacy, and infectious confidence to the War Cabinet. Expect substance, controlled chaos, and a committee that remains memorable after the final directive." },
       { name: "Adithyan N", role: "Vice-Chairperson", imageUrl: "/eb/adithyan.jpg", biography: "Adithyan N is an Economics Honours student at University College Thiruvananthapuram. He has attended more than 30 MUNs across South India and specialises in crisis possibilities, crisis committees, and economic simulations." },
       { name: "Bharath Sathiajith", role: "Rapporteur", imageUrl: "/eb/bharath.jpg", biography: "Bharath is a second-year Electrical and Electronics Engineering student at TKM College of Engineering. A crisis specialist with awards ranging from Verbal Mention to High Commendation, he combines geopolitics, humour, sharp speeches, and inventive crisis thinking." },
     ],
