@@ -7,13 +7,14 @@
 
   /* Root Rise palette: earth, forest growth and warm gold */
   --color-gold: #c9a44c;
-  --color-gold-light: #d9c98a;
+  --color-gold-light: #e3c97a;   /* bright gold: main headings, small labels, primary actions only */
   --color-gold-dark: #7a6635;
   --color-blush: #ffe2d6;
   --color-oxblood: #2a1312;
   --color-maroon-dark: #2a1312;
-  --color-maroon-card: #371a17;
-  --color-maroon-hover: #46221e;
+  --color-panel: #351616;        /* big containers: a step above the page background */
+  --color-maroon-card: #4a1a1a;   /* cards and tiles: brown-burgundy, in step with the page palette */
+  --color-maroon-hover: #5c2321;
   --color-parchment: #e9e5dc;
   --color-cream: #fef8e2;
   --color-ink: #2a1a12;
@@ -80,7 +81,7 @@ body::before {
   height: 100vh;
   pointer-events: none;
   z-index: 40;
-  opacity: 0.75;
+  opacity: 0.4;
 }
 
 #mouse-vignette {
@@ -487,7 +488,7 @@ html:not(.tl-seen) body:has(#tl-loader) #gold-motes-canvas { z-index: 61; }
   /* A faint, translucent print: the greyscale fresco is screened over the dark red so only its lighter
      linework lifts out of the colour. */
   mix-blend-mode: screen;
-  opacity: calc(0.07 + 0.05 * var(--fresco-boost, 0));
+  opacity: calc(0.04 + 0.03 * var(--fresco-boost, 0));
   background: url('/images/ceiling-fresco-tile.webp') center top / 100% auto repeat-y;
 }
 
@@ -513,4 +514,18 @@ html:not(.tl-seen) body:has(#tl-loader) #gold-motes-canvas { z-index: 61; }
 }
 @media (prefers-reduced-motion: reduce) {
   .gold-shimmer::after { animation: none; }
+}
+
+/* ---------- Section tones ----------
+   Sections alternate between three tones (deep #1a0a09, base #2a1312, wine #3a1818). Each section fades in from the
+   previous section's tone over ~220px, so there is no hard edge. --prev/--tone are set per section in page.js;
+   --tail/--end optionally fade the last section into whatever follows (the footer). */
+.tone-blend {
+  background: linear-gradient(
+    to bottom,
+    var(--prev) 0,
+    var(--tone) 220px,
+    var(--tone) calc(100% - var(--tail, 0px)),
+    var(--end, var(--tone)) 100%
+  );
 }

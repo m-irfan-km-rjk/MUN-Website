@@ -32,14 +32,18 @@ export default function FoundersSection() {
               transition={{ duration: 0.65, delay: index * 0.08 }}
               className="w-[105px] text-center sm:w-[150px] md:w-[210px]"
             >
-              <div className="relative aspect-[4/5] overflow-hidden rounded-[18px] border border-gold/80 bg-maroon-dark shadow-[0_18px_40px_rgba(20,8,6,0.45)]">
-                <Image
-                  src={founder.imageUrl}
-                  alt={founder.name}
-                  fill
-                  sizes="210px"
-                  className="object-cover object-top"
-                />
+              {/* Double gold frame + a warm overlay so photos with white, red or blue backgrounds sit together. */}
+              <div className="rounded-[18px] border-2 border-gold bg-maroon-dark p-[3px] shadow-[0_18px_40px_rgba(20,8,6,0.45)]">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-[14px] border border-gold/50">
+                  <Image
+                    src={founder.imageUrl}
+                    alt={founder.name}
+                    fill
+                    sizes="210px"
+                    className="object-cover object-top sepia-[.18] saturate-[.92]"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#2a1312]/55 via-transparent to-[#c9a44c]/15" />
+                </div>
               </div>
               <p className="mt-3 font-display text-xs font-bold uppercase tracking-[0.16em] text-gold-light md:text-base">
                 {founder.name}

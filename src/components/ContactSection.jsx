@@ -57,7 +57,7 @@ const ContactSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="border-2 border-gold bg-maroon-dark p-3 rounded flex flex-col shadow-[0_8px_24px_rgba(0,0,0,0.35)]"
+          className="border-2 border-gold bg-panel p-3 rounded flex flex-col shadow-[0_8px_24px_rgba(0,0,0,0.35)]"
         >
           <div className="w-full grow min-h-75 overflow-hidden rounded">
             <iframe

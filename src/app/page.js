@@ -12,6 +12,10 @@ import FoundersSection from "@/components/FoundersSection";
 import AllotmentTracker from "@/components/AllotmentTracker";
 import CulturalGallery from "@/components/CulturalGallery";
 import CampusAmbassadorLeaderboard from "@/components/CampusAmbassadorLeaderboard";
+const DEEP = "#1a0a09";
+const BASE = "#2a1312";
+const WINE = "#3a1818";
+
 export default function Home() {
 
   return (
@@ -26,21 +30,21 @@ export default function Home() {
         <FoundersSection />
       </div>
 
-      {/* One continuous vertical blend from the landing realm into About. */}
-      <div className="relative w-full overflow-hidden bg-gradient-to-b from-[#2a1312] via-[#351916] to-[#2a1312]">
+      {/* Section tones alternate base > wine > deep > base > wine > deep > base > wine > deep. Each one fades in from
+          the previous tone (see .tone-blend in globals.css), so there is no hard colour edge between sections. */}
+      <div className="tone-blend relative w-full overflow-hidden" style={{ '--prev': BASE, '--tone': WINE }}>
         <AboutSection />
       </div>
 
-      {/* Lower realm: oxblood */}
-      <div className="relative w-full overflow-hidden bg-oxblood px-6">
+      <div className="relative w-full overflow-hidden">
         <div className="candle-glow-2" />
-        <AllotmentTracker />
-        <CampusAmbassadorLeaderboard />
-        <CommitteesSection />
-        <TeamSection />
-        <CulturalGallery />
-        <OldPhotoGallery />
-        <ContactSection />
+        <div className="tone-blend px-6" style={{ '--prev': WINE, '--tone': DEEP }}><AllotmentTracker /></div>
+        <div className="tone-blend px-6" style={{ '--prev': DEEP, '--tone': BASE }}><CampusAmbassadorLeaderboard /></div>
+        <div className="tone-blend px-6" style={{ '--prev': BASE, '--tone': WINE }}><CommitteesSection /></div>
+        <div className="tone-blend px-6" style={{ '--prev': WINE, '--tone': DEEP }}><TeamSection /></div>
+        <div className="tone-blend px-6" style={{ '--prev': DEEP, '--tone': BASE }}><CulturalGallery /></div>
+        <div className="tone-blend px-6" style={{ '--prev': BASE, '--tone': WINE }}><OldPhotoGallery /></div>
+        <div className="tone-blend px-6" style={{ '--prev': WINE, '--tone': DEEP, '--tail': '160px', '--end': BASE }}><ContactSection /></div>
       </div>
 
       <MFooter />

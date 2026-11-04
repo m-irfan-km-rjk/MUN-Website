@@ -16,7 +16,7 @@ export default function CampusAmbassadorLeaderboard() {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="mt-10 overflow-hidden rounded-2xl border border-gold/50 bg-maroon-dark shadow-2xl"
+        className="mt-10 overflow-hidden rounded-2xl border border-gold/50 bg-panel shadow-2xl"
       >
         <div className="grid grid-cols-[70px_1fr_100px] border-b border-gold/30 px-4 py-4 font-display text-[10px] uppercase tracking-wider text-gold-light md:px-6">
           <span>Rank</span><span>Ambassador</span><span className="text-right">Points</span>

@@ -39,21 +39,21 @@ const HeroSection = () => {
         <p className="text-lg text-cream/90 max-w-2xl mt-1 font-medium">
           The Sovereign Model United Nations Conference of TKM College of Engineering, Kollam
         </p>
-        <p className="font-cormorant italic text-xl md:text-2xl text-gold-light font-semibold mt-2">
+        <p className="font-cormorant italic text-xl md:text-2xl text-cream/90 font-semibold mt-2">
           4th, 5th and 6th December · TKM College of Engineering, Kollam
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-6 mt-7">
           <a
             href={REGISTER_URL}
-            className="wax-gold-btn inline-flex items-center gap-2 bg-gold text-maroon-dark border border-gold-dark font-display text-xs uppercase tracking-[0.15em] px-10 py-4 rounded font-bold shadow-[0_0_15px_rgba(201,164,76,0.35)] hover:bg-[#d8b660] hover:shadow-[0_0_24px_rgba(201,164,76,0.65)] hover:-translate-y-0.5"
+            className="wax-gold-btn inline-flex items-center gap-2 bg-gradient-to-b from-[#E6C873] to-[#C9A24A] text-maroon-dark border border-[#9c7d35] font-display text-xs uppercase tracking-[0.15em] px-10 py-4 rounded font-bold shadow-[0_0_15px_rgba(230,200,115,0.35)] hover:from-[#f2dc96] hover:to-[#d4b052] hover:shadow-[0_0_28px_rgba(230,200,115,0.75)] hover:-translate-y-0.5"
           >
             <span className="material-symbols-outlined text-[20px]">history_edu</span>
             Register Now
           </a>
           <a
             href="#assemblies"
-            className="wax-gold-btn group inline-flex items-center gap-2 bg-maroon-dark/60 text-gold-light border border-gold font-display text-xs uppercase tracking-[0.15em] px-10 py-4 rounded backdrop-blur-sm hover:bg-maroon-dark hover:border-gold-light"
+            className="wax-gold-btn group inline-flex items-center gap-2 bg-transparent text-cream border border-cream/70 font-display text-xs uppercase tracking-[0.15em] px-10 py-4 rounded hover:bg-cream/10 hover:border-cream"
           >
             Explore Committees
             <span className="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>

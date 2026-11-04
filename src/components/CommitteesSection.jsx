@@ -45,7 +45,7 @@ const CommitteeCard = ({ committee, index }) => (
         rel="noopener noreferrer"
         className="inline-flex items-center gap-2 border-t border-gold/30 pt-3 font-display text-[10px] uppercase tracking-wider text-gold-light hover:text-cream transition-colors"
       >
-        View The Secretariat &amp; biographies
+        View Executive Board &amp; biographies
         <span className="material-symbols-outlined text-[16px]">open_in_new</span>
       </a>
       <a

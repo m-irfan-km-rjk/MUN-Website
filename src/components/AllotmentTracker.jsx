@@ -148,7 +148,7 @@ export default function AllotmentTracker() {
         <h2 className="text-4xl text-cream font-semibold mt-1 uppercase">Allotment Tracker</h2>
       </div>
 
-      <div className="overflow-hidden rounded-2xl border border-gold/50 bg-maroon-dark/95 shadow-2xl">
+      <div className="overflow-hidden rounded-2xl border border-gold/50 bg-panel/95 shadow-2xl">
         <div className="space-y-4 border-b border-gold/25 bg-black/10 p-4 md:p-6">
           <div className="relative">
             <label htmlFor="seat-search" className="sr-only">Search country or portfolio</label>

@@ -78,7 +78,7 @@ const AboutSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.5 }}
-              className="filigree-card bg-maroon-card border border-gold rounded p-7 flex flex-col items-center text-center relative overflow-hidden shadow-lg group hover:bg-maroon-hover transition-colors duration-700"
+              className="filigree-card bg-gradient-to-b from-[#54201f] to-[#3d1616] border border-[#e3c97a]/80 rounded p-7 flex flex-col items-center text-center relative overflow-hidden shadow-lg group hover:from-[#612725] hover:to-[#491b1b] transition-colors duration-700"
             >
               <div className="card-filigree corner-tl" />
               <div className="card-filigree corner-br" />

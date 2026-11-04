@@ -47,7 +47,7 @@ export default function GoldDust({ paused = false }) {
         if (p.y < -0.05) { p.y = 1.05; p.x = Math.random(); }
         const tw = 0.6 + 0.4 * Math.sin(t / 900 + p.ph);
         ctx.beginPath();
-        ctx.fillStyle = `rgba(226, 192, 104, ${(p.a * tw).toFixed(3)})`;
+        ctx.fillStyle = `rgba(226, 192, 104, ${(p.a * tw * 0.55).toFixed(3)})`;
         ctx.arc(p.x * w, p.y * h, p.r, 0, Math.PI * 2);
         ctx.fill();
       }

@@ -43,7 +43,7 @@ const Navbar = () => {
         <div className="flex items-center gap-4">
           <Link
             href={REGISTER_URL}
-            className="wax-gold-btn hidden sm:block font-display text-xs font-bold uppercase tracking-[0.15em] bg-gold text-maroon-dark border border-gold-dark px-5 py-2 rounded shadow-[0_0_12px_rgba(201,164,76,0.3)] hover:bg-[#d8b660] hover:shadow-[0_0_18px_rgba(201,164,76,0.55)]"
+            className="wax-gold-btn hidden sm:block font-display text-xs font-bold uppercase tracking-[0.15em] bg-gradient-to-b from-[#E6C873] to-[#C9A24A] text-maroon-dark border border-[#9c7d35] px-5 py-2 rounded shadow-[0_0_12px_rgba(230,200,115,0.3)] hover:from-[#f2dc96] hover:to-[#d4b052] hover:shadow-[0_0_22px_rgba(230,200,115,0.7)]"
           >
             Register
           </Link>

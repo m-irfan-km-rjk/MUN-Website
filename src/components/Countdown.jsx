@@ -24,7 +24,7 @@ export default function Countdown() {
 
   return (
     <section className="max-w-6xl mx-auto px-5 md:px-12 relative z-10">
-      <div className="grid grid-cols-4 gap-2 md:gap-4 bg-maroon-dark/95 border border-gold/70 rounded-lg px-3 py-5 md:px-8 md:py-7 shadow-[0_18px_50px_rgba(24,8,7,0.45)]">
+      <div className="grid grid-cols-4 gap-2 md:gap-4 bg-panel/95 border border-gold/70 rounded-lg px-3 py-5 md:px-8 md:py-7 shadow-[0_18px_50px_rgba(24,8,7,0.45)]">
         {Object.entries(remaining).map(([label, value], index) => (
           <div key={label} className={`text-center ${index ? "border-l border-gold/30" : ""}`}>
             <div className="font-cormorant text-3xl md:text-6xl text-gold-light tabular-nums">{String(value).padStart(2, "0")}</div>
