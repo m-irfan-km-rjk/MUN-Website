@@ -5,8 +5,8 @@ import { motion } from 'framer-motion';
 const contacts = [
   ['Aashika', 'Secretary General', '+91 88911 89196'],
   ['Fathima Thaha', 'Deputy Secretary General', '+91 97447 17374'],
-  ['Fayis TP', 'Faculty Coordinator', '+91 99460 15067'],
   ['Shawn', 'Director General', '+91 90480 34495'],
+  ['Fayis TP', 'Faculty Coordinator', '+91 99460 15067'],
 ];
 
 const ContactSection = () => {
