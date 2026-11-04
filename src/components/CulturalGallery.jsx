@@ -10,9 +10,16 @@ const ALT = 'TKM MUN Cultural Night performance';
 
 // Deal the photos round-robin into rows so every photo appears (and no photo sits beside itself).
 // Each row is then repeated so its strip is long enough to loop seamlessly on wide screens.
+// Photos pinned to a specific row (0 = top). Row 1 is one of the two middle rows.
+const PINNED = [{ match: 'WhatsApp Image 2026-11-04 at 12.14.14 AM', row: 1 }];
+
 function buildRows(list) {
+  const pinned = PINNED.map((p) => ({ ...p, src: list.find((src) => src.includes(p.match)) })).filter((p) => p.src);
+  const rest = list.filter((src) => !pinned.some((p) => p.src === src));
   const rows = Array.from({ length: ROWS }, () => []);
-  list.forEach((src, i) => rows[i % ROWS].push(src));
+  rest.forEach((src, i) => rows[i % ROWS].push(src));
+  // Drop each pinned photo into the middle of its row's strip.
+  pinned.forEach((p) => rows[p.row].splice(Math.floor(rows[p.row].length / 2), 0, p.src));
   return rows.map((row, r) => {
     if (!row.length) return row;
     // Offset each row so the same photo isn't directly above/below its neighbour at the start.
