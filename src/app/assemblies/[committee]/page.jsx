@@ -51,7 +51,7 @@ export default async function CommitteePage({ params }) {
             <p className="mt-6 text-sm"><span className="font-display text-[10px] text-gold-light uppercase tracking-wider mr-2">Allocations</span>{committee.allocations}</p>
           </div>
           <div className="rounded-lg border border-gold/40 bg-panel/70 p-5 md:p-7">
-            <p className="font-display text-xs text-gold-light uppercase tracking-[0.2em]">The Secretariat</p>
+            <p className="font-display text-xs text-gold-light uppercase tracking-[0.2em]">The Executive Board</p>
             <p className="text-cream/60 text-sm mt-2">Meet the team presiding over this committee.</p>
           </div>
         </div>

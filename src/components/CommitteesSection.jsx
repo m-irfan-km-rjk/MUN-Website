@@ -3,10 +3,11 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { committees } from '@/data/committees';
+import CommitteeModal, { useCommitteeModal } from './CommitteeModal';
 
 const REGISTER_URL = 'https://forms.gle/SgrayHWqoxcks5S6A';
 
-const CommitteeCard = ({ committee, index }) => (
+const CommitteeCard = ({ committee, index, onOpen }) => (
   <motion.div
     initial={{ opacity: 0, y: 28 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -39,15 +40,15 @@ const CommitteeCard = ({ committee, index }) => (
         <span className="font-display text-xs uppercase tracking-wider text-gold-light mr-2">Allocations</span>
         {committee.allocations}
       </p>
-      <a
-        href={`/assemblies/${committee.slug}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center gap-2 border-t border-gold/30 pt-3 font-display text-[10px] uppercase tracking-wider text-gold-light hover:text-cream transition-colors"
+      <button
+        type="button"
+        onClick={(e) => onOpen(committee, e)}
+        aria-haspopup="dialog"
+        className="inline-flex items-center gap-2 border-t border-gold/30 pt-3 font-display text-[10px] uppercase tracking-wider text-gold-light hover:text-cream transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-light"
       >
         View Executive Board &amp; biographies
-        <span className="material-symbols-outlined text-[16px]">open_in_new</span>
-      </a>
+        <span className="material-symbols-outlined text-[16px]" aria-hidden="true">groups</span>
+      </button>
       <a
         href={REGISTER_URL}
         className="inline-flex items-center gap-2 font-display text-xs uppercase tracking-wider text-gold-light hover:text-white underline-offset-4 hover:underline"
@@ -60,6 +61,7 @@ const CommitteeCard = ({ committee, index }) => (
 );
 
 const CommitteesSection = () => {
+  const { open, show, hide } = useCommitteeModal();
   return (
     <section id="assemblies" className="max-w-7xl mx-auto py-24 relative z-10">
       <div className="text-center max-w-3xl mx-auto mb-16">
@@ -76,9 +78,10 @@ const CommitteesSection = () => {
 
       <div className="flex flex-wrap justify-center gap-10">
         {committees.map((c, i) => (
-          <CommitteeCard key={c.name} committee={c} index={i} />
+          <CommitteeCard key={c.name} committee={c} index={i} onOpen={show} />
         ))}
       </div>
+      <CommitteeModal open={open} onClose={hide} />
     </section>
   );
 };

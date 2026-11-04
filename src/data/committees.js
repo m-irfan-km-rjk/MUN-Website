@@ -34,7 +34,7 @@ export const committees = [
     description: "A specialized crisis cabinet focused on fast-moving geopolitical threats, asymmetric escalation, military strategy, and urgent strategic decision-making.",
     agenda: "On the brink: Cuban Missile Crisis. Freeze Date: October 27, 1962",
     allocations: "Eastern Bloc and Western Bloc portfolios",
-    logoUrl: "/UNSC.png",
+    logoUrl: "/UNSC-emblem.png",
     executiveBoard: [
       { name: "Siddharth S", role: "Chairperson", imageUrl: "/eb/siddharth.jpg", biography: "Siddharth brings MUNs, debates, diplomacy, and infectious confidence to the War Cabinet. Expect substance, controlled chaos, and a committee that remains memorable after the final directive." },
       { name: "Adithyan N", role: "Vice-Chairperson", imageUrl: "/eb/adithyan.jpg", biography: "Adithyan N is an Economics Honours student at University College Thiruvananthapuram. He has attended more than 30 MUNs across South India and specialises in crisis possibilities, crisis committees, and economic simulations." },
