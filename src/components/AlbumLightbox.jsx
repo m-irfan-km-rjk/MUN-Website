@@ -302,7 +302,7 @@ function Dialog({ album, origin, reduce, onCloseStart, onClosed }) {
       {/* Maroon gradient + blur; the reveal circle grows from the click point. */}
       <div
         ref={bgRef}
-        className="fixed inset-0 bg-[radial-gradient(ellipse_at_50%_30%,rgba(74, 28, 20,0.985),rgba(14,6,5,0.99)_70%)]"
+        className="fixed inset-0 bg-[radial-gradient(ellipse_at_50%_30%,rgba(86,33,23,0.93),rgba(38,13,10,0.96)_75%)]"
         style={origin && !reduce ? { clipPath: `circle(0px at ${origin.x}px ${origin.y}px)` } : undefined}
       />
       <div
