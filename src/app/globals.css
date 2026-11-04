@@ -10,18 +10,18 @@
   --color-gold-light: #e3c97a;   /* bright gold: main headings, small labels, primary actions only */
   --color-gold-dark: #7a6635;
   --color-blush: #ffe2d6;
-  --color-oxblood: #2a1312;
-  --color-maroon-dark: #2a1312;
-  --color-panel: #351616;        /* big containers: a step above the page background */
-  --color-maroon-card: #4a1a1a;   /* cards and tiles: brown-burgundy, in step with the page palette */
-  --color-maroon-hover: #5c2321;
+  --color-oxblood: #4a1c14;
+  --color-maroon-dark: #4a1c14;
+  --color-panel: #3e160f;        /* big containers: a step above the page background */
+  --color-maroon-card: #62261b;   /* cards and tiles: brown-burgundy, in step with the page palette */
+  --color-maroon-hover: #75301f;
   --color-parchment: #e9e5dc;
   --color-cream: #fef8e2;
   --color-ink: #2a1a12;
   --color-muted: #ccbcac;
 
   /* Aliases used by other components */
-  --color-background: #2a1312;
+  --color-background: #4a1c14;
   --color-text-primary: #fef8e2;
   --color-accent: #c9a44c;
 }
@@ -36,7 +36,7 @@ body {
   @apply font-sans antialiased;
   font-size: 1.125rem;
   line-height: 1.65;
-  background-color: #2a1312;
+  background-color: #4a1c14;
   color: #fef8e2;
   overflow-x: hidden;
 }
@@ -47,7 +47,7 @@ body::before {
   inset: 0;
   z-index: -2;
   background:
-    linear-gradient(rgba(42, 19, 18, 0.93), rgba(42, 19, 18, 0.88)),
+    linear-gradient(rgba(74, 28, 20, 0.93), rgba(74, 28, 20, 0.88)),
     url('/assets/tkm-mun-26-background.png') center / cover fixed;
 }
 
@@ -517,7 +517,7 @@ html:not(.tl-seen) body:has(#tl-loader) #gold-motes-canvas { z-index: 61; }
 }
 
 /* ---------- Section tones ----------
-   Sections alternate between three tones (deep #1a0a09, base #2a1312, wine #3a1818). Each section fades in from the
+   Sections alternate between three tones (deep #33120d, base #4a1c14, wine #5a2419). Each section fades in from the
    previous section's tone over ~220px, so there is no hard edge. --prev/--tone are set per section in page.js;
    --tail/--end optionally fade the last section into whatever follows (the footer). */
 .tone-blend {

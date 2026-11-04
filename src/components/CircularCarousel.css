@@ -72,7 +72,7 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(to top, rgba(42, 26, 18, 0.55), rgba(42, 19, 18, 0.45));
+  background: linear-gradient(to top, rgba(42, 26, 18, 0.55), rgba(74, 28, 20, 0.45));
   opacity: calc(0.75 * (1 - var(--cc-near, 0)));
 }
 

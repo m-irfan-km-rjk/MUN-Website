@@ -42,7 +42,7 @@ export default function FoundersSection() {
                     sizes="210px"
                     className="object-cover object-top sepia-[.18] saturate-[.92]"
                   />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#2a1312]/55 via-transparent to-[#c9a44c]/15" />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#4a1c14]/55 via-transparent to-[#c9a44c]/15" />
                 </div>
               </div>
               <p className="mt-3 font-display text-xs font-bold uppercase tracking-[0.16em] text-gold-light md:text-base">

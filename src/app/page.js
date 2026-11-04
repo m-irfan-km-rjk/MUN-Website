@@ -12,9 +12,9 @@ import FoundersSection from "@/components/FoundersSection";
 import AllotmentTracker from "@/components/AllotmentTracker";
 import CulturalGallery from "@/components/CulturalGallery";
 import CampusAmbassadorLeaderboard from "@/components/CampusAmbassadorLeaderboard";
-const DEEP = "#1a0a09";
-const BASE = "#2a1312";
-const WINE = "#3a1818";
+const DEEP = "#33120d";
+const BASE = "#4a1c14";
+const WINE = "#5a2419";
 
 export default function Home() {
 
@@ -22,9 +22,9 @@ export default function Home() {
     <main className="w-full pt-20 min-h-screen">
       <Navbar />
 
-      <div className="relative w-full overflow-hidden bg-[#2a1312]">
+      <div className="relative w-full overflow-hidden bg-[#4a1c14]">
         <div className="absolute inset-0 bg-[url('/assets/tkm-mun-26-background.png')] bg-cover bg-center opacity-30" aria-hidden="true" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#2a1312]/95 via-[#2a1312]/80 to-[#2a1312]" aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#4a1c14]/95 via-[#4a1c14]/80 to-[#4a1c14]" aria-hidden="true" />
         <div className="candle-glow-1" />
         <HeroSection />
         <FoundersSection />
