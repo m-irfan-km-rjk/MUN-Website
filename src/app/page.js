@@ -18,16 +18,16 @@ export default function Home() {
     <main className="w-full pt-20 min-h-screen">
       <Navbar />
 
-      <div className="relative w-full overflow-hidden bg-[#24130f]">
+      <div className="relative w-full overflow-hidden bg-[#2a1312]">
         <div className="absolute inset-0 bg-[url('/assets/tkm-mun-26-background.png')] bg-cover bg-center opacity-30" aria-hidden="true" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#24130f]/95 via-[#582119]/80 to-[#582119]" aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#2a1312]/95 via-[#2a1312]/80 to-[#2a1312]" aria-hidden="true" />
         <div className="candle-glow-1" />
         <HeroSection />
         <FoundersSection />
       </div>
 
       {/* One continuous vertical blend from the landing realm into About. */}
-      <div className="relative w-full overflow-hidden bg-gradient-to-b from-[#582119] via-[#68271f] to-[#582119]">
+      <div className="relative w-full overflow-hidden bg-gradient-to-b from-[#2a1312] via-[#351916] to-[#2a1312]">
         <AboutSection />
       </div>
 

@@ -12,7 +12,7 @@ import { gsap } from 'gsap';
  */
 const DURATIONS = [70, 90, 80, 100]; // seconds per loop, different per row for a layered feel
 
-export default function GridMotion({ rows = [], gradientColor = 'rgba(88, 33, 25, 1)', children }) {
+export default function GridMotion({ rows = [], gradientColor = 'rgba(42, 19, 18, 1)', children }) {
   const wrapRef = useRef(null);
   const rowRefs = useRef([]);
   const [reduced, setReduced] = useState(false);

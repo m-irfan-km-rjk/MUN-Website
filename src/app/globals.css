@@ -10,17 +10,17 @@
   --color-gold-light: #d9c98a;
   --color-gold-dark: #7a6635;
   --color-blush: #ffe2d6;
-  --color-oxblood: #582119;
-  --color-maroon-dark: #582119;
-  --color-maroon-card: #68271f;
-  --color-maroon-hover: #743329;
+  --color-oxblood: #2a1312;
+  --color-maroon-dark: #2a1312;
+  --color-maroon-card: #371a17;
+  --color-maroon-hover: #46221e;
   --color-parchment: #e9e5dc;
   --color-cream: #fef8e2;
   --color-ink: #2a1a12;
   --color-muted: #ccbcac;
 
   /* Aliases used by other components */
-  --color-background: #582119;
+  --color-background: #2a1312;
   --color-text-primary: #fef8e2;
   --color-accent: #c9a44c;
 }
@@ -35,7 +35,7 @@ body {
   @apply font-sans antialiased;
   font-size: 1.125rem;
   line-height: 1.65;
-  background-color: #582119;
+  background-color: #2a1312;
   color: #fef8e2;
   overflow-x: hidden;
 }
@@ -46,7 +46,7 @@ body::before {
   inset: 0;
   z-index: -2;
   background:
-    linear-gradient(rgba(36, 19, 15, 0.93), rgba(36, 19, 15, 0.88)),
+    linear-gradient(rgba(42, 19, 18, 0.93), rgba(42, 19, 18, 0.88)),
     url('/assets/tkm-mun-26-background.png') center / cover fixed;
 }
 
@@ -484,8 +484,10 @@ html:not(.tl-seen) body:has(#tl-loader) #gold-motes-canvas { z-index: 61; }
   inset: 0;
   z-index: 5;
   pointer-events: none;
-  mix-blend-mode: overlay;
-  opacity: calc(0.26 + 0.14 * var(--fresco-boost, 0));
+  /* A faint, translucent print: the greyscale fresco is screened over the dark red so only its lighter
+     linework lifts out of the colour. */
+  mix-blend-mode: screen;
+  opacity: calc(0.07 + 0.05 * var(--fresco-boost, 0));
   background: url('/images/ceiling-fresco-tile.webp') center top / 100% auto repeat-y;
 }
 

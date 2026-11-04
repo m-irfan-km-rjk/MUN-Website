@@ -55,7 +55,7 @@ export default function CulturalGallery() {
   return (
     <section id="culturals" className="relative z-10 mx-auto max-w-7xl px-5 py-16 md:px-12 md:py-24">
       <div className="relative h-[78svh] min-h-[460px] overflow-hidden rounded-lg border border-gold/25 bg-oxblood md:h-[90vh]">
-        <GridMotion rows={rows} gradientColor="rgba(88, 33, 25, 1)">
+        <GridMotion rows={rows} gradientColor="rgba(42, 19, 18, 1)">
           {/* Blend into the sections above and below. */}
           <div className="pointer-events-none absolute inset-x-0 top-0 z-[3] h-[14%] bg-gradient-to-b from-oxblood to-transparent" />
           <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[3] h-[14%] bg-gradient-to-t from-oxblood to-transparent" />
@@ -64,7 +64,7 @@ export default function CulturalGallery() {
             <div
               className="text-center"
               style={{
-                background: 'radial-gradient(ellipse at center, rgba(88,33,25,0.7) 0%, rgba(88,33,25,0.45) 40%, rgba(88,33,25,0) 70%)',
+                background: 'radial-gradient(ellipse at center, rgba(42,19,18,0.7) 0%, rgba(42,19,18,0.45) 40%, rgba(42,19,18,0) 70%)',
                 padding: 'clamp(2.5rem, 6vw, 4.5rem) clamp(1rem, 6vw, 4rem)',
                 maxWidth: '100%',
               }}
