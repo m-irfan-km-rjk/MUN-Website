@@ -2,8 +2,8 @@
  * Pure filtering/sorting for the Allotment Tracker (no React, easy to unit test).
  *
  * @typedef {'available' | 'allotted-not-confirmed' | 'allotted'} SeatStatus
- * @typedef {{ committee: string, name: string, detail?: string, status: SeatStatus }} Seat
- * @typedef {{ committee?: string, status?: SeatStatus | null, query?: string, showAll?: boolean }} SeatFilters
+ * @typedef {{ committee: string, name: string, detail?: string, status: SeatStatus, bloc?: string | null }} Seat
+ * @typedef {{ committee?: string, status?: SeatStatus | null, query?: string, showAll?: boolean, bloc?: string | null }} SeatFilters
  * @typedef {{ name: string, seats: Seat[], summary: string }} SeatGroup
  */
 
@@ -65,7 +65,7 @@ function summarise(seats) {
  * @param {SeatFilters} filters
  * @returns {{ mode: 'grid' | 'search', seats: Seat[], groups: SeatGroup[], counts: Record<SeatStatus, number> }}
  */
-export function filterSeats(seats, { committee = 'all', status = null, query = '', showAll = false } = {}) {
+export function filterSeats(seats, { committee = 'all', status = null, query = '', showAll = false, bloc = null } = {}) {
   const q = query.trim().toLowerCase();
 
   if (q) {
@@ -83,7 +83,8 @@ export function filterSeats(seats, { committee = 'all', status = null, query = '
     return { mode: 'search', seats: matches, groups, counts: countByStatus(matches) };
   }
 
-  const scoped = committee === 'all' ? seats : seats.filter((s) => s.committee === committee);
+  let scoped = committee === 'all' ? seats : seats.filter((s) => s.committee === committee);
+  if (bloc) scoped = scoped.filter((s) => s.bloc === bloc); // War Cabinet: Western / Eastern bloc
   const wanted = status ? [status] : showAll ? null : ['available'];
   const visible = wanted ? scoped.filter((s) => wanted.includes(s.status)) : scoped;
   return { mode: 'grid', seats: sortSeats(visible), groups: [], counts: countByStatus(scoped) };

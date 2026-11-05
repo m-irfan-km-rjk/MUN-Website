@@ -61,6 +61,8 @@ const otherMembers = {
 
   sponsorship: {
     "aswinraj_h": "/people/Sponsorship/Aswinraj H.jpg",
+    "amritha": "/people/Sponsorship/Amritha.jpg",
+    "ghanim": "/people/Sponsorship/Ghanim.jpg",
   },
 
   cultural_affairs: {

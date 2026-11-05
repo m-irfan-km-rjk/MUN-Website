@@ -6,11 +6,8 @@ const REGISTER_URL = 'https://forms.gle/SgrayHWqoxcks5S6A';
 
 const Scrollwork = ({ flip }) => (
   <svg className={`h-6 w-32 fill-none stroke-current text-gold opacity-90 ${flip ? 'rotate-180' : ''}`} viewBox="0 0 120 20">
-    <path
-      className="scrollwork-path"
-      d="M0,10 Q30,0 60,10 T120,10 Q90,20 60,10 T0,10 Z M60,5 Q70,9 85,7 M60,15 Q70,11 85,13"
-      strokeWidth="1.2"
-    />
+    {/* The larger wavy curve only (the two small inner strokes were removed). */}
+    <path className="scrollwork-path" d="M0,10 Q30,0 60,10 T120,10 Q90,20 60,10 T0,10 Z" strokeWidth="1.2" />
   </svg>
 );
 
@@ -37,7 +34,7 @@ const HeroSection = () => {
         </div>
 
         <p className="text-lg text-cream/90 max-w-2xl mt-1 font-medium">
-          The Sovereign Model United Nations Conference of TKM College of Engineering, Kollam
+          The Model United Nations Conference of TKM College of Engineering, Kollam
         </p>
         <p className="font-cormorant italic text-xl md:text-2xl text-cream/90 font-semibold mt-2">
           4th, 5th and 6th December · TKM College of Engineering, Kollam

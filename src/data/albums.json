@@ -1,7 +1,7 @@
 [
   {
     "id": "mun-25",
-    "title": "MUN 2025",
+    "title": "TKM MUN 2025",
     "year": 2025,
     "cover": "/assets/MUN%2025/event1.jpg",
     "photos": [
@@ -30,7 +30,7 @@
   },
   {
     "id": "intra-mun-25",
-    "title": "Intra MUN 2025",
+    "title": "TKM Intra MUN 2025",
     "year": 2025,
     "cover": "/assets/Intra%20MUN%2025/DSC01582.JPG",
     "photos": [
@@ -51,7 +51,7 @@
   },
   {
     "id": "mun-24",
-    "title": "MUN 2024",
+    "title": "TKM MUN 2024",
     "year": 2024,
     "cover": "/assets/MUN%2024/ABH02946.jpg",
     "photos": [
@@ -91,7 +91,7 @@
   },
   {
     "id": "mun-23",
-    "title": "MUN 2023",
+    "title": "TKM MUN 2023",
     "year": 2023,
     "cover": "/assets/MUN%2023/DSC_0048%20(1).JPG",
     "photos": [
@@ -110,7 +110,7 @@
   },
   {
     "id": "mun-20-training",
-    "title": "MUN 2020 Training",
+    "title": "TKM MUN 2020 Training",
     "year": 2020,
     "cover": "/assets/MUN%2020%20Training/EZA_3624.JPG",
     "photos": [

@@ -73,7 +73,7 @@ const TeamSection = () => {
   return (
     <section id="secretariat" className="max-w-7xl mx-auto py-24 relative z-10">
       <div className="text-center max-w-2xl mx-auto mb-16">
-        <span className="font-display text-[10px] text-gold-light tracking-[0.25em] uppercase font-bold">The Secretariat</span>
+        <span className="font-display text-[10px] text-gold-light tracking-[0.25em] uppercase font-bold">Meet the Team of TKM MUN&apos;26</span>
         <h2 className="text-4xl text-gold-light font-semibold mt-1 uppercase">The Secretariat</h2>
         <p className="text-base text-muted mt-2">
           The Stewards of Parliamentary Procedure, Sovereign Decorum, and Assembly Governance

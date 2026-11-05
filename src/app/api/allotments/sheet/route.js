@@ -1,9 +1,11 @@
 const SHEET_ID = "1T841BPrCqErxEnLeAhfqgWSJVuXhSdpDxqLQ6kgvoD0";
 
+// These must match the tab names in the Google Sheet EXACTLY (including the trailing space on "War Cabinet ").
+// If a name doesn't match, Google silently returns the FIRST tab instead, so a wrong name shows another committee's data.
 const committeeSheets = {
-  unga: "UNGA",
+  unga: "UNGA SPECPOL",
   unhrc: "UNHRC",
-  "war-cabinet": "War Cabinet",
+  "war-cabinet": "War Cabinet ",
   ip: "IP",
   kla: "KLA",
 };
@@ -21,32 +23,27 @@ function normalizeStatus(value) {
 }
 
 function parseCsv(csv) {
-  return csv
-    .replace(/^\uFEFF/, "")
-    .split(/\r?\n/)
-    .map((line) => {
-      const cells = [];
-      let value = "";
-      let quoted = false;
-
-      for (let index = 0; index < line.length; index += 1) {
-        const character = line[index];
-        if (character === '"' && line[index + 1] === '"') {
-          value += '"';
-          index += 1;
-        } else if (character === '"') {
-          quoted = !quoted;
-        } else if (character === "," && !quoted) {
-          cells.push(value.trim());
-          value = "";
-        } else {
-          value += character;
-        }
-      }
-
-      cells.push(value.trim());
-      return cells;
-    });
+  // Quote-aware: an empty quoted cell ("") must read as empty, not as an escaped quote.
+  const rows = [];
+  let row = [];
+  let value = "";
+  let quoted = false;
+  const text = csv.replace(/^\uFEFF/, "");
+  for (let i = 0; i < text.length; i += 1) {
+    const c = text[i];
+    if (quoted) {
+      if (c === '"' && text[i + 1] === '"') { value += '"'; i += 1; }
+      else if (c === '"') quoted = false;
+      else value += c;
+    } else if (c === '"') quoted = true;
+    else if (c === ",") { row.push(value.trim()); value = ""; }
+    else if (c === "\n" || c === "\r") {
+      if (c === "\r" && text[i + 1] === "\n") i += 1;
+      row.push(value.trim()); rows.push(row); row = []; value = "";
+    } else value += c;
+  }
+  if (value || row.length) { row.push(value.trim()); rows.push(row); }
+  return rows;
 }
 
 export async function GET(request) {
@@ -78,22 +75,28 @@ export async function GET(request) {
       const constituencyIndex = normalizedHeader.findIndex((cell) => cell === "CONSTITUENCY");
       const allianceIndex = normalizedHeader.findIndex((cell) => cell === "ALLIANCE");
 
-      return rows
-        .filter((row) => row[nameIndex >= 0 ? nameIndex : 0]?.trim())
-        .map((row) => {
-          const name = (nameIndex >= 0 ? row[nameIndex] : row[0])?.trim();
-          const detailParts = [
-            constituencyIndex >= 0 ? row[constituencyIndex]?.trim() : "",
-            allianceIndex >= 0 ? row[allianceIndex]?.trim() : "",
-          ].filter(Boolean);
-          return {
-            committee: committeeKey,
-            name,
-            detail: detailParts.join(" - "),
-            status: normalizeStatus(statusIndex >= 0 ? row[statusIndex] : row[1]),
-          };
-        })
-        .filter((row) => row.name && row.status);
+      // Some tabs (War Cabinet) split the list under bloc headings such as "WESTERN BLOC" / "EASTERN BLOC":
+      // a row with a name ending in "bloc" and no status starts a new bloc for the rows beneath it.
+      let bloc = null;
+      const seats = [];
+      for (const row of rows) {
+        const name = (nameIndex >= 0 ? row[nameIndex] : row[0])?.trim();
+        if (!name) continue;
+        const rawStatus = statusIndex >= 0 ? row[statusIndex] : row[1];
+        if (!rawStatus?.trim() && /\bbloc$/i.test(name)) {
+          bloc = name.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
+          continue;
+        }
+        const status = normalizeStatus(rawStatus);
+        if (!status) continue;
+        const detailParts = [
+          constituencyIndex >= 0 ? row[constituencyIndex]?.trim() : "",
+          allianceIndex >= 0 ? row[allianceIndex]?.trim() : "",
+          bloc ?? "",
+        ].filter(Boolean);
+        seats.push({ committee: committeeKey, name, detail: detailParts.join(" - "), status, bloc });
+      }
+      return seats;
     }));
 
     const allocations = committees.flat();

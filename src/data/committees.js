@@ -5,7 +5,7 @@ export const committees = [
     fullName: "United Nations General Assembly – Special Political and Decolonization Committee",
     description: "The principal deliberative, policymaking, and representative organ of the United Nations, bringing together member states to discuss peace, security, development, and decolonization.",
     agenda: "Foreign Intervention vs State Sovereignty: Examining the Limits of International Authority.",
-    allocations: "Single delegate",
+    allocations: "Single Delegate",
     logoUrl: "/UNGA.png",
     executiveBoard: [
       { name: "Soheth A Robin", role: "Chairperson", imageUrl: "/eb/soheth.jpg", biography: "Soheth A Robin is a well-established name in the Kerala MUN circuit, with a presence across more than 20 cities and 15 states. He brings extensive diplomatic and committee experience to UNGA SPECPOL." },
@@ -29,12 +29,12 @@ export const committees = [
   },
   {
     slug: "war-cabinet",
-    name: "UNSC",
+    name: "Crisis Committee",
     fullName: "War Cabinet",
     description: "A specialized crisis cabinet focused on fast-moving geopolitical threats, asymmetric escalation, military strategy, and urgent strategic decision-making.",
     agenda: "On the brink: Cuban Missile Crisis. Freeze Date: October 27, 1962",
-    allocations: "Eastern Bloc and Western Bloc portfolios",
-    logoUrl: "/UNSC-emblem.png",
+    allocations: "Single Delegate",
+    logoUrl: "/War-Cabinet-emblem.png",
     executiveBoard: [
       { name: "Siddharth S", role: "Chairperson", imageUrl: "/eb/siddharth.jpg", biography: "Siddharth brings MUNs, debates, diplomacy, and infectious confidence to the War Cabinet. Expect substance, controlled chaos, and a committee that remains memorable after the final directive." },
       { name: "Adithyan N", role: "Vice-Chairperson", imageUrl: "/eb/adithyan.jpg", biography: "Adithyan N is an Economics Honours student at University College Thiruvananthapuram. He has attended more than 30 MUNs across South India and specialises in crisis possibilities, crisis committees, and economic simulations." },
@@ -47,7 +47,7 @@ export const committees = [
     fullName: "International Press Corps",
     description: "The media wing of the conference, where correspondents gather intelligence, file dispatches, and hold delegations accountable through investigative journalism and press briefings.",
     agenda: "Documenting Diplomacy: Uncovering narratives, capturing moments and telling the untold stories behind committee doors through the power of words and visuals.",
-    allocations: "Single delegate",
+    allocations: "Single Portfolio",
     logoUrl: "/IP.png",
     executiveBoard: [
       { name: "Devika Vipin", role: "Head of IPJ", imageUrl: "/eb/devika.jpg", biography: "Devika Vipin is a final-year Mechanical Engineering student at CET with a strong passion for diplomacy, journalism, and public discourse. She has chaired over 20 MUNs and serves in editorial and conference-management roles, bringing together leadership, diverse perspectives, and responsible reporting." },
@@ -60,7 +60,7 @@ export const committees = [
     fullName: "Kerala Legislative Assembly",
     description: "A simulation of the state legislature of Kerala, debating regional policy, governance, and development with regional dialect and local parliamentary procedure.",
     agenda: "സർക്കാർ നിയമനങ്ങളിലും പൊതുമേഖലാ സ്ഥാപനങ്ങളുടെയും ബോർഡുകളുടെയും കമ്മീഷനുകളുടെയും പ്രവർത്തനങ്ങളിലും സുതാര്യതയും യോഗ്യതാധിഷ്ഠിതത്വവും ഉറപ്പാക്കുന്നതിനുള്ള പരിഷ്കാരങ്ങൾ.",
-    allocations: "Single portfolio",
+    allocations: "Single Delegate",
     logoUrl: "/KLA.png",
     executiveBoard: [
       { name: "Arjun S. Nair", role: "Chairperson", imageUrl: "/eb/arjun.jpg", biography: "Arjun S. Nair holds a postgraduate degree in English Language and Literature and is UGC-NET qualified. A winner of Speak for India Kerala 2023 and former National Youth Parliament representative, he has chaired KLA and parliamentary simulations across major Kerala MUNs and conducts public-speaking workshops." },

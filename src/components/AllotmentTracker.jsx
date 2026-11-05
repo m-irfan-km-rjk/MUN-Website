@@ -22,6 +22,7 @@ export default function AllotmentTracker() {
   const [now, setNow] = useState(() => Date.now());
 
   const [committee, setCommittee] = useState('all');
+  const [bloc, setBloc] = useState(null); // War Cabinet only: 'Western Bloc' | 'Eastern Bloc'
   const [status, setStatus] = useState(null);
   const [showAll, setShowAll] = useState(false);
   const [input, setInput] = useState('');
@@ -68,6 +69,7 @@ export default function AllotmentTracker() {
     const q = p.get('q') ?? '';
     if (c && validCommittee(c)) setCommittee(c);
     if (s && validStatus(s)) setStatus(s);
+    if (p.get('b')) setBloc(p.get('b'));
     if (p.get('all') === '1') setShowAll(true);
     setInput(q);
     setQuery(q);
@@ -81,11 +83,12 @@ export default function AllotmentTracker() {
     const set = (k, v) => (v ? p.set(k, v) : p.delete(k));
     set('c', committee !== 'all' ? committee : '');
     set('s', status ?? '');
+    set('b', bloc ?? '');
     set('q', query);
     set('all', showAll ? '1' : '');
     const qs = p.toString();
     window.history.replaceState(null, '', `${window.location.pathname}${qs ? `?${qs}` : ''}${window.location.hash}`);
-  }, [hydrated, committee, status, query, showAll]);
+  }, [hydrated, committee, status, query, showAll, bloc]);
 
   // Debounce the search box.
   useEffect(() => {
@@ -96,14 +99,14 @@ export default function AllotmentTracker() {
   // Collapse back to one page only when a filter changes (not when live data refreshes).
   useEffect(() => {
     setVisibleCount(PAGE_SIZE);
-  }, [committee, status, query, showAll]);
+  }, [committee, status, query, showAll, bloc]);
 
   const showLess = useCallback(() => {
     setVisibleCount(PAGE_SIZE);
     document.getElementById('allotments')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, []);
 
-  const result = useMemo(() => filterSeats(seats, { committee, status, query, showAll }), [seats, committee, status, query, showAll]);
+  const result = useMemo(() => filterSeats(seats, { committee, status, query, showAll, bloc: committee === 'war-cabinet' ? bloc : null }), [seats, committee, status, query, showAll, bloc]);
 
   const openByCommittee = useMemo(() => {
     const out = {};
@@ -114,8 +117,8 @@ export default function AllotmentTracker() {
 
   const committeeLabelText = committee === 'all' ? 'All committees' : COMMITTEES.find((c) => c.key === committee)?.label;
   const progressCounts = useMemo(
-    () => countByStatus(committee === 'all' ? seats : seats.filter((s) => s.committee === committee)),
-    [seats, committee]
+    () => countByStatus((committee === 'all' ? seats : seats.filter((s) => s.committee === committee)).filter((s) => !(committee === 'war-cabinet' && bloc) || s.bloc === bloc)),
+    [seats, committee, bloc]
   );
 
   const clearAll = useCallback(() => {
@@ -123,6 +126,7 @@ export default function AllotmentTracker() {
     setQuery('');
     setStatus(null);
     setShowAll(false);
+    setBloc(null);
     setCommittee('all');
   }, []);
 
@@ -131,6 +135,7 @@ export default function AllotmentTracker() {
       setInput('');
       setQuery('');
       setCommittee(seat.committee);
+      setBloc(null);
       setShowAll(true);
     } else {
       setInput(seat.name);
@@ -139,7 +144,20 @@ export default function AllotmentTracker() {
   };
 
   const searching = result.mode === 'search';
-  const animateKey = `${committee}|${status}|${query}|${showAll}`;
+  const animateKey = `${committee}|${status}|${query}|${showAll}|${bloc}`;
+
+  // War Cabinet is split into blocs; offer a filter for them with open-seat counts.
+  const blocs = useMemo(() => {
+    const out = new Map();
+    for (const s of seats) {
+      if (s.committee !== 'war-cabinet' || !s.bloc) continue;
+      const cur = out.get(s.bloc) ?? { total: 0, open: 0 };
+      cur.total += 1;
+      if (s.status === 'available') cur.open += 1;
+      out.set(s.bloc, cur);
+    }
+    return [...out.entries()].map(([name, c]) => ({ name, ...c }));
+  }, [seats]);
 
   return (
     <section id="allotments" className="max-w-6xl mx-auto px-5 md:px-12 py-24 relative z-10">
@@ -194,7 +212,29 @@ export default function AllotmentTracker() {
             </p>
           ) : (
             <>
-              <CommitteeTabs openByCommittee={openByCommittee} openTotal={openTotal} active={committee} onChange={setCommittee} />
+              <CommitteeTabs openByCommittee={openByCommittee} openTotal={openTotal} active={committee} onChange={(c) => { setCommittee(c); setBloc(null); }} />
+              {committee === 'war-cabinet' && blocs.length > 0 && (
+                <div role="group" aria-label="War Cabinet bloc" className="flex flex-wrap items-center gap-2">
+                  <span className="font-display text-[10px] font-bold uppercase tracking-[0.2em] text-gold-light">Bloc</span>
+                  {[{ name: null, label: 'Both blocs', open: blocs.reduce((n, b) => n + b.open, 0) }, ...blocs.map((b) => ({ name: b.name, label: b.name, open: b.open }))].map((b) => {
+                    const on = bloc === b.name;
+                    return (
+                      <button
+                        key={b.label}
+                        type="button"
+                        aria-pressed={on}
+                        onClick={() => setBloc(b.name)}
+                        className={`rounded-full border px-4 py-1.5 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-light ${
+                          on ? 'border-gold-light bg-gold font-semibold text-maroon-dark' : 'border-gold/40 text-cream hover:bg-maroon-hover'
+                        }`}
+                      >
+                        {b.label}
+                        <span className={`ml-2 text-xs ${on ? 'text-maroon-dark/80' : 'text-[#8fe3a0]'}`}>{b.open} open</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
               <ProgressBar label={committeeLabelText} counts={progressCounts} />
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <p className="text-sm text-cream/80" aria-live="polite">

@@ -19,7 +19,10 @@ function describe(folder) {
   const year = m ? (m[1].length === 2 ? 2000 + Number(m[1]) : Number(m[1])) : 0;
   let title = m ? folder.replace(m[1], String(year)) : folder;
   if (/^\d{4}$/.test(folder.trim())) title = `MUN ${folder.trim()}`;
-  return { year, title: title.replace(/\s+/g, ' ').trim() };
+  title = title.replace(/\s+/g, ' ').trim();
+  // Every MUN album carries the TKM name: "MUN 2025" -> "TKM MUN 2025", "Intra MUN 2025" -> "TKM Intra MUN 2025".
+  if (/MUN/i.test(title) && !/^TKM/i.test(title)) title = `TKM ${title}`;
+  return { year, title };
 }
 
 const albums = [];
