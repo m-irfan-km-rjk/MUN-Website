@@ -18,7 +18,7 @@ export default function FoundersSection() {
             Our Origins
           </span>
           <h2 className="mt-1 font-display text-3xl font-bold uppercase text-[#FFE6A6] drop-shadow-[0_2px_10px_rgba(201,164,76,0.55)] md:text-4xl">
-            Founders of TKM MUN
+            Founders of MUNSOC TKMCE
           </h2>
         </div>
 
